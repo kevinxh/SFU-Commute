@@ -1,0 +1,22 @@
+{
+  "name": "sfu-commute",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinxh/SFU-Commute.git"
+  },
+  "author": "Kevin He",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinxh/SFU-Commute/issues"
+  },
+  "homepage": "https://github.com/kevinxh/SFU-Commute#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
