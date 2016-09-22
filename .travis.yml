@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "6.1"
+env:
+  - NODE_ENV=TEST
+notifications:
+  slack: cmpt275project:z3kSgdJUNmOKFuQLjbonMWhD
