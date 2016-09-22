@@ -3,5 +3,12 @@ node_js:
   - "6.1"
 env:
   - NODE_ENV=TEST
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 notifications:
   slack: cmpt275project:z3kSgdJUNmOKFuQLjbonMWhD

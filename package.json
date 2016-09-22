@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec ./node_modules/babel-cli/bin/babel-node.js --presets es2015",
+    "start": "nodemon server/index.js --exec ./node_modules/babel-cli/bin/babel-node.js --presets es2015",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
