@@ -8,3 +8,5 @@ app.get('/', function (req, res) {
 app.listen(3000, function () {
   console.log('Initialize SFU-Commute backend server!');
 })
+
+export default app
