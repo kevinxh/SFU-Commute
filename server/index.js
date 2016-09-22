@@ -1,12 +1,7 @@
-import express from 'express'
-var app = express()
+import express from './config/express'
+import router from './router'
 
-app.get('/', function (req, res) {
-  res.send('Initialize SFU-Commute backend server!');
-})
-
-app.listen(3000, function () {
-  console.log('Initialize SFU-Commute backend server!');
-})
+const app = express()
+app.use(router)
 
 export default app
