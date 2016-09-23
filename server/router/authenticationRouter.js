@@ -3,6 +3,6 @@ import { SignUp } from '../controller/authenticationController'
 
 const authenticationRouter = express.Router()
 
-authenticationRouter.get('/signup', SignUp)
+authenticationRouter.post('/signup', SignUp)
 
 export default authenticationRouter

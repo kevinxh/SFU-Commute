@@ -2,7 +2,7 @@ import { assert, expect } from 'chai'
 import request from 'request'
 import app from '../'
 
-process.env.NODE_ENV = 'test'
+process.env.NODE_ENV = 'development'
 
 export default describe('Server unit tests', function () {
 
