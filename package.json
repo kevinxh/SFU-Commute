@@ -21,8 +21,11 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.1",
     "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
     "path": "^0.12.7"
   },
   "devDependencies": {

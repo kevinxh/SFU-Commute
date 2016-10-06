@@ -1,6 +1,6 @@
+import mongoose from './config/mongoose' // import mongoose model before passport!
 import express from './config/express'
 import router from './router'
-import mongoose from './config/mongoose'
 
 mongoose()
 const app = express()

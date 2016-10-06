@@ -1,4 +1,6 @@
 import User from '../model/user'
+import jwt from 'jsonwebtoken'
+import config from '../config/secret'
 
 export function SignUp(req, res) {
   let { email, password } = req.body
@@ -20,9 +22,13 @@ export function SignUp(req, res) {
         msg: err,
       })
     }
+    const token = jwt.sign({ email: user.email }, config.JwtSecret, {
+      expiresIn: 5184000, // 60 days in seconds
+    })
     return res.status(201).json({
       success: true,
-      email,
+      user,
+      access_token: `JWT ${token}`,
     })
   })
 }
@@ -55,13 +61,13 @@ export function SignIn(req, res) {
     user.authenticate(password, (err2, isMatch) => {
       if (isMatch) {
       // Create token if the password matched and no error was thrown
-        //const token = jwt.sign({ email: user.email }, config.JwtSecret, {
-        //  expiresIn: 5184000, // 60 days in seconds
-        //})
+        const token = jwt.sign({ email: user.email }, config.JwtSecret, {
+          expiresIn: 5184000, // 60 days in seconds
+        })
         return res.status(200).json({
           success: true,
           email,
-      //    access_token: `JWT ${token}`,
+          access_token: `JWT ${token}`,
         })
       }
       return 	res.status(401).json({

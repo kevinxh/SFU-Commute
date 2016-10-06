@@ -2,7 +2,7 @@ import config from './secret'
 import mongoose from 'mongoose'
 
 // Registering models
-//require('../model/user')
+require('../model/user')
 
 export default function () {
   mongoose.Promise = global.Promise;
