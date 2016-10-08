@@ -1,3 +1,4 @@
+import request from 'request'
 import User from '../model/user'
 import jwt from 'jsonwebtoken'
 import config from '../config/secret'
@@ -66,7 +67,7 @@ export function SignIn(req, res) {
         })
         return res.status(200).json({
           success: true,
-          email,
+          user,
           access_token: `JWT ${token}`,
         })
       }
@@ -76,4 +77,42 @@ export function SignIn(req, res) {
       })
     })
   })
+}
+
+export function Verify(req, res) {
+  if (!req.query.method || (req.query.method!= 'email' && req.query.method!= 'text')) {
+    return res.status(400).json({
+      success: false,
+      msg: 'ERROR: Missing parameter METHOD(email or text).'
+    })
+  }
+  /*if (!req.user.phone) {
+    return res.status(400).json({
+      success: false,
+      msg: 'ERROR: Missing user information(phone number).'
+    })
+  }*/
+  const code = Math.random().toString().substr(2,4);
+  console.log(code);
+  const options = sendTextOption(req.user.phone, code)
+  return res.status(200).json({
+          success: true,
+          msg: req.user
+      })
+}
+
+function sendTextOption(phone, code){
+  const message = `SFU Commute Verification Code: ${code}.`
+
+  const options = { method: 'GET',
+  url: 'https://rest.nexmo.com/sms/json',
+  qs: 
+    { api_key: config.nexmoApiKey,
+      api_secret: config.nexmoApiSecret,
+      to: phone,
+      from: config.nexmoFromNumber,
+      text: message 
+    }
+  }
+  return options
 }
