@@ -1,6 +1,5 @@
 import express from 'express'
 import passport from 'passport'
-import nexmo from '../config/nexmo'
 import authenticationRouter from './authenticationRouter'
 
 const router = express.Router()
