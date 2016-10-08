@@ -8,7 +8,8 @@
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-register ./server/test/index.js",
     "build": "babel server --out-dir build",
     "production": "NODE_ENV=development PORT=8080 forever start build",
-    "clean": "rm -rf build && mkdir build"
+    "clean": "rm -rf build && mkdir build",
+    "re-encrypt": "sudo travis encrypt-file server/config/secret.js server/config/secret.js.enc  -a"
   },
   "repository": {
     "type": "git",
