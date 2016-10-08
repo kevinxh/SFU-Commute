@@ -5,7 +5,7 @@ import { JWTAuthentication } from '../config/passport-jwt.js'
 const router = express.Router()
 
 router.get('/', function (req, res) {
-  res.status(200).send('Initialize SFU-Commute backend server!')
+  res.status(200).send('SFU-Commute server!')
 })
 
 router.use('/auth', authenticationRouter);

@@ -13,9 +13,9 @@ export default function(){
   }
   app.use(passport.initialize())
   passportStrategies()
-  const port = 8080
-  app.listen(port, function () {
-    console.log('Initialize SFU-Commute backend server!')
+  const port = 3000
+  app.listen(process.env.PORT || port, function () {
+    console.log('SFU-Commute server!')
   })
   return app
 }
