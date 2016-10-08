@@ -1,0 +1,43 @@
+{
+  "name": "sfu-commute",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon server/index.js --exec ./node_modules/babel-cli/bin/babel-node.js --presets es2015",
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register ./server/test/index.js",
+    "build": "babel server --out-dir build",
+    "production": "NODE_ENV=development PORT=8080 forever start build",
+    "clean": "rm -rf build && mkdir build",
+    "re-encrypt": "sudo travis encrypt-file server/config/secret.js server/config/secret.js.enc  -a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinxh/SFU-Commute.git"
+  },
+  "author": "Kevin He",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinxh/SFU-Commute/issues"
+  },
+  "homepage": "https://github.com/kevinxh/SFU-Commute#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.6.1",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-2": "^6.13.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
