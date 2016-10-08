@@ -80,11 +80,47 @@ export function SignIn(req, res) {
 }
 
 export function Verify(req, res) {
-  if (!req.query.method || (req.query.method!= 'email' && req.query.method!= 'text')) {
-    return res.status(400).json({
-      success: false,
-      msg: 'ERROR: Missing parameter METHOD(email or text).'
-    })
+  switch (req.query.method) {
+  	case 'text':
+  		if (!req.query.phone){
+  			return res.status(400).json({
+        			success: false,
+        			msg: 'ERROR: Missing parameter phone.',
+      		})
+  		}
+  		console.log(`method: text ${req.query.phone}`)
+  		User.findOne({ email: req.user.email }, (err, user) => {
+    		// if error finding an user
+    		if (err) {
+      			return res.status(403).json({
+        			success: false,
+        			msg: err,
+      			})
+    		}
+    		// if no such user
+    		if (!user) {
+      			return res.status(401).json({
+        			success: false,
+        			msg: 'Authentication failed. User not found.',
+      			})
+    		}
+    		const code = Math.random().toString().substr(2,4)
+  			console.log(code)
+  			const options = sendTextOption(req.query.phone, code)
+  			request(options, function (error, response, body) {
+  				if (error) throw new Error(error)
+  				console.log(body)
+			});
+  		})
+  		break
+  	case 'email':
+  		console.log('method: email')
+  		break
+  	default:
+  		return res.status(400).json({
+      		success: false,
+      		msg: 'ERROR: Missing parameter METHOD(email or text).'
+    	})
   }
   /*if (!req.user.phone) {
     return res.status(400).json({
@@ -92,9 +128,7 @@ export function Verify(req, res) {
       msg: 'ERROR: Missing user information(phone number).'
     })
   }*/
-  const code = Math.random().toString().substr(2,4);
-  console.log(code);
-  const options = sendTextOption(req.user.phone, code)
+  
   return res.status(200).json({
           success: true,
           msg: req.user
