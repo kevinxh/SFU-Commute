@@ -9,7 +9,7 @@ export default describe('Server unit tests', function () {
   let server = app
 
   before((done) => {
-    server = server.listen(3000)
+    server = server.listen(8008)
     done()
   })
 
@@ -19,10 +19,10 @@ export default describe('Server unit tests', function () {
   })
 
   it('simple test', (done) => {
-    request.get('http://localhost:3000/', (err, res, body) => {
+    request.get('http://localhost:8008/', (err, res, body) => {
       expect(res.statusCode, 'Status code should be 200').to.equal(200)
-      expect(body, 'Body should contain "Initialize SFU-Commute backend server!"').to
-        .equal('Initialize SFU-Commute backend server!')
+      expect(body, 'Body should contain "SFU-Commute server!"').to
+        .equal('SFU-Commute server!')
       done()
     })
   })
