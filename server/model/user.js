@@ -18,6 +18,19 @@ const UserSchema = new Schema({
       'Password should be longer',
     ],
   },
+  phone: {
+    type: String,
+    validate: [
+      (phone) => (phone.length === 10),
+      'Phone number should be 10-digit.',
+    ],
+  },
+  verification: {
+    text:{
+      code: Number,
+      expire: Date,
+    },
+  },
   created: {
     type: Date,
     default: Date.now,
