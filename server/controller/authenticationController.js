@@ -88,30 +88,25 @@ export function Verify(req, res) {
         			msg: 'ERROR: Missing parameter phone.',
       		})
   		}
-  		console.log(`method: text ${req.query.phone}`)
-  		User.findOne({ email: req.user.email }, (err, user) => {
-    		// if error finding an user
-    		if (err) {
-      			return res.status(403).json({
-        			success: false,
-        			msg: err,
-      			})
-    		}
-    		// if no such user
-    		if (!user) {
-      			return res.status(401).json({
-        			success: false,
-        			msg: 'Authentication failed. User not found.',
-      			})
-    		}
-    		const code = Math.random().toString().substr(2,4)
-  			console.log(code)
-  			const options = sendTextOption(req.query.phone, code)
-  			request(options, function (error, response, body) {
-  				if (error) throw new Error(error)
-  				console.log(body)
-			});
-  		})
+  		const code = Math.random().toString().substr(2,4)
+  		//const options = sendTextOption(req.query.phone, code)
+  		//request(options, function (error, response, body) {
+  		//	if (error) throw new Error(error)
+  		//	console.log(body)
+		//})
+		const expiresInFive = new Date()
+		expiresInFive.setMinutes(expiresInFive.getMinutes() + 5)
+		console.log(new Date())
+		console.log(expiresInFive)
+		User.findOneAndUpdate({email: req.user.email},
+							  {'verification.text.code': code,
+							   'verification.text.expire': expiresInFive},
+							  {new: true},
+							  function(err, user){
+							  	if(err) console.log(err)
+							  	console.log(user.verification.text.code)
+							  	console.log(user.verification.text.expire)
+							  })
   		break
   	case 'email':
   		console.log('method: email')
