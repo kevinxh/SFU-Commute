@@ -19,17 +19,21 @@ const UserSchema = new Schema({
     ],
   },
   phone: {
-    type: String,
-    validate: [
-      (phone) => (phone.length === 10),
-      'Phone number should be 10-digit.',
-    ],
-  },
-  verification: {
-    text:{
-      code: Number,
-      expire: Date,
+    number:{
+      type: String,
+      validate: [
+        (number) => (number.length === 11),
+        'Phone number should be 11-digit.',
+      ],
     },
+    verification:{
+      verified:{
+        type: Boolean,
+        default: false,
+      },
+      code: String,
+      expire: Date,
+    }
   },
   created: {
     type: Date,
