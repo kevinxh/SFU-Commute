@@ -1,4 +1,5 @@
 import request from 'request'
+import moment from 'moment'
 import User from '../model/user'
 import jwt from 'jsonwebtoken'
 import config from '../config/secret'
@@ -80,33 +81,54 @@ export function SignIn(req, res) {
 }
 
 export function Verify(req, res) {
+
   switch (req.query.method) {
   	case 'text':
-  		if (!req.query.phone){
+  		if (!req.query.phone || req.query.phone.length != 11){
   			return res.status(400).json({
         			success: false,
-        			msg: 'ERROR: Missing parameter phone.',
+        			msg: 'ERROR: Missing parameter:  11-digit phone number.',
       		})
   		}
-  		const code = Math.random().toString().substr(2,4)
-  		//const options = sendTextOption(req.query.phone, code)
-  		//request(options, function (error, response, body) {
-  		//	if (error) throw new Error(error)
-  		//	console.log(body)
-		//})
-		const expiresInFive = new Date()
-		expiresInFive.setMinutes(expiresInFive.getMinutes() + 5)
-		console.log(new Date())
-		console.log(expiresInFive)
-		User.findOneAndUpdate({email: req.user.email},
-							  {'verification.text.code': code,
-							   'verification.text.expire': expiresInFive},
-							  {new: true},
-							  function(err, user){
-							  	if(err) console.log(err)
-							  	console.log(user.verification.text.code)
-							  	console.log(user.verification.text.expire)
-							  })
+  		var code = genCode(4)
+  		const options = sendTextOption(req.query.phone, code)
+  		request(options, function (error, response, body) {
+  			if (error) {
+          return res.status(500).json({
+                      success: false,
+                      error
+                  })
+        }
+        const parsedBody = JSON.parse(body)
+        const status =  parsedBody.messages[0].status
+  			if( status === '0') {
+          const expiresInFive = moment().add(5, 'm');
+          User.findOneAndUpdate({email: req.user.email},
+                {'phone.number': req.query.phone,
+                 'phone.verification.code': code,
+                 'phone.verification.expire': expiresInFive},
+                {new: true,
+                 runValidators: true},
+                function(error, user){
+                  if(error){
+                    return res.status(400).json({
+                      success: false,
+                      error
+                    })
+                  }
+                  return res.status(200).json({
+                      success: true,
+                      user
+                  })
+                })
+        } else {
+          return res.status(500).json({
+                      success: false,
+                      msg: `Message delievery failed, SMS API response status code: ${status}. Please check https://docs.nexmo.com/messaging/sms-api/api-reference .`,
+                  })
+        }
+		  })
+		  
   		break
   	case 'email':
   		console.log('method: email')
@@ -117,17 +139,6 @@ export function Verify(req, res) {
       		msg: 'ERROR: Missing parameter METHOD(email or text).'
     	})
   }
-  /*if (!req.user.phone) {
-    return res.status(400).json({
-      success: false,
-      msg: 'ERROR: Missing user information(phone number).'
-    })
-  }*/
-  
-  return res.status(200).json({
-          success: true,
-          msg: req.user
-      })
 }
 
 function sendTextOption(phone, code){
@@ -144,4 +155,9 @@ function sendTextOption(phone, code){
     }
   }
   return options
+}
+
+function genCode(digits){
+  let code = Math.floor(Math.pow(10, digits+1) + Math.random() * 9*Math.pow(10, digits+1)).toString().substring(1,digits+1)
+  return code
 }
