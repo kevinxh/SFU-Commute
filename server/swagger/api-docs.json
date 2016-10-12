@@ -43,7 +43,7 @@
             }
           ],
           "responses": {
-            "200": {
+            "201": {
               "description": "Returns access_token and JSON data of the new user.",
               "schema": {
                   "required": [
