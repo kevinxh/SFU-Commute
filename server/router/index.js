@@ -1,6 +1,6 @@
 import express from 'express'
+import passport from 'passport'
 import authenticationRouter from './authenticationRouter'
-import { JWTAuthentication } from '../config/passport-jwt.js'
 
 const router = express.Router()
 
@@ -8,11 +8,6 @@ router.get('/', function (req, res) {
   res.status(200).send('SFU-Commute server!')
 })
 
-router.use('/auth', authenticationRouter);
-router.get('/test', JWTAuthentication, function(req, res){
-  return res.status(200).json({
-  success: true,
-  user: req.user
-})});
+router.use('/auth', authenticationRouter)
 
 export default router

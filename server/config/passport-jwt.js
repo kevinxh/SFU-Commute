@@ -21,5 +21,20 @@ export const passportJWT = function (passport) {
 }
 
 export const JWTAuthentication = (req, res, next) => {
-  Passport.authenticate('jwt', { session: false })(req, res, next)
+  Passport.authenticate('jwt', {session:false}, function (err, user, info){
+    if (err) { 
+      return res.status(401).json({
+          success: false,
+          msg:err
+      })
+    } else if (!user) {
+      return res.status(401).json({
+          success: false,
+          msg:'Error: The request is missing correct access token.'
+      })
+    } else {
+      req.user = user
+      next()
+    }
+  })(req, res, next)
 }
