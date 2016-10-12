@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import passport from 'passport'
 import passportStrategies from './passport'
+import swagger from './swagger'
 
 export default function(){
   let app = express()
@@ -11,6 +12,7 @@ export default function(){
   if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'))
   }
+  swagger(app)
   app.use(passport.initialize())
   passportStrategies()
   const port = 3000

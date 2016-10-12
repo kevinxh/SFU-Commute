@@ -1,0 +1,625 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "SFU Commute",
+    "description": "REST API documentation. http://54.69.64.180/",
+    "termsOfService": "http://swagger.io/terms/"
+  },
+  "basePath": "/",
+  "tags" : [
+    {
+      "name": "Authentication",
+      "description": "API paths for user authentication"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/signup": {
+       "post": {
+          "tags": ["Authentication"],
+          "description": "Sign up new user.",
+          "operationId": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+              {
+                "name": "body",
+                "in": "body",
+                "description": "New user",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/signup-signin"
+                }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns access_token and JSON data of the new user.",
+              "schema": {
+                  "required": [
+                    "success",
+                    "user",
+                    "access_token"
+                  ],
+                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example" : "true"
+                    },
+                    "user": {
+                      "type" : "object",
+                      "required": [
+                        "_id",
+                        "email",
+                        "password",
+                        "created"
+                      ],
+                      "schema": {
+                        "properties": {
+                          "_id": {
+                            "type" : "ObjectId",
+                            "example" : "57fddbf0eb86a305b4589e3e"
+                          },
+                          "email": {
+                            "type": "string",
+                            "example": "username@gmail.com"
+                          },
+                          "password": {
+                            "type":"string",
+                            "example": "$2a$10$6cMEnet27am14E5VgcOKOOtrYsaJD2Z358heNCXpCrDjEeMdmQa2G"
+                          },
+                          "created": {
+                            "type": "dateTime",
+                            "example": "2016-10-12T06:45:04.468Z"
+                          }
+                        }
+                      }
+                    },
+                    "access_token": {
+                      "required":true,
+                      "type": "string",
+                      "example": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJuYW1lQGdtYWlsLmNvbSIsImlhdCI6MTQ3NjI1NjkwOSwiZXhwIjoxNDgxNDQwOTA5fQ._0Wnc5ZWLZt2k4jHJdJ-Jz80ijDs5QIxDRqPAuzpEik"
+                    }
+                  }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                 "$ref": "#/definitions/error-response"
+              }
+            },
+            "403": {
+              "description": "Database error (field validation failed).",
+              "schema": {
+                 "$ref": "#/definitions/database-error-response"
+              }
+            }
+          }
+        }
+    },
+    "/auth/signin": {
+        "post":{
+          "tags":["Authentication"],
+          "description":"let user sign in",
+          "operationId":"",
+          "produces": [
+            "application/json"
+          ],
+          "parameters":[
+              {
+                "name": "body",
+                "in": "body",
+                "description": "User credentials",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/signup-signin"
+                }
+              }
+            ],
+          "responses": {
+            "200": {
+              "description": "Returns access_token and JSON data of the user.",
+              "schema":{
+                "$ref":"#/definitions/signup-response"
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                 "$ref": "#/definitions/error-response"
+              }
+            },
+            "401": {
+              "description": "User not found or wrong password.",
+              "schema": {
+                 "$ref": "#/definitions/user-not-found"
+              }
+            },
+            "401": {
+              "description": "User not found or wrong password.",
+              "schema": {
+                 "$ref": "#/definitions/password-not-match"
+              }
+            },
+            "403": {
+              "description": "Database query error.",
+              "schema": {
+                 "$ref": "#/definitions/database-error-response"
+              }
+            }
+          }
+        }
+    },
+    "/auth/verify": {
+        "post":{
+          "tags":["Authentication"],
+          "description":"Send users' phone number to verify (Usually this is the step 1/2 for phone number verification)",
+          "operationId":"",
+          "produces": [
+            "application/json"
+          ],
+          "parameters":[
+              {
+                "name": "query",
+                "in": "query",
+                "description": "verify method and phone number",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/verify-phone"
+                }
+              },
+              {
+                "name": "Authorization",
+                "in": "header",
+                "description": "attach access_token in field Authorization in header",
+                "required": true,
+                "type": "string",
+                "example": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluMTNAZ21haWwuY29tIiwiaWF0IjoxNDc2MjU0NzA0LCJleHAiOjE0ODE0Mzg3MDR9.OWZ-bXHeJhomyOT0iZViASkNCgTFQcV_Mejsu-DefQU"
+              }
+            ],
+          "responses": {
+            "200": {
+              "description": "Returns user data include phone number",
+              "schema":{
+                "required": [
+                  "success",
+                  "user"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "true"
+                  },
+                  "user": {
+                    "$ref": "#/definitions/user"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "Error: The request is missing correct access token."
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema":{
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "Missing parameter METHOD(email or text)."
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema":{
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "Missing parameter:  11-digit phone number."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to send text (SMS provider problem).",
+              "schema":{
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Database query error.",
+              "schema": {
+                 "$ref": "#/definitions/database-error-response"
+              }
+            }
+          }
+        },
+        "get":{
+          "tags":["Authentication"],
+          "description":"Check user's input: 4 digit code. (Usually this is the step 2/2 for phone number verification)",
+          "operationId":"",
+          "produces": [
+            "application/json"
+          ],
+          "parameters":[
+              {
+                "name": "query",
+                "in": "query",
+                "description": "verify method and 4 digit code",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/verify-code"
+                }
+              }
+            ],
+          "responses": {
+            "200": {
+              "description": "Phone number successfully verified!",
+              "schema":{
+                "required": [
+                  "success",
+                  "msg"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "true"
+                  },
+                  "msg": {
+                    "type": "string",
+                    "example": "Phone number successfully verified!"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "Error: The request is missing correct access token."
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "Missing parameter: 4-digit verfication code."
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "The code is incorrect."
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "The code is expired."
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "User not found.",
+              "schema": {
+                 "$ref": "#/definitions/user-not-found"
+              }
+            },
+            "500": {
+              "description": "Database query error.",
+              "schema": {
+                 "$ref": "#/definitions/database-error-response"
+              }
+            }
+          }
+        }
+    }
+  },
+  "definitions": {
+    "signup-signin": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "required":true,
+          "type": "string",
+          "example": "username@gmail.com"
+        },
+        "password": {
+          "required":true,
+          "type":"string",
+          "minLength":6,
+          "example": "password"
+        }
+      }
+    },
+    "signup-response": {
+        "required": [
+          "success",
+          "user",
+          "access_token"
+        ],
+        "properties": {
+          "success": {
+            "required":true,
+            "type": "boolean",
+            "example": true
+          },
+          "user": {
+            "required":true,
+            "type": "schema",
+            "$ref": "#/definitions/user"
+          },
+          "access_token": {
+            "required":true,
+            "type": "string",
+            "example": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJuYW1lQGdtYWlsLmNvbSIsImlhdCI6MTQ3NjI1NjkwOSwiZXhwIjoxNDgxNDQwOTA5fQ._0Wnc5ZWLZt2k4jHJdJ-Jz80ijDs5QIxDRqPAuzpEik"
+          }
+      }
+    },
+    "user": {
+      "required": [
+        "_id",
+        "email",
+        "password",
+        "created",
+        "phone"
+      ],
+        "properties": {
+            "_id": {
+              "type" : "ObjectId",
+              "example" : "57fddbf0eb86a305b4589e3e"
+            },
+            "email": {
+              "type": "string",
+              "example": "username@gmail.com"
+            },
+            "password": {
+              "type":"string",
+              "example": "$2a$10$6cMEnet27am14E5VgcOKOOtrYsaJD2Z358heNCXpCrDjEeMdmQa2G"
+            },
+            "created": {
+              "type": "dateTime",
+              "example": "2016-10-12T06:45:04.468Z"
+            },
+            "phone": {
+              "$ref": "#/definitions/phone"
+            }
+        }
+    },
+    "phone": {
+        "properties": {
+            "number": {
+              "required": false,
+              "type" : "string",
+              "example" : "17781231234"
+            },
+            "verification" : {
+              "type": "schema",
+              "$ref": "#/definitions/phone-verification"
+            }
+        }
+    },
+    "phone-verification" : {
+       "properties": {
+        "verified": {
+          "type": "boolean",
+          "example" : "false"
+        },
+        "code": {
+          "type": "string",
+          "example" : "6385"
+        },
+        "expire": {
+          "type": "dateTime",
+          "example" : "2016-10-12T06:45:04.468Z"
+        }
+      }
+    },
+    "error-response" : {
+      "required": [
+        "success",
+        "error"
+      ],
+       "properties": {
+        "success": {
+          "type": "boolean",
+          "example" : "false"
+        },
+        "error": {
+          "type": "string",
+          "example" : "Please enter your email and password."
+        }
+      }
+    },
+    "user-not-found" : {
+      "required": [
+        "success",
+        "error"
+      ],
+       "properties": {
+        "success": {
+          "type": "boolean",
+          "example" : "false"
+        },
+        "error": {
+          "type": "string",
+          "example" : "Authentication failed. User not found."
+        }
+      }
+    },
+    "password-not-match" : {
+      "required": [
+        "success",
+        "error"
+      ],
+       "properties": {
+        "success": {
+          "type": "boolean",
+          "example" : "false"
+        },
+        "error": {
+          "type": "string",
+          "example" : "Authentication failed. Passwords does not match."
+        }
+      }
+    },
+    "database-error-response" : {
+      "required": [
+        "success",
+        "error"
+      ],
+       "properties": {
+        "success": {
+          "type": "boolean",
+          "example" : "false"
+        },
+        "error": {
+          "type": "object"
+        }
+      }
+    },
+    "verify-phone" : {
+      "required": [
+        "method",
+        "phone"
+      ],
+       "properties": {
+          "method": {
+            "type": "string",
+            "enum": ["text", "email"],
+            "example" : "text"
+          },
+          "phone": {
+            "type": "string",
+            "example" : "17781231234"
+          }
+      }
+    },
+    "verify-code" : {
+      "required": [
+        "method",
+        "code"
+      ],
+       "properties": {
+          "method": {
+            "type": "string",
+            "enum": ["text", "email"],
+            "example" : "text"
+          },
+          "code": {
+            "type": "string",
+            "example" : "2852"
+          }
+      }
+    }
+  }
+}

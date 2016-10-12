@@ -74,7 +74,7 @@ export function SignIn(req, res) {
       }
       return  res.status(401).json({
         success: false,
-        error: 'Authentication failed. Passwords did not match.',
+        error: 'Authentication failed. Passwords does not match.',
       })
     })
   })
@@ -114,7 +114,7 @@ export function Verify(req, res) {
           }
           User.findOneAndUpdate(query, updates, options, function(err, user){
             if(err){
-              return res.status(400).json({
+              return res.status(403).json({
                 success: false,
                 error: err,
               })
@@ -155,7 +155,7 @@ export function VerifyCheck(req, res) {
       const query = {email: req.user.email}
       User.findOne(query, function(err, user){
         if(err){
-          return res.status(400).json({
+          return res.status(403).json({
             success: false,
             error: err,
           })
@@ -218,7 +218,7 @@ function sendTextOption(phone, code){
       api_secret: config.nexmoApiSecret,
       to: phone,
       from: config.nexmoFromNumber,
-      text: message 
+      text: message
     }
   }
   return options
