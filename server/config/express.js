@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import passport from 'passport'
 import passportStrategies from './passport'
-import swagger from './swagger'
+import swagger from './swag'
 
 export default function(){
   let app = express()
