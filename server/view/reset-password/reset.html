@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- HEAD -->
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Reset password - SFU Commute</title>
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,700,500,300,300italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href="/style.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body>
+
+<!-- WRAPPER -->
+<div class="wrapper">
+    <!--========== FORM MODAL ==========-->
+    <div class="form-modal is-selected is-visible">
+        <div class="form-modal-wrap">
+            <div class="form-modal-container">
+                <!-- Reset Password -->
+                <div id="form-modal-reset-password" class="is-selected">
+                    <div class="form-modal-heading">
+                        <h2 class="form-modal-title">Reset password</h2>
+                        <p class="form-modal-paragraph">SFU Commute</p>
+                        <p class="form-modal-paragraph" id="error"></p>
+                    </div>
+                    <div class="clearfix margin-b-20">
+                        <form class="form-modal-reset-form">
+                            <fieldset>
+                                <input class="form-control form-modal-input radius-3 margin-b-10" id="pw" type="password" placeholder="New Password">
+                            </fieldset>
+                            <fieldset>
+                                <input class="form-control form-modal-input radius-3 margin-b-10" id="pw2" type="password" placeholder="Repeat Password">
+                            </fieldset>
+                            <fieldset class="margin-b-20">
+                                <button type="button" class="btn-base-bg btn-base-sm btn-block radius-3" id="btn">Reset</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Reset Password -->
+            </div>
+        </div>
+    </div>
+    <!--========== END FORM MODAL ==========-->
+</div>
+<!-- END WRAPPER -->
+
+<!--========== JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) ==========-->
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<script   src="/resetPassword.js"></script>
+<!--========== END JAVASCRIPTS ==========-->
+</body>
+<!-- END BODY -->
+
+</html>

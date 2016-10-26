@@ -267,6 +267,33 @@ export function Forgot(req, res){
   })
 }
 
+export function Reset(req, res){
+  if (!req.query.token){
+    return res.status(400).json({
+      success: false,
+      error: 'Missing parameter:  reset password token.',
+    })
+  } else {
+    User.findOne({ resetPasswordToken : req.query.token }, (error, user) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      }
+      // if no such user
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          error: 'Reset token not found.',
+        })
+      } else {
+        return res.sendFile('reset.html', {root: './server/view/reset-password'})
+      }
+    })
+  }
+}
 // Utility functions
 
 function sendTextOption(phone, code){
