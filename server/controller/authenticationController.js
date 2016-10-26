@@ -1,5 +1,6 @@
 import request from 'request'
 import moment from 'moment'
+import nodemailer from 'nodemailer'
 import User from '../model/user'
 import jwt from 'jsonwebtoken'
 import config from '../config/secret'
@@ -240,6 +241,24 @@ export function Forgot(req, res){
           error,
         })
       }
+	    const transporter = nodemailer.createTransport({direct:true})
+			var mailOptions = {
+				  from: '"SFU Commute" <no-reply@sfucommute.com>',
+			    to: user.email,
+			    subject: 'Reset your SFU Commute password.',
+			    html: `Hi,<br>\
+			    <br>You recently initiated a password reset for your SFU Commute Account.\
+			    To complete the process, click the link below.<br>\
+			    <br><a href="http://54.69.64.180/auth/reset?token=${resetPasswordToken}">Reset now ></a><br>\
+			    <br>This link will expire two hours after this email was sent.<br>\
+			    <br>SFU Commute Support`
+			}
+			transporter.sendMail(mailOptions, function(error, info){
+		    if(error){
+		        return console.log(error);
+		    }
+		    console.log(info);
+			});
       return res.status(200).json({
         success: true,
         resetPasswordToken,

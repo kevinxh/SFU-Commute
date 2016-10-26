@@ -52,8 +52,9 @@ UserSchema.pre('save', function (next) {
       user.password = hash
       return next()
     })
+  } else {
+    return next()
   }
-  next()
 })
 
 UserSchema.methods.hashPassword = (password, cb) => {
