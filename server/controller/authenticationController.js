@@ -89,7 +89,7 @@ export function Verify(req, res) {
           error: 'Missing parameter:  11-digit phone number.',
         })
       }
-      const code = genCode(4)
+      const code = randomCode(4)
       const options = sendTextOption(req.query.phone, code)
       request(options, function (error, response, body) {
         if (error) {
@@ -205,6 +205,48 @@ export function VerifyCheck(req, res) {
   }
 }
 
+export function Forgot(req, res){
+  let { email } = req.body
+  if (!email) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your email.',
+    })
+  }
+  email = email.toLowerCase()
+  User.findOne({ email }, (error, user) => {
+    // if error finding an user
+    if (error) {
+      return res.status(403).json({
+        success: false,
+        error,
+      })
+    }
+    // if no such user
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        error: 'Authentication failed. User not found.',
+      })
+    }
+    const resetPasswordToken = randomCode(15)
+    const resetPasswordExpire = moment().add(2, 'h') // reset link exipres in 2 hours
+    user.resetPasswordToken = resetPasswordToken
+    user.resetPasswordExpire = resetPasswordExpire
+    user.save((error) => {
+      if (error) {
+        return  res.status(403).json({
+          success: false,
+          error,
+        })
+      }
+      return res.status(200).json({
+        success: true,
+        resetPasswordToken,
+      })
+    })
+  })
+}
 
 // Utility functions
 
@@ -224,7 +266,7 @@ function sendTextOption(phone, code){
   return options
 }
 
-function genCode(digits){
+function randomCode(digits){
   const code = Math.floor(Math.pow(10, digits+1) + Math.random() * 9*Math.pow(10, digits+1)).toString().substring(1,digits+1)
   return code
 }

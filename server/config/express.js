@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import passport from 'passport'
 import passportStrategies from './passport'
 import swagger from './swag'
+import router from '../router'
 
 export default function(){
   let app = express()
@@ -15,9 +16,6 @@ export default function(){
   swagger(app)
   app.use(passport.initialize())
   passportStrategies()
-  const port = 3000
-  app.listen(process.env.PORT || port, function () {
-    console.log('SFU-Commute server!')
-  })
+  app.use(router)
   return app
 }

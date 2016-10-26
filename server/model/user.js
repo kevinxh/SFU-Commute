@@ -39,6 +39,8 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  resetPasswordToken: String,
+  resetPasswordExpire: Date,
 }, { collection: 'User' })
 
 
@@ -51,6 +53,8 @@ UserSchema.pre('save', function (next) {
       return next()
     })
   }
+  console.log('not modified')
+  next()
 })
 
 UserSchema.methods.hashPassword = (password, cb) => {
