@@ -1,13 +1,14 @@
 import express from 'express'
 import { JWTAuthentication } from '../config/passport-jwt.js'
-import { SignUp, SignIn, Verify, VerifyCheck} from '../controller/authenticationController'
+import * as controller from '../controller/authenticationController'
 
 const authenticationRouter = express.Router()
 
 authenticationRouter
-  .post('/signup', SignUp)
-  .post('/signin', SignIn)
-  .post('/verify', JWTAuthentication, Verify)
-  .get('/verify', JWTAuthentication, VerifyCheck)
+  .post('/signup', controller.SignUp)
+  .post('/signin', controller.SignIn)
+  .post('/verify', JWTAuthentication, controller.Verify)
+  .get('/verify', JWTAuthentication, controller.VerifyCheck)
+  .post('/forgot', controller.Forgot)
 
 export default authenticationRouter
