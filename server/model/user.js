@@ -53,7 +53,6 @@ UserSchema.pre('save', function (next) {
       return next()
     })
   }
-  console.log('not modified')
   next()
 })
 
