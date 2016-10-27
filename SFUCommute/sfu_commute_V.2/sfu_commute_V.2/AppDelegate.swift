@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  SFUCommute
+//  sfu_commute_V.2
 //
-//  Created by Tianxiong He on 2016-10-03.
-//  Copyright © 2016 Lightspeed Technologies. All rights reserved.
+//  Created by jyotsna jaswal on 2016-10-22.
+//  Copyright © 2016 jyotsna jaswal. All rights reserved.
 //
 
 import UIKit
