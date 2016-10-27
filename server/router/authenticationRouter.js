@@ -10,6 +10,7 @@ authenticationRouter
   .post('/verify', JWTAuthentication, controller.Verify)
   .get('/verify', JWTAuthentication, controller.VerifyCheck)
   .post('/forgot', controller.Forgot)
-  .get('/reset', controller.Reset)
+  .get('/reset', controller.ResetPage)
+  .post('/reset', controller.Reset)
 
 export default authenticationRouter
