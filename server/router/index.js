@@ -8,6 +8,6 @@ router.get('/', function (req, res) {
   res.status(200).send('SFU-Commute server!')
 })
 
-router.use('/auth', authenticationRouter)
+router.use('/', authenticationRouter)
 
 export default router

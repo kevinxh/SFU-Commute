@@ -53,7 +53,7 @@ $( document ).ready(function() {
 			var token = getParameterByName('token');
 
 			$.ajax({
-			    url: "http://54.69.64.180:3000/auth/reset",
+			    url: "http://54.69.64.180/reset",
 			    data: {
 			        token: token,
 			        password: pw,

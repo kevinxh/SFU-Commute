@@ -249,7 +249,7 @@ export function Forgot(req, res){
 			    html: `Hi,<br>\
 			    <br>You recently initiated a password reset for your SFU Commute Account.\
 			    To complete the process, click the link below.<br>\
-			    <br><a href="http://54.69.64.180/auth/reset?token=${resetPasswordToken}">Reset now ></a><br>\
+			    <br><a href="http://54.69.64.180/reset?token=${resetPasswordToken}">Reset now ></a><br>\
 			    <br>This link will expire two hours after this email was sent.<br>\
 			    <br>SFU Commute Support`
 			}
@@ -259,12 +259,13 @@ export function Forgot(req, res){
             success: false,
             error
           })
-		    }
+		    } else {
+          return res.status(200).json({
+            success: true,
+            resetPasswordToken,
+          })
+        }
 			});
-      return res.status(200).json({
-        success: true,
-        resetPasswordToken,
-      })
     })
   })
 }

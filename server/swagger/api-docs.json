@@ -23,7 +23,7 @@
     "application/json"
   ],
   "paths": {
-    "/auth/signup": {
+    "/signup": {
        "post": {
           "tags": ["Authentication"],
           "description": "Sign up new user.",
@@ -108,7 +108,7 @@
           }
         }
     },
-    "/auth/signin": {
+    "/signin": {
         "post":{
           "tags":["Authentication"],
           "description":"let user sign in",
@@ -161,7 +161,7 @@
           }
         }
     },
-    "/auth/verify": {
+    "/verify": {
         "post":{
           "tags":["Authentication"],
           "description":"Send users' phone number to verify (Usually this is the step 1/2 for phone number verification)",
@@ -418,6 +418,133 @@
             }
           }
         }
+    },
+    "/forgot": {
+       "post": {
+          "tags": ["Authentication"],
+          "description": "Forgot password.",
+          "operationId": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+              {
+                "name": "body",
+                "in": "body",
+                "description": "New user",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/forgot"
+                }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sends an email to user and returns reset password token.",
+              "schema": {
+                  "required": [
+                    "success",
+                    "resetPasswordToken"
+                  ],
+                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example" : "true"
+                    },
+                    "access_token": {
+                      "required":true,
+                      "type": "string",
+                      "example": "476593603612855"
+                    }
+                  }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                 "$ref": "#/definitions/error-response"
+              }
+            },
+            "403": {
+              "description": "Database error (field validation failed).",
+              "schema": {
+                 "$ref": "#/definitions/database-error-response"
+              }
+            }
+          }
+        }
+    },
+    "/reset?token={reset-password-token}":{
+        "get":{
+          "tags":["Authentication"],
+          "description":"Reset password html page",
+          "operationId":"",
+          "produces": [
+            "application/json"
+          ]
+        }
+    },
+    "/reset": {
+        "post":{
+          "tags":["Authentication"],
+          "description":"Reset user's password (Implemented in web page)",
+          "operationId":"",
+          "produces": [
+            "application/json"
+          ],
+          "parameters":[
+              {
+                "name": "body",
+                "in": "body",
+                "description": "reset password token and new password",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/reset-parameter"
+                }
+              }
+            ],
+          "responses": {
+            "200": {
+              "description": "Return boolean success",
+              "schema":{
+                "required": [
+                  "success"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "true"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Failed requests.",
+              "schema": {
+                "required": [
+                  "success",
+                  "error"
+                ],
+                 "properties": {
+                  "success": {
+                    "type": "boolean",
+                    "example" : "false"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "Missing parameter:  reset password token."
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Database query error.",
+              "schema": {
+                 "$ref": "#/definitions/database-error-response"
+              }
+            }
+          }
+        }
     }
   },
   "definitions": {
@@ -438,6 +565,19 @@
           "type":"string",
           "minLength":6,
           "example": "password"
+        }
+      }
+    },
+    "forgot": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "required":true,
+          "type": "string",
+          "example": "username@gmail.com"
         }
       }
     },
@@ -601,6 +741,22 @@
           "phone": {
             "type": "string",
             "example" : "17781231234"
+          }
+      }
+    },
+    "reset-parameter" : {
+      "required": [
+        "token",
+        "password"
+      ],
+       "properties": {
+          "token": {
+            "type": "string",
+            "example" : "476593603612855"
+          },
+          "password": {
+            "type": "string",
+            "example" : "password"
           }
       }
     },
