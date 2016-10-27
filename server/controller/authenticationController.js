@@ -269,6 +269,11 @@ export function ResetPage(req, res){
           success: false,
           error: 'Reset token not found.',
         })
+      } else if (moment().isAfter(user.resetPasswordExpire)){ // code is expired
+        return res.status(400).json({
+          success: false,
+          error: 'The token is expired.',
+        })
       } else {
         return res.sendFile('reset.html', {root: './server/view/reset-password'})
       }
