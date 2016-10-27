@@ -1,7 +1,5 @@
 $( document ).ready(function() {
 
-
-
 	$("#pw").on('input',function() {
 		if($("#pw").val().length > 15){
 			$("#pw").addClass("border-danger");
@@ -19,9 +17,11 @@ $( document ).ready(function() {
 	});
 
 	$("#btn").click(function(){
-		//return initial state first
+		
 		$("#pw").removeClass( "border-danger" );
 		$("#pw2").removeClass( "border-danger" );
+		$("#pw").removeClass( "animated shake" );
+		$("#pw2").removeClass( "animated shake" );
 		$("#error").text("");
 
 		var pw = $("#pw").val();
@@ -29,26 +29,63 @@ $( document ).ready(function() {
 
 		if(pw.length === 0){
 			$("#pw").addClass( "border-danger" );
+			$('#pw').addClass('animated shake');
 			$("#error").text("Please enter your new password.");
 		} else if (pw.length < 6 || pw.length > 15) {
 			$("#pw").addClass( "border-danger" );
+			$('#pw').addClass('animated shake');
 			$("#error").text("Please enter a 6-15 digits password.");
 		} else if (pw2.length === 0) {
 			$("#pw2").addClass( "border-danger" );
+			$('#pw2').addClass('animated shake');
 			$("#error").text("Please enter repeat password.");
 		} else if (pw2.length < 6 || pw2.length > 15) {
 			$("#pw2").addClass( "border-danger" );
+			$('#pw2').addClass('animated shake');
 			$("#error").text("Please enter a 6-15 digits password.");
 		} else if(pw !== pw2){
 			$("#pw").addClass( "border-danger" );
 			$("#pw2").addClass( "border-danger" );
 			$("#error").text("Passwords does not match");
 		} else {
+			$('#btn').prop('disabled', true);
+			$("#btn").html( "<i class=\"fa fa-refresh fa-spin\"></i>" );
 			var token = getParameterByName('token');
-			console.log(token);
+
+			$.ajax({
+			    url: "http://54.69.64.180:3000/auth/reset",
+			    data: {
+			        token: token,
+			        password: pw,
+			    },
+			    type: "POST",
+			    dataType : "json",
+			})
+			  .done(function(res) {
+			     if (res.success){
+			     	success();
+			     }
+			  })
+			  .fail(function( xhr, status, errorThrown ) {
+			  	$('#btn').prop('disabled', false);
+			  	$("#btn").html( "Reset" );
+			  	$("#error").text(errorThrown);
+			    alert( "Sorry, there was a problem! Please try again later." );
+			    console.log( "Error: " + errorThrown );
+			    console.log( "Status: " + status );
+			    console.dir( xhr );
+			  });
 		}
 	})
 });
+
+function success(){
+	$("#pw").remove();
+	$("#pw2").remove();
+	$("#btn").remove();
+	$(".form-modal-title").text("Congrats, you have successfully reset your password!");
+	$(".form-modal-heading").addClass( "animated bounceInDown" );
+}
 
 function getParameterByName(name, url) {
     if (!url) {

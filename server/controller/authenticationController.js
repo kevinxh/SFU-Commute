@@ -255,9 +255,11 @@ export function Forgot(req, res){
 			}
 			transporter.sendMail(mailOptions, function(error, info){
 		    if(error){
-		        return console.log(error);
+	        return res.status(401).json({
+            success: false,
+            error
+          })
 		    }
-		    console.log(info);
 			});
       return res.status(200).json({
         success: true,
@@ -267,7 +269,7 @@ export function Forgot(req, res){
   })
 }
 
-export function Reset(req, res){
+export function ResetPage(req, res){
   if (!req.query.token){
     return res.status(400).json({
       success: false,
@@ -293,6 +295,53 @@ export function Reset(req, res){
       }
     })
   }
+}
+
+export function Reset(req, res){
+  if (!req.body.token){
+    return res.status(400).json({
+      success: false,
+      error: 'Missing parameter:  reset password token.',
+    })
+  } else if (!req.body.password){
+    return res.status(400).json({
+      success: false,
+      error: 'Missing parameter: password.',
+    })
+  }
+  const { token, password } = req.body
+  User.findOne({ resetPasswordToken : req.body.token }, (error, user) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      }
+      // if no such user
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          error: 'Reset token not found.',
+        })
+      } else {
+        user.password = password
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpire = undefined
+        user.save((error) => {
+          if (error) {
+            return  res.status(403).json({
+              success: false,
+              error,
+            })
+          } else {
+            res.status(200).json({
+              success: true,
+            })
+          }
+        })
+      }
+  })
 }
 // Utility functions
 
