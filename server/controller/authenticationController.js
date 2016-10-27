@@ -1,9 +1,9 @@
 import request from 'request'
 import moment from 'moment'
-import nodemailer from 'nodemailer'
 import User from '../model/user'
 import jwt from 'jsonwebtoken'
 import config from '../config/secret'
+import emailTransporter from '../config/nodemailer'
 
 export function SignUp(req, res) {
   let { email, password } = req.body
@@ -241,9 +241,8 @@ export function Forgot(req, res){
           error,
         })
       }
-	    const transporter = nodemailer.createTransport({direct:true})
 			var mailOptions = {
-				  from: '"SFU Commute" <no-reply@sfucommute.com>',
+				  from: config.smtpFrom,
 			    to: user.email,
 			    subject: 'Reset your SFU Commute password.',
 			    html: `Hi,<br>\
@@ -253,14 +252,16 @@ export function Forgot(req, res){
 			    <br>This link will expire two hours after this email was sent.<br>\
 			    <br>SFU Commute Support`
 			}
-			transporter.sendMail(mailOptions, function(error, info){
+			emailTransporter.sendMail(mailOptions, function(error, info){
 		    if(error){
+          console.log(error)
 	        return res.status(401).json({
             success: false,
             error: "E-mail is NOT delivered successfully.",
             resetPasswordToken,
           })
 		    } else {
+          console.log(info)
           return res.status(200).json({
             success: true,
             resetPasswordToken,
