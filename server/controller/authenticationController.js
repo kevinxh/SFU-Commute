@@ -81,129 +81,105 @@ export function SignIn(req, res) {
   })
 }
 
-export function Verify(req, res) {
-  switch (req.query.method) {
-    case 'text':
-      if (!req.query.phone || req.query.phone.length != 11){
-        return res.status(400).json({
-          success: false,
-          error: 'Missing parameter:  11-digit phone number.',
-        })
-      }
-      const code = randomCode(4)
-      const options = sendTextOption(req.query.phone, code)
-      request(options, function (error, response, body) {
-        if (error) {
-          return res.status(500).json({
-            success: false,
-            error
-          })
-        }
-        const parsedBody = JSON.parse(body)
-        const status =  parsedBody.messages[0].status
-        if( status === '0') {
-          const expiresInFive = moment().add(5, 'm')
-          const query = {email: req.user.email}
-          const updates = {
-            'phone.number': req.query.phone,
-            'phone.verification.code': code,
-            'phone.verification.expire': expiresInFive,
-          }
-          const options = {
-            new: true,
-            runValidators: true,
-          }
-          User.findOneAndUpdate(query, updates, options, function(err, user){
-            if(err){
-              return res.status(403).json({
-                success: false,
-                error: err,
-              })
-            }
-            return res.status(200).json({
-              success: true,
-              user
-            })
-          })
-        } else {
-          return res.status(500).json({
-            success: false,
-            error: `Message delievery failed, SMS API response status code: ${status}. Please check https://docs.nexmo.com/messaging/sms-api/api-reference .`,
-          })
-        }
-      })
-      break
-    case 'email':
-      console.log('method: email')
-      break
-    default:
-      return res.status(400).json({
-        success: false,
-        error: 'Missing parameter METHOD(email or text).'
-      })
+export function VerifyText(req, res) {
+  if (!req.body.phone || req.body.phone.length != 11){
+    return res.status(400).json({
+      success: false,
+      error: 'Missing parameter:  11-digit phone number.',
+    })
   }
-}
-
-export function VerifyCheck(req, res) {
-  switch (req.query.method) {
-    case 'text':
-      if (!req.query.code || req.query.code.length != 4){
-        return res.status(400).json({
-          success: false,
-          error: 'Missing parameter: 4-digit verfication code.',
-        })
-      }
+  const code = randomCode(4)
+  const options = sendTextOption(req.body.phone, code)
+  request(options, function (error, response, body) {
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        error
+      })
+    }
+    const parsedBody = JSON.parse(body)
+    const status =  parsedBody.messages[0].status
+    if( status === '0') {
+      const expiresInFive = moment().add(5, 'm')
       const query = {email: req.user.email}
-      User.findOne(query, function(err, user){
+      const updates = {
+        'phone.number': req.body.phone,
+        'phone.verification.code': code,
+        'phone.verification.expire': expiresInFive,
+      }
+      const options = {
+        new: true,
+        runValidators: true,
+      }
+      User.findOneAndUpdate(query, updates, options, function(err, user){
         if(err){
           return res.status(403).json({
             success: false,
             error: err,
           })
         }
-        if (req.query.code != user.phone.verification.code) { // code is incorrect
-          return res.status(400).json({
+        return res.status(200).json({
+          success: true,
+          user
+        })
+      })
+    } else {
+      return res.status(500).json({
+        success: false,
+        error: `Message delievery failed, SMS API response status code: ${status}. Please check https://docs.nexmo.com/messaging/sms-api/api-reference .`,
+      })
+    }
+  })
+}
+
+export function VerifyTextCheck(req, res) {
+  if (!req.query.code || req.query.code.length != 4){
+    return res.status(400).json({
+      success: false,
+      error: 'Missing parameter: 4-digit verfication code.',
+    })
+  }
+  const query = {email: req.user.email}
+  User.findOne(query, function(err, user){
+    if(err){
+      return res.status(403).json({
+        success: false,
+        error: err,
+      })
+    }
+    if (req.query.code != user.phone.verification.code) { // code is incorrect
+      return res.status(400).json({
+        success: false,
+        error: 'The code is incorrect.',
+      })
+    } else if (moment().isAfter(user.phone.verification.expire)){ // code is expired
+      return res.status(400).json({
+        success: false,
+        error: 'The code is expired.',
+      })
+    } else {
+      const updates = {
+        'phone.verification.verified': true,
+        $unset: {
+          'phone.verification.code': '',
+          'phone.verification.expire': '',
+        }
+      }
+      user.update(updates, function (err, user){
+        if (err) {
+          return res.status(500).json({
             success: false,
-            error: 'The code is incorrect.',
-          })
-        } else if (moment().isAfter(user.phone.verification.expire)){ // code is expired
-          return res.status(400).json({
-            success: false,
-            error: 'The code is expired.',
+            error: err,
           })
         } else {
-          const updates = {
-            'phone.verification.verified': true,
-            $unset: {
-              'phone.verification.code': '',
-              'phone.verification.expire': '',
-            }
-          }
-          user.update(updates, function (err, user){
-            if (err) {
-              return res.status(500).json({
-                success: false,
-                error: err,
-              })
-            } else {
-              return res.status(200).json({
-                success: true,
-                msg: 'Phone number successfully verified!'
-              })
-            }
+          return res.status(200).json({
+            success: true,
+            msg: 'Phone number successfully verified!'
           })
         }
       })
-      break
-    case 'email':
-
-      break
-    default:
-      return res.status(400).json({
-        success: false,
-        error: 'Missing parameter METHOD(email or text).'
-      })
-  }
+    }
+  })
 }
 
 export function Forgot(req, res){
