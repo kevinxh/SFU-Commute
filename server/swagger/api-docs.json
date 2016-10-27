@@ -161,7 +161,7 @@
           }
         }
     },
-    "/verify": {
+    "/verify/text": {
         "post":{
           "tags":["Authentication"],
           "description":"Send users' phone number to verify (Usually this is the step 1/2 for phone number verification)",
@@ -171,9 +171,9 @@
           ],
           "parameters":[
               {
-                "name": "query",
-                "in": "query",
-                "description": "verify method and phone number",
+                "name": "body",
+                "in": "body",
+                "description": "Phone number to be verified",
                 "required": true,
                 "schema": {
                   "$ref": "#/definitions/verify-phone"
@@ -184,8 +184,9 @@
                 "in": "header",
                 "description": "attach access_token in field Authorization in header",
                 "required": true,
-                "type": "string",
-                "example": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluMTNAZ21haWwuY29tIiwiaWF0IjoxNDc2MjU0NzA0LCJleHAiOjE0ODE0Mzg3MDR9.OWZ-bXHeJhomyOT0iZViASkNCgTFQcV_Mejsu-DefQU"
+                "schema": {
+                  "$ref": "#/definitions/access_token"
+                }
               }
             ],
           "responses": {
@@ -289,7 +290,9 @@
               }
             }
           }
-        },
+        }
+    },
+    "/verify/text?code={code}":{
         "get":{
           "tags":["Authentication"],
           "description":"Check user's input: 4 digit code. (Usually this is the step 2/2 for phone number verification)",
@@ -301,10 +304,19 @@
               {
                 "name": "query",
                 "in": "query",
-                "description": "verify method and 4 digit code",
+                "description": "verify 4-digit code",
                 "required": true,
                 "schema": {
                   "$ref": "#/definitions/verify-code"
+                }
+              },
+              {
+                "name": "Authorization",
+                "in": "header",
+                "description": "attach access_token in field Authorization in header",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/access_token"
                 }
               }
             ],
@@ -422,7 +434,7 @@
     "/forgot": {
        "post": {
           "tags": ["Authentication"],
-          "description": "Forgot password.",
+          "description": "Send an email to user who wish to reset password. The reset link in the email is: http://54.69.64.180/reset?token=${resetPasswordToken} ",
           "operationId": "",
           "produces": [
             "application/json"
@@ -451,7 +463,7 @@
                       "type": "boolean",
                       "example" : "true"
                     },
-                    "access_token": {
+                    "resetPasswordToken": {
                       "required":true,
                       "type": "string",
                       "example": "476593603612855"
@@ -729,18 +741,23 @@
     },
     "verify-phone" : {
       "required": [
-        "method",
         "phone"
       ],
        "properties": {
-          "method": {
-            "type": "string",
-            "enum": ["text", "email"],
-            "example" : "text"
-          },
           "phone": {
             "type": "string",
             "example" : "17781231234"
+          }
+      }
+    },
+    "access_token" : {
+      "required": [
+        "Authorization"
+      ],
+       "properties": {
+          "Authorization": {
+            "type": "string",
+            "example" : "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc3NTQ5OTU2LCJleHAiOjE0ODI3MzM5NTZ9.520ilyXHRhssAhoZuDLFPkQHuCjqS2_JqY7mUzKmSa0"
           }
       }
     },
@@ -762,15 +779,9 @@
     },
     "verify-code" : {
       "required": [
-        "method",
         "code"
       ],
        "properties": {
-          "method": {
-            "type": "string",
-            "enum": ["text", "email"],
-            "example" : "text"
-          },
           "code": {
             "type": "string",
             "example" : "2852"
