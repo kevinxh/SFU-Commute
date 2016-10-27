@@ -257,7 +257,8 @@ export function Forgot(req, res){
 		    if(error){
 	        return res.status(401).json({
             success: false,
-            error
+            error: "E-mail is NOT delivered successfully.",
+            resetPasswordToken,
           })
 		    } else {
           return res.status(200).json({
