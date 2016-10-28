@@ -17,7 +17,7 @@ export default function(){
   swagger(app)
   app.use(passport.initialize())
   passportStrategies()
-  app.use(express.static(path.join(__dirname, '/../view/assets')));
+  app.use('/assets', express.static(path.join(__dirname, '/../view/assets')))
   app.use(router)
   return app
 }
