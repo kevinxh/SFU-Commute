@@ -8,17 +8,33 @@ import emailTransporter from '../config/nodemailer'
 import emailTemplates from 'swig-email-templates'
 
 export function SignUp(req, res) {
-  let { email, password } = req.body
-  if (!email || !password) {
+  let { email, password, firstname, lastname } = req.body
+  if (!email) {
     return res.status(400).json({
       success: false,
-      error: 'Please enter your email and password.',
+      error: 'Please enter your email.',
+    })
+  } else if (!password){
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your password.',
+    })
+  } else if (!firstname){
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your firstname.',
+    })
+  } else if (!lastname){
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your lastname.',
     })
   }
-  email = email.toLowerCase()
   const user = new User({
     email,
     password,
+    firstname,
+    lastname,
   })
   user.save((error) => {
     if (error) {
@@ -29,7 +45,7 @@ export function SignUp(req, res) {
     }
     const templates = new emailTemplates()
     const context = {
-
+      firstname: user.firstname // must use user.firstname as it is camelcased
     }
     templates.render(path.join(__dirname, '../view/email_templates/welcome.html'), context, function(err, html, text, subject) {
       // Send email
@@ -40,7 +56,7 @@ export function SignUp(req, res) {
       emailTransporter.sendMail({
           from: config.smtpFrom,
           to: user.email,
-          subject: 'Welcome!',
+          subject: 'Welcome aborad!',
           html: html,
           text: text
       }, function(error, info){
@@ -243,7 +259,7 @@ export function Forgot(req, res){
       }
       const templates = new emailTemplates()
       const context = {
-        email: user.email,
+        firstname: user.firstname,
         action_url: `http://54.69.64.180/reset?token=${user.resetPasswordToken}`,
       }
       templates.render(path.join(__dirname, '../view/email_templates/password_reset.html'), context, function(err, html, text, subject) {
