@@ -27,6 +27,28 @@ export function SignUp(req, res) {
         error,
       })
     }
+    const templates = new emailTemplates()
+    const context = {
+
+    }
+    templates.render(path.join(__dirname, '../view/email_templates/welcome.html'), context, function(err, html, text, subject) {
+      // Send email
+      if (err) {
+        //todo: handle failed emails
+        console.log(error)
+      }
+      emailTransporter.sendMail({
+          from: config.smtpFrom,
+          to: user.email,
+          subject: 'Welcome!',
+          html: html,
+          text: text
+      }, function(error, info){
+        if(error){
+          console.log(error)
+        }
+      })
+    })
     const token = jwt.sign({ email: user.email }, config.JwtSecret, {
       expiresIn: 5184000, // 60 days in seconds
     })
