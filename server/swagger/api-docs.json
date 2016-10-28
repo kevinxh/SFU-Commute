@@ -38,7 +38,7 @@
                 "description": "New user",
                 "required": true,
                 "schema": {
-                  "$ref": "#/definitions/signup-signin"
+                  "$ref": "#/definitions/signup"
                 }
             }
           ],
@@ -123,7 +123,7 @@
                 "description": "User credentials",
                 "required": true,
                 "schema": {
-                  "$ref": "#/definitions/signup-signin"
+                  "$ref": "#/definitions/signin"
                 }
               }
             ],
@@ -560,7 +560,39 @@
     }
   },
   "definitions": {
-    "signup-signin": {
+    "signup": {
+      "type": "object",
+      "required": [
+        "email",
+        "password",
+        "firstname",
+        "lastname"
+      ],
+      "properties": {
+        "email": {
+          "required":true,
+          "type": "string",
+          "example": "username@gmail.com"
+        },
+        "password": {
+          "required":true,
+          "type":"string",
+          "minLength":6,
+          "example": "password"
+        },
+        "firstname": {
+          "required":true,
+          "type": "string",
+          "example": "Jonathan"
+        },
+        "lastname": {
+          "required":true,
+          "type":"string",
+          "example": "Feng"
+        }
+      }
+    },
+    "signin": {
       "type": "object",
       "required": [
         "email",
