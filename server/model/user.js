@@ -10,6 +10,24 @@ const UserSchema = new Schema({
     match: [/.+@.+\..+/, 'Please fill a valid e-mail address'],
     required: 'Email is required',
   },
+  firstname: {
+    type: String,
+    trim: true,
+    required: 'First name is required',
+    validate: [
+      (firstname) => (/^[a-zA-Z]+$/.test(firstname)),
+      'First name should contain only letters',
+    ],
+  },
+  lastname: {
+    type: String,
+    trim: true,
+    required: 'Last name is required',
+    validate: [
+      (lastname) => (/^[a-zA-Z]+$/.test(lastname)),
+      'Last name should contain only letters',
+    ],
+  },
   password: {
     type: String,
     required: 'Password is required',
@@ -46,6 +64,16 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function (next) {
   const user = this
+  if (user.isModified('email') || user.isNew) {
+    user.email = user.email.toLowerCase()
+  }
+  if (user.isModified('firstname') || user.isModified('lastname') || user.isNew) {
+    user.firstname = user.firstname.toLowerCase()
+    user.lastname = user.lastname.toLowerCase()
+    
+    user.firstname = user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1)
+    user.lastname = user.lastname.charAt(0).toUpperCase() + user.lastname.slice(1)
+  }
   if (user.isModified('password') || user.isNew) {
     user.hashPassword(user.password, (err, hash) => {
       if (err) return next(err)
