@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FontAwesome_swift
 
 class VerificationPage: UIViewController {
     
@@ -17,6 +18,8 @@ class VerificationPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        verifyTitle.font = UIFont.fontAwesome(ofSize: 100)
+        verifyTitle.text = String.fontAwesomeIcon(name: .github)
     }
     
     override func didReceiveMemoryWarning() {
