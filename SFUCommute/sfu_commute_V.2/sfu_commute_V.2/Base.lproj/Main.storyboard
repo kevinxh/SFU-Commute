@@ -235,6 +235,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="verifyTitle" destination="t7F-OB-w2J" id="88L-WG-a0n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDV-QY-tTy" userLabel="VerificationPage" sceneMemberID="firstResponder"/>
             </objects>

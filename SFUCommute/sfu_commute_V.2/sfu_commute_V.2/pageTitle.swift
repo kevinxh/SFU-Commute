@@ -62,7 +62,7 @@ import FontAwesome_swift
     func initTitle() {
         title = UILabel(frame: CGRect(x:0, y: icon.frame.size.height, width: self.frame.width, height:100))
         title.textColor = UIColor.black
-        title.font = UIFont.boldSystemFont(ofSize: 36.0)
+        title.font = UIFont.systemFont(ofSize: 36.0, weight: 800)
         title.numberOfLines = 0
         title.textAlignment = NSTextAlignment.center
         self.addSubview(title)
