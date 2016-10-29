@@ -1,0 +1,5 @@
+disabled_rules: # rule identifiers to exclude from running
+  - type_name
+line_length:
+  warning: 100
+  error: 300
