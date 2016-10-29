@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'sfu_commute_V.2' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sfu_commute_V.2
+  pod 'Alamofire', '~> 4.0'
+  pod 'FontAwesome.swift', '~> 1.0.0'
+
+  target 'sfu_commute_V.2Tests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'sfu_commute_V.2UITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
