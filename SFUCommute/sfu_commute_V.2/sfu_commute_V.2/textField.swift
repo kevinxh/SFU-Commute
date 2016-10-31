@@ -10,19 +10,19 @@ import UIKit
 
 @IBDesignable class textField: UITextField {
     
-    @IBInspectable var radius : CGFloat = 0.0 {
+    @IBInspectable var radius : CGFloat = 2.0 {
         didSet{
             self.layer.cornerRadius = radius
         }
     }
     
-    @IBInspectable var borderColor : CGColor = UIColor.darkGray.cgColor {
+    @IBInspectable var borderColor : CGColor = UIColor(red: 64/255, green: 64/255, blue: 64/255, alpha: 0.6).cgColor {
         didSet{
             self.layer.borderColor = borderColor
         }
     }
     
-    @IBInspectable var borderWidth : CGFloat = 1.5 {
+    @IBInspectable var borderWidth : CGFloat = 1.6 {
         didSet{
             self.layer.borderWidth = borderWidth
         }
@@ -44,26 +44,19 @@ import UIKit
         self.layer.borderWidth = borderWidth
     }
     
-    /*@IBInspectable var ph: String = "Placeholder" {
-        didSet{
-            self.placeholder = ph
-        }
+    // Change padding of textfield
+    let padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
     }
     
-    override init(frame: CGRect) {
-        let height : CGFloat = 40.0
-        let width : CGFloat = 250.0
-        var fixedSize : CGRect = CGRect(x: frame.origin.x, y: frame.origin.y, width: width, height: height)
-        super.init(frame: fixedSize)
-        print(self.frame)
-        initStyle()
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
     }
     
-    func initStyle() {
-        self.layer.cornerRadius = radius
-        self.layer.borderColor = borderColor
-        self.layer.borderWidth = borderWidth
-        self.placeholder = ph
-    }*/
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
 
 }

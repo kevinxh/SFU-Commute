@@ -11,4 +11,5 @@ import Foundation
 struct Colors {
     static let SFURed = UIColor(red: 166/255, green: 25/255, blue: 46/255, alpha: 1)
     static let SFUBlue = UIColor(red: 0, green: 112/255, blue: 150/255, alpha: 1)
+    static let error = UIColor(red: 255/255, green: 148/255, blue: 148/255, alpha: 1)
 }
