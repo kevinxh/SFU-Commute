@@ -2,21 +2,39 @@ import request from 'request'
 import moment from 'moment'
 import User from '../model/user'
 import jwt from 'jsonwebtoken'
+import path from 'path'
 import config from '../config/secret'
 import emailTransporter from '../config/nodemailer'
+import emailTemplates from 'swig-email-templates'
 
 export function SignUp(req, res) {
-  let { email, password } = req.body
-  if (!email || !password) {
+  let { email, password, firstname, lastname } = req.body
+  if (!email) {
     return res.status(400).json({
       success: false,
-      error: 'Please enter your email and password.',
+      error: 'Please enter your email.',
+    })
+  } else if (!password){
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your password.',
+    })
+  } else if (!firstname){
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your firstname.',
+    })
+  } else if (!lastname){
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter your lastname.',
     })
   }
-  email = email.toLowerCase()
   const user = new User({
     email,
     password,
+    firstname,
+    lastname,
   })
   user.save((error) => {
     if (error) {
@@ -25,6 +43,28 @@ export function SignUp(req, res) {
         error,
       })
     }
+    const templates = new emailTemplates()
+    const context = {
+      firstname: user.firstname // must use user.firstname as it is camelcased
+    }
+    templates.render(path.join(__dirname, '../view/email_templates/welcome.html'), context, function(err, html, text, subject) {
+      // Send email
+      if (err) {
+        //todo: handle failed emails
+        console.log(error)
+      }
+      emailTransporter.sendMail({
+          from: config.smtpFrom,
+          to: user.email,
+          subject: 'Welcome aborad!',
+          html: html,
+          text: text
+      }, function(error, info){
+        if(error){
+          console.log(error)
+        }
+      })
+    })
     const token = jwt.sign({ email: user.email }, config.JwtSecret, {
       expiresIn: 5184000, // 60 days in seconds
     })
@@ -159,6 +199,7 @@ export function VerifyText(req, res) {
   }
 }
 
+
 export function VerifyTextCheck(req, res) {
   if (!req.query.code || req.query.code.length != 4){
     return res.status(400).json({
@@ -244,33 +285,43 @@ export function Forgot(req, res){
           error,
         })
       }
-			var mailOptions = {
-				  from: config.smtpFrom,
-			    to: user.email,
-			    subject: 'Reset your SFU Commute password.',
-			    html: `Hi,<br>\
-			    <br>You recently initiated a password reset for your SFU Commute Account.\
-			    To complete the process, click the link below.<br>\
-			    <br><a href="http://54.69.64.180/reset?token=${resetPasswordToken}">Reset now ></a><br>\
-			    <br>This link will expire two hours after this email was sent.<br>\
-			    <br>SFU Commute Support`
-			}
-			emailTransporter.sendMail(mailOptions, function(error, info){
-		    if(error){
-          console.log(error)
-	        return res.status(401).json({
+      const templates = new emailTemplates()
+      const context = {
+        firstname: user.firstname,
+        action_url: `http://54.69.64.180/reset?token=${user.resetPasswordToken}`,
+      }
+      templates.render(path.join(__dirname, '../view/email_templates/password_reset.html'), context, function(err, html, text, subject) {
+        // Send email
+        if (err) {
+          return res.status(401).json({
             success: false,
-            error: "E-mail is NOT delivered successfully.",
-            resetPasswordToken,
-          })
-		    } else {
-          console.log(info)
-          return res.status(200).json({
-            success: true,
+            err,
             resetPasswordToken,
           })
         }
-			});
+        emailTransporter.sendMail({
+            from: config.smtpFrom,
+            to: user.email,
+            subject: 'Reset your SFU Commute password.',
+            html: html,
+            text: text
+        }, function(error, info){
+  		    if(error){
+            console.log(error)
+  	        return res.status(401).json({
+              success: false,
+              error: "E-mail is NOT delivered successfully.",
+              resetPasswordToken,
+            })
+  		    } else {
+            console.log(info)
+            return res.status(200).json({
+              success: true,
+              resetPasswordToken,
+            })
+          }
+  			})
+      })
     })
   })
 }
