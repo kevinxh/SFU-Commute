@@ -24,6 +24,7 @@ class VerificationPage: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         initTips()
         verifyButton.color = Colors.SFURed
+        verifyButton.highlightedColor = Colors.SFURedHighlight
     }
     
     override func didReceiveMemoryWarning() {
