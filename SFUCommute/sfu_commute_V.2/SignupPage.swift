@@ -13,21 +13,21 @@ import UIKit
 import UIKit
 
 class SignupPage: UIViewController {
-    
+
     @IBOutlet weak var email: UITextField!
-    
+
     @IBOutlet weak var password: UITextField!
-    
+
     @IBOutlet weak var confirmPassword: UITextField!
-    
+
     @IBOutlet weak var phoneNumber: UITextField!
-    
+
     @IBOutlet weak var firstName: UITextField!
-    
+
     @IBOutlet weak var lastName: UITextField!
-    
+
     @IBOutlet weak var error: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         email.text = "email"
@@ -38,14 +38,14 @@ class SignupPage: UIViewController {
         lastName.text = "last name"
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
         // Dispose of any resources that can be recreated.
     }
 
-    
+
     @IBAction func register(_ sender: AnyObject) {
         //if (confirmPassword! != password!){
         //    error.text! = "passwords does not match"
@@ -87,7 +87,7 @@ class SignupPage: UIViewController {
         }
 
        // }
-        
+
     @IBAction func cancel(_ sender: AnyObject) {
         let CurrentViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
         self.navigationController?.pushViewController(CurrentViewController!, animated: true)
@@ -99,26 +99,26 @@ class SignupPage: UIViewController {
 /*
 
 class SignupPage: UIViewController {
-    
+
     @IBOutlet weak var email: UITextField!
-    
+
     @IBOutlet weak var password: UITextField!
-    
+
     @IBOutlet weak var confirmPassword: UITextField!
-    
+
     @IBOutlet weak var phoneNumber: UITextField!
-    
+
     @IBOutlet weak var firstName: UITextField!
-    
+
     @IBOutlet weak var lastName: UITextField!
-    
+
     var emailText = String()
     var passwordText = String()
     var confirmPasswordText = String()
     var phoneNumberText = String()
     var firstNameText = String()
     var lastNameText = String()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //email.text = ""
@@ -133,7 +133,7 @@ class SignupPage: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func register(_ sender: AnyObject) {
         emailText = email.text!
         passwordText = password.text!
@@ -161,30 +161,30 @@ class SignupPage: UIViewController {
 
         /*var request = URLRequest(url: URL(string: "http://54.69.64.180/auth/signup")!)
         request.httpMethod = "POST"
-        
+
         let postString = "{\"email\": emailText , \"password\": passwordText}"
-        
+
         request.httpBody = postString.data(using: .utf8)
         request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         var connection = NSURLConnection(request: request, delegate: nil, startImmediately: true)
-        
+
         var request = URLRequest(url: URL(string: "http://54.69.64.180/auth/signup")!)
         request.httpMethod = "POST"
         
         let postString = "{\"email\": emailText , \"password\": passwordText}"
-        
+
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
                 print("error=\(error)")
                 return
             }
-            
+
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
                 print("response = \(response)")
             }
-            
+
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(responseString)")
         }
