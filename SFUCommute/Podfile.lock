@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.0.1)
+  - EasyTipView (1.0.2)
+  - FontAwesome.swift (1.0.0)
+  - Mapbox-iOS-SDK (3.3.4)
+  - SwiftyButton (0.6.0)
+  - SwiftyJSON (3.1.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - EasyTipView (~> 1.0.2)
+  - FontAwesome.swift (~> 1.0.0)
+  - Mapbox-iOS-SDK (~> 3.3.4)
+  - SwiftyButton
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
+  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
+  Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
+  SwiftyButton: 4c9b61c499f172971a1b8c2eebbbdc20a26d8a08
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+
+PODFILE CHECKSUM: 6d25d634c38c7f6ea44d735ab5c8e957ae559d81
+
+COCOAPODS: 1.2.0.beta.1

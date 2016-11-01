@@ -1,0 +1,37 @@
+import requests, json, time, os
+from requests.auth import HTTPBasicAuth
+
+device_endpoint = "http://54.69.64.180/"
+
+def post_user_to_server(mail_counter):
+    print "#############################################################"
+    print "POST USER:" + str(mail_counter)
+    headers = {'Content-type': 'application/json'}
+    full_url = device_endpoint + "auth/signup"
+    print full_url
+    fake_emails = "jyotsnatest" + str(mail_counter) + "@sfu.ca"
+    fake_password = "test12_" + str(mail_counter)
+    user = ({"email": fake_emails ,"password": fake_password})
+    post = json.dumps(user, sort_keys=True, indent=4, separators=(',', ': '))
+    print user
+    r = requests.post(full_url, data=post, headers=headers,timeout=10)# 
+    response_code = r.text
+    print response_code
+    return response_code
+
+def save_data(response_code, name_of_file):
+    f = open(name_of_file, "a+")
+    f.write(response_code)
+
+
+if __name__ == "__main__":
+    #os.remove("subdevice_connectivity")
+    #os.remove("device_connectivity")
+    mail_counter = 0
+    counter = 0
+    while(counter < 20):
+        get_response = post_user_to_server(mail_counter)
+        save_data(get_response, "post_response")
+        counter = counter + 1
+	mail_counter = mail_counter + 1
+        time.sleep(5)
