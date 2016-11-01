@@ -2,39 +2,21 @@ import request from 'request'
 import moment from 'moment'
 import User from '../model/user'
 import jwt from 'jsonwebtoken'
-import path from 'path'
 import config from '../config/secret'
 import emailTransporter from '../config/nodemailer'
-import emailTemplates from 'swig-email-templates'
 
 export function SignUp(req, res) {
-  let { email, password, firstname, lastname } = req.body
-  if (!email) {
+  let { email, password } = req.body
+  if (!email || !password) {
     return res.status(400).json({
       success: false,
-      error: 'Please enter your email.',
-    })
-  } else if (!password){
-    return res.status(400).json({
-      success: false,
-      error: 'Please enter your password.',
-    })
-  } else if (!firstname){
-    return res.status(400).json({
-      success: false,
-      error: 'Please enter your firstname.',
-    })
-  } else if (!lastname){
-    return res.status(400).json({
-      success: false,
-      error: 'Please enter your lastname.',
+      error: 'Please enter your email and password.',
     })
   }
+  email = email.toLowerCase()
   const user = new User({
     email,
     password,
-    firstname,
-    lastname,
   })
   user.save((error) => {
     if (error) {
@@ -43,28 +25,6 @@ export function SignUp(req, res) {
         error,
       })
     }
-    const templates = new emailTemplates()
-    const context = {
-      firstname: user.firstname // must use user.firstname as it is camelcased
-    }
-    templates.render(path.join(__dirname, '../view/email_templates/welcome.html'), context, function(err, html, text, subject) {
-      // Send email
-      if (err) {
-        //todo: handle failed emails
-        console.log(error)
-      }
-      emailTransporter.sendMail({
-          from: config.smtpFrom,
-          to: user.email,
-          subject: 'Welcome aborad!',
-          html: html,
-          text: text
-      }, function(error, info){
-        if(error){
-          console.log(error)
-        }
-      })
-    })
     const token = jwt.sign({ email: user.email }, config.JwtSecret, {
       expiresIn: 5184000, // 60 days in seconds
     })
@@ -130,46 +90,73 @@ export function VerifyText(req, res) {
   }
   const code = randomCode(4)
   const options = sendTextOption(req.body.phone, code)
-  request(options, function (error, response, body) {
-    if (error) {
-      return res.status(500).json({
-        success: false,
-        error
-      })
-    }
-    const parsedBody = JSON.parse(body)
-    const status =  parsedBody.messages[0].status
-    if( status === '0') {
-      const expiresInFive = moment().add(5, 'm')
-      const query = {email: req.user.email}
-      const updates = {
-        'phone.number': req.body.phone,
-        'phone.verification.code': code,
-        'phone.verification.expire': expiresInFive,
-      }
-      const options = {
-        new: true,
-        runValidators: true,
-      }
-      User.findOneAndUpdate(query, updates, options, function(err, user){
-        if(err){
-          return res.status(403).json({
-            success: false,
-            error: err,
-          })
-        }
-        return res.status(200).json({
-          success: true,
-          user
+  if (req.body.env != 'unitTest'){
+    request(options, function (error, response, body) {
+      if (error) {
+        return res.status(500).json({
+          success: false,
+          error
         })
-      })
-    } else {
-      return res.status(500).json({
-        success: false,
-        error: `Message delievery failed, SMS API response status code: ${status}. Please check https://docs.nexmo.com/messaging/sms-api/api-reference .`,
-      })
+      }
+      const parsedBody = JSON.parse(body)
+      const status =  parsedBody.messages[0].status
+      if( status === '0') {
+        const expiresInFive = moment().add(5, 'm')
+        const query = {email: req.user.email}
+        const updates = {
+          'phone.number': req.body.phone,
+          'phone.verification.code': code,
+          'phone.verification.expire': expiresInFive,
+        }
+        const options = {
+          new: true,
+          runValidators: true,
+        }
+        User.findOneAndUpdate(query, updates, options, function(err, user){
+          if(err){
+            return res.status(403).json({
+              success: false,
+              error: err,
+            })
+          }
+          return res.status(200).json({
+            success: true,
+            user
+          })
+        })
+      } else {
+        return res.status(500).json({
+          success: false,
+          error: `Message delievery failed, SMS API response status code: ${status}. Please check https://docs.nexmo.com/messaging/sms-api/api-reference .`,
+        })
+      }
+    })
+  } else { // unit testing avoid to send real text message
+    const expiresInFive = moment().add(5, 'm')
+    const query = {email: req.user.email}
+    const updates = {
+      'phone.number': req.body.phone,
+      'phone.verification.code': code,
+      'phone.verification.expire': expiresInFive,
     }
-  })
+    const options = {
+      new: true,
+      runValidators: true,
+    }
+    User.findOneAndUpdate(query, updates, options, function(err, user){
+      if(err){
+        return res.status(403).json({
+          success: false,
+          error: err,
+        })
+      }
+      return res.status(200).json({
+        success: true,
+        msg: 'unit-test success.',
+        user
+      })
+    })
+  }
 }
 
 export function VerifyTextCheck(req, res) {
@@ -257,43 +244,33 @@ export function Forgot(req, res){
           error,
         })
       }
-      const templates = new emailTemplates()
-      const context = {
-        firstname: user.firstname,
-        action_url: `http://54.69.64.180/reset?token=${user.resetPasswordToken}`,
-      }
-      templates.render(path.join(__dirname, '../view/email_templates/password_reset.html'), context, function(err, html, text, subject) {
-        // Send email
-        if (err) {
-          return res.status(401).json({
+			var mailOptions = {
+				  from: config.smtpFrom,
+			    to: user.email,
+			    subject: 'Reset your SFU Commute password.',
+			    html: `Hi,<br>\
+			    <br>You recently initiated a password reset for your SFU Commute Account.\
+			    To complete the process, click the link below.<br>\
+			    <br><a href="http://54.69.64.180/reset?token=${resetPasswordToken}">Reset now ></a><br>\
+			    <br>This link will expire two hours after this email was sent.<br>\
+			    <br>SFU Commute Support`
+			}
+			emailTransporter.sendMail(mailOptions, function(error, info){
+		    if(error){
+          console.log(error)
+	        return res.status(401).json({
             success: false,
-            err,
+            error: "E-mail is NOT delivered successfully.",
+            resetPasswordToken,
+          })
+		    } else {
+          console.log(info)
+          return res.status(200).json({
+            success: true,
             resetPasswordToken,
           })
         }
-        emailTransporter.sendMail({
-            from: config.smtpFrom,
-            to: user.email,
-            subject: 'Reset your SFU Commute password.',
-            html: html,
-            text: text
-        }, function(error, info){
-  		    if(error){
-            console.log(error)
-  	        return res.status(401).json({
-              success: false,
-              error: "E-mail is NOT delivered successfully.",
-              resetPasswordToken,
-            })
-  		    } else {
-            console.log(info)
-            return res.status(200).json({
-              success: true,
-              resetPasswordToken,
-            })
-          }
-  			})
-      })
+			});
     })
   })
 }

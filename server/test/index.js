@@ -1,10 +1,11 @@
 import { assert, expect } from 'chai'
 import request from 'request'
 import app from '../'
+import authTests from './auth';
 
 process.env.NODE_ENV = 'development'
 
-export default describe('Server unit tests', function () {
+export default describe('Server', function () {
 
   let server = app
 
@@ -26,4 +27,6 @@ export default describe('Server unit tests', function () {
       done()
     })
   })
+
+  authTests()
 })
