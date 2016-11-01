@@ -35,6 +35,7 @@ class VerificationPage: UIViewController {
     @IBAction func onChange(_ sender: textField) {
         let text = verifyTextField.text!
         let length : Int = text.characters.count
+        textFieldTips.dismiss()
         if (length == 11) {
             verifyTextField.text!.remove(at: text.index(before: text.endIndex))
             textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.", preferences: preferences)
@@ -52,6 +53,7 @@ class VerificationPage: UIViewController {
     @IBAction func verifyTapped(_ sender: FlatButton) {
         let phone = verifyTextField.text!
         if (phone.characters.count != 10) {
+            textFieldTips.dismiss()
             textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.", preferences: preferences)
             textFieldTips.show(forView: verifyTextField)
         } else {
