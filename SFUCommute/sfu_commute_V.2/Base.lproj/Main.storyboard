@@ -222,6 +222,7 @@
                                 </state>
                                 <connections>
                                     <action selector="register:" destination="SoD-pi-Xv3" eventType="touchUpInside" id="MzB-WO-D81"/>
+                                    <segue destination="6Jp-g0-ZmH" kind="show" id="hf3-M9-kHP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tup-2b-Nxi">
