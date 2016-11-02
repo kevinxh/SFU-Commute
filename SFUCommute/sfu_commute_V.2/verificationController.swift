@@ -38,6 +38,10 @@ class VerificationPage: UIViewController {
         let text = verifyTextField.text!
         let length : Int = text.characters.count
         textFieldTips.dismiss()
+        if (length == 10) {
+            // if user enters 10 digits, keyboard auto dismiss
+            verifyTextField.resignFirstResponder()
+        }
         if (length == 11) {
             verifyTextField.text!.remove(at: text.index(before: text.endIndex))
             textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.", preferences: preferences)
@@ -54,11 +58,6 @@ class VerificationPage: UIViewController {
 
     @IBAction func verifyTapped(_ sender: FlatButton) {
         let phone = verifyTextField.text!
-        if (phone.characters.count == 1) {
-            let vc = codeVerificationController()
-            vc.phone = phone
-            self.present(vc, animated: true, completion: nil)
-        }
         
         if (phone.characters.count != 10) {
             textFieldTips.dismiss()
@@ -132,9 +131,9 @@ class VerificationPage: UIViewController {
                 case .success(let value):
                     let json = JSON(value)
                     if (json["success"] == true) {
-                        let resetToken = json["user"]["phone"]["verification"]["code"]
-                        print(resetToken)
-                    } else {
+                        let vc = codeVerificationController()
+                        vc.phone = phone
+                        self.present(vc, animated: true, completion: nil)                    } else {
                         self.textFieldTips = EasyTipView(text:json["error"].string!, preferences: self.preferences)
                         self.textFieldTips.show(forView: self.verifyTextField)
                     }
