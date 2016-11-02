@@ -14,7 +14,7 @@ import SwiftyJSON
 
 class VerificationPage: UIViewController {
 
-    @IBOutlet var verifyTitle: pageTitle!
+    var verifyTitle: pageTitle! = pageTitle()
     @IBOutlet var verifyTextField: textField!
     @IBOutlet var verifyButton: FlatButton!
     var preferences = EasyTipView.Preferences()
@@ -22,6 +22,7 @@ class VerificationPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        initTitle()
         initTips()
         verifyButton.color = Colors.SFURed
         verifyButton.highlightedColor = Colors.SFURedHighlight
@@ -71,6 +72,18 @@ class VerificationPage: UIViewController {
         preferences.drawing.backgroundColor = Colors.SFUBlue
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
         EasyTipView.globalPreferences = preferences
+    }
+    
+    func initTitle() {
+        verifyTitle.iconName = "fa-mobile"
+        verifyTitle.titleText = "Verify your phone number"
+        verifyTitle.subtitleText = "SFU Commute will send you an SMS message to verify your phone number."
+        self.view.addSubview(verifyTitle)
+        verifyTitle.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(275)
+            make.top.equalTo(self.view).offset(70)
+            make.centerX.equalTo(self.view)
+        }
     }
 
     func sendRequest() {

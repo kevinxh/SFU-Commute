@@ -287,16 +287,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7F-OB-w2J" customClass="pageTitle" customModule="sfu_commute_V_2">
-                                <frame key="frameInset" minX="59" minY="80" width="300" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="fa-phone-square"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Verify your phone number"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="SFU Commute will send you an SMS message to verify your phone number."/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter phone number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HSW-Mp-OQp" customClass="textField" customModule="sfu_commute_V_2">
                                 <frame key="frameInset" minX="100" minY="420" width="225" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -334,7 +324,6 @@
                     <connections>
                         <outlet property="verifyButton" destination="ARj-kK-j88" id="Fki-yd-JWF"/>
                         <outlet property="verifyTextField" destination="HSW-Mp-OQp" id="QiM-9e-Jy9"/>
-                        <outlet property="verifyTitle" destination="t7F-OB-w2J" id="88L-WG-a0n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDV-QY-tTy" userLabel="VerificationPage" sceneMemberID="firstResponder"/>

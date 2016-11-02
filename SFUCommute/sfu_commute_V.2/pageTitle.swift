@@ -12,9 +12,11 @@ import SnapKit
 import FontAwesome_swift
 
 @IBDesignable class pageTitle: UIView {
-    var icon: UILabel!
-    var title: UILabel!
-    var subtitle: UILabel!
+    var icon: UILabel! = UILabel()
+    var title: UILabel! = UILabel()
+    var subtitle: UILabel! = UILabel()
+    let iconHeight : CGFloat = 80
+    let titleHeight : CGFloat = 100
     
     @IBInspectable var titleText : String = "Page Title"{
         didSet{
@@ -50,34 +52,45 @@ import FontAwesome_swift
     }
     
     func initIcon() {
-        let height : CGFloat = 100.0
-        let width : CGFloat = 100.0
-        let iconX = self.frame.width/2 - width/2
-        icon = UILabel(frame: CGRect(x: iconX, y: 0, width: width, height: height))
         icon.textAlignment = NSTextAlignment.center
         icon.textColor = Colors.SFURed
-        icon.font = UIFont.fontAwesome(ofSize: 110)
+        icon.font = UIFont.fontAwesome(ofSize: 100)
         self.addSubview(icon)
+        icon.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(100)
+            make.height.equalTo(iconHeight)
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+        }
     }
     
     func initTitle() {
-        title = UILabel(frame: CGRect(x:0, y: icon.frame.size.height, width: self.frame.width, height:100))
         title.textColor = UIColor.black
         title.font = UIFont.systemFont(ofSize: 36.0, weight: 800)
         title.numberOfLines = 0
         title.textAlignment = NSTextAlignment.center
         self.addSubview(title)
+        title.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(titleHeight)
+            make.width.equalTo(self)
+            make.top.equalTo(self).offset(iconHeight)
+            make.centerX.equalTo(self)
+        }
     }
     
     func initSubtitle() {
-        let width = self.frame.width - 40
-        let subtitleX = self.frame.width/2 - width/2
-        subtitle = UILabel(frame: CGRect(x:subtitleX, y: icon.frame.size.height + title.frame.size.height, width: width, height:60))
+        print("!!!!!!!!!!!!!")
+        print(subtitleText)
         subtitle.textColor = UIColor.darkGray
         subtitle.font = UIFont.italicSystemFont(ofSize: 16.0)
         subtitle.numberOfLines = 0
         subtitle.textAlignment = NSTextAlignment.center
         self.addSubview(subtitle)
+        subtitle.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(self).offset(-40)
+            make.top.equalTo(self).offset(titleHeight + iconHeight)
+            make.centerX.equalTo(self)
+        }
     }
 }
 
