@@ -79,8 +79,6 @@ import FontAwesome_swift
     }
     
     func initSubtitle() {
-        print("!!!!!!!!!!!!!")
-        print(subtitleText)
         subtitle.textColor = UIColor.darkGray
         subtitle.font = UIFont.italicSystemFont(ofSize: 16.0)
         subtitle.numberOfLines = 0

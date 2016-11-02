@@ -10,6 +10,7 @@
 		0A09332E1DC47516001EB52A /* pageTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A09332D1DC47516001EB52A /* pageTitle.swift */; };
 		0A0933321DC4A331001EB52A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0933311DC4A331001EB52A /* Colors.swift */; };
 		0A0933351DC57CE7001EB52A /* textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0933341DC57CE7001EB52A /* textField.swift */; };
+		0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C051DC9D0A700C4A3F6 /* button.swift */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
 		0A7B75801DC9444E001AF8AF /* codeVerificationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A7B757E1DC9444E001AF8AF /* codeVerificationController.xib */; };
 		620364561DC6B01000074F59 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620364551DC6B01000074F59 /* MapView.swift */; };
@@ -62,6 +63,7 @@
 		0A09332D1DC47516001EB52A /* pageTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pageTitle.swift; sourceTree = "<group>"; };
 		0A0933311DC4A331001EB52A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0A0933341DC57CE7001EB52A /* textField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textField.swift; sourceTree = "<group>"; };
+		0A0D4C051DC9D0A700C4A3F6 /* button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = codeVerificationController.swift; sourceTree = "<group>"; };
 		0A7B757E1DC9444E001AF8AF /* codeVerificationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = codeVerificationController.xib; sourceTree = "<group>"; };
 		1EF19632162A5460ABF674F3 /* Pods-sfu_commute_V.2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2.release.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2/Pods-sfu_commute_V.2.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
+				0A0D4C051DC9D0A700C4A3F6 /* button.swift */,
 				0A0933341DC57CE7001EB52A /* textField.swift */,
 			);
 			name = Components;
@@ -521,6 +524,7 @@
 				0A0933321DC4A331001EB52A /* Colors.swift in Sources */,
 				621813E91DBC327F00C744BD /* SignupPage.swift in Sources */,
 				0A09332E1DC47516001EB52A /* pageTitle.swift in Sources */,
+				0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */,
 				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
