@@ -15,8 +15,18 @@ import FontAwesome_swift
     var icon: UILabel! = UILabel()
     var title: UILabel! = UILabel()
     var subtitle: UILabel! = UILabel()
-    let iconHeight : CGFloat = 80
-    let titleHeight : CGFloat = 100
+    
+    var iconHeight : CGFloat = 80 {
+        didSet{
+            updateConstraint()
+        }
+    }
+
+    var titleHeight : CGFloat = 100 {
+        didSet{
+            updateConstraint()
+        }
+    }
     
     @IBInspectable var titleText : String = "Page Title"{
         didSet{
@@ -42,6 +52,7 @@ import FontAwesome_swift
         initIcon()
         initTitle()
         initSubtitle()
+        applyConstraints()
     }
     
     override init(frame: CGRect) {
@@ -49,6 +60,7 @@ import FontAwesome_swift
         initIcon()
         initTitle()
         initSubtitle()
+        applyConstraints()
     }
     
     func initIcon() {
@@ -56,12 +68,7 @@ import FontAwesome_swift
         icon.textColor = Colors.SFURed
         icon.font = UIFont.fontAwesome(ofSize: 100)
         self.addSubview(icon)
-        icon.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(100)
-            make.height.equalTo(iconHeight)
-            make.top.equalTo(self)
-            make.centerX.equalTo(self)
-        }
+        
     }
     
     func initTitle() {
@@ -70,24 +77,47 @@ import FontAwesome_swift
         title.numberOfLines = 0
         title.textAlignment = NSTextAlignment.center
         self.addSubview(title)
+        
+    }
+    
+    func initSubtitle() {
+        subtitle.textColor = UIColor.darkGray
+        subtitle.font = UIFont(name: "Futura-Medium", size: 16)!
+        subtitle.numberOfLines = 0
+        subtitle.textAlignment = NSTextAlignment.center
+        self.addSubview(subtitle)
+    }
+    
+    func applyConstraints() {
+        icon.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(100)
+            make.height.equalTo(iconHeight)
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+        }
         title.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(titleHeight)
             make.width.equalTo(self)
             make.top.equalTo(self).offset(iconHeight)
             make.centerX.equalTo(self)
         }
-    }
-    
-    func initSubtitle() {
-        subtitle.textColor = UIColor.darkGray
-        subtitle.font = UIFont.italicSystemFont(ofSize: 16.0)
-        subtitle.numberOfLines = 0
-        subtitle.textAlignment = NSTextAlignment.center
-        self.addSubview(subtitle)
         subtitle.snp.makeConstraints{(make) -> Void in
             make.width.equalTo(self).offset(-40)
             make.top.equalTo(self).offset(titleHeight + iconHeight)
             make.centerX.equalTo(self)
+        }
+    }
+    
+    func updateConstraint() {
+        icon.snp.updateConstraints{(make) -> Void in
+            make.height.equalTo(iconHeight)
+        }
+        title.snp.updateConstraints{(make) -> Void in
+            make.height.equalTo(titleHeight)
+            make.top.equalTo(self).offset(iconHeight)
+        }
+        subtitle.snp.updateConstraints{(make) -> Void in
+            make.top.equalTo(self).offset(titleHeight + iconHeight)
         }
     }
 }

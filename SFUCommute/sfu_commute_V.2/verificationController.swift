@@ -56,9 +56,9 @@ class VerificationPage: UIViewController {
         let phone = verifyTextField.text!
         if (phone.characters.count == 1) {
             let vc = codeVerificationController()
+            vc.phone = phone
             self.present(vc, animated: true, completion: nil)
         }
-        
         
         if (phone.characters.count != 10) {
             textFieldTips.dismiss()
@@ -74,8 +74,8 @@ class VerificationPage: UIViewController {
             make.height.equalTo(50)
             make.left.equalTo(phonePrefix.snp.right).offset(8)
             make.right.equalTo(self.view).offset(-40)
-            make.top.greaterThanOrEqualTo(400)
-            make.top.lessThanOrEqualTo(500)
+            make.top.greaterThanOrEqualTo(350)
+            make.top.lessThanOrEqualTo(425)
         }
         phonePrefix.snp.makeConstraints{(make) -> Void in
             make.centerY.equalTo(verifyTextField)
@@ -95,7 +95,7 @@ class VerificationPage: UIViewController {
     func initTitle() {
         verifyTitle.iconName = "fa-mobile"
         verifyTitle.titleText = "Verify your phone number"
-        verifyTitle.subtitleText = "SFU Commute will send you an SMS message to verify your phone number."
+        verifyTitle.subtitleText = "Step 1: SFU Commute will send you an SMS message to verify your phone number."
         self.view.addSubview(verifyTitle)
         verifyTitle.snp.makeConstraints{(make) -> Void in
             make.width.equalTo(275)
@@ -105,7 +105,7 @@ class VerificationPage: UIViewController {
     }
     
     func initButton() {
-        button.setTitle("VERIFY", for: .normal)
+        button.setTitle("SEND", for: .normal)
         button.color = Colors.SFURed
         button.highlightedColor = Colors.SFURedHighlight
         button.cornerRadius = 7.0

@@ -291,7 +291,7 @@
                                 <frame key="frameInset" minX="100" minY="420" width="225" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <connections>
                                     <action selector="onChange:" destination="6Jp-g0-ZmH" eventType="editingChanged" id="p3o-nd-Qis"/>

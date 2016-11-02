@@ -42,6 +42,8 @@ import UIKit
         self.layer.cornerRadius = radius
         self.layer.borderColor = borderColor
         self.layer.borderWidth = borderWidth
+        self.textAlignment = .center
+        self.font = UIFont(name: "Futura-Medium", size: 22)!
     }
     
     // Change padding of textfield
