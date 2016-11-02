@@ -94,6 +94,10 @@ class SignupPage: UIViewController {
         */
         self.dismiss(animated: true, completion: nil) //dismisses current view. Goes back to welcome page
     }
+    
+   
+
+    
 }
 
 
