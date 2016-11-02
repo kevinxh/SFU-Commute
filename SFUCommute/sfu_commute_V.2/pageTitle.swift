@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import SnapKit
 import FontAwesome_swift
 
 @IBDesignable class pageTitle: UIView {

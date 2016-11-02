@@ -12,6 +12,7 @@ target 'sfu_commute_V.2' do
   pod 'SwiftyButton'
   pod 'EasyTipView', '~> 1.0.2'
   pod 'Mapbox-iOS-SDK', '~> 3.3.4'
+  pod 'SnapKit', '~> 3.0.2'
 
   target 'sfu_commute_V.2Tests' do
     inherit! :search_paths

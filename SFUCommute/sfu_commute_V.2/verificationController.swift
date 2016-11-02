@@ -51,6 +51,9 @@ class VerificationPage: UIViewController {
     }
 
     @IBAction func verifyTapped(_ sender: FlatButton) {
+        let vc = codeVerificationController()
+        self.present(vc, animated: true, completion: nil)
+        
         let phone = verifyTextField.text!
         if (phone.characters.count != 10) {
             textFieldTips.dismiss()
