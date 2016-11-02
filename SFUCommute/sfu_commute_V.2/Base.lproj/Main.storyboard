@@ -241,7 +241,6 @@
                                 </state>
                                 <connections>
                                     <action selector="cancel:" destination="SoD-pi-Xv3" eventType="touchUpInside" id="IQ7-M3-dUH"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="7aT-s4-sBd"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" borderStyle="bezel" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IsI-c3-77C">
