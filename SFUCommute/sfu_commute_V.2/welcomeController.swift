@@ -29,25 +29,33 @@ class welcomeController: UIViewController {
     }
     
     func initBackground() {
-        //let colorTop =  UIColor(red: 26/255.0, green: 138/255.0, blue: 176/255.0, alpha: 1.0).cgColor
-        //let colorBottom =  UIColor(red: 0/255.0, green: 87/255.0, blue: 125/255.0, alpha: 1.0).cgColor
-        let colorTop = Colors.SFURed.withAlphaComponent(0.6).cgColor
+        // gradient color background
+        /*let colorTop = Colors.SFURed.withAlphaComponent(0.6).cgColor
         let colorBottom = Colors.SFURed.cgColor
-        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [ colorTop, colorBottom]
         gradientLayer.locations = [ 0.0, 1.0]
         gradientLayer.frame = self.view.bounds
+        self.view.layer.addSublayer(gradientLayer)*/
         
-        self.view.layer.addSublayer(gradientLayer)
+        let background = UIImage(named: "background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
     }
     
     func initTitle() {
         welcomeTitle.iconName = ""
         welcomeTitle.titleText = "Welcome"
-        welcomeTitle.title.font = UIFont(name: "Futura-Medium", size: 48)!
+        welcomeTitle.title.textColor = Colors.SFURed
+        welcomeTitle.title.font = UIFont(name: "Futura-Medium", size: 58)!
         welcomeTitle.subtitleText = "Start sharing rides with your SFU classmates"
-        welcomeTitle.subtitle.textColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.75)
+        welcomeTitle.subtitle.textColor = Colors.SFURed.withAlphaComponent(0.8)
         self.view.addSubview(welcomeTitle)
         welcomeTitle.snp.makeConstraints{(make) -> Void in
             make.width.equalTo(275)
@@ -76,12 +84,13 @@ class welcomeController: UIViewController {
         }
         
         signUpButton.setTitle("Create an account", for: .normal)
-        signUpButton.setTitleColor(UIColor.black, for: .normal)
+        signUpButton.setTitleColor(UIColor.white, for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "Futura-Medium", size: 19)!
-        signUpButton.color = UIColor.white
-        signUpButton.layer.borderColor = UIColor.white.cgColor
-        signUpButton.layer.borderWidth = 1.5
-        signUpButton.highlightedColor = UIColor.white
+        signUpButton.color = UIColor.clear
+        signUpButton.layer.backgroundColor = Colors.SFURed.cgColor
+        //signUpButton.layer.borderColor = UIColor.white.cgColor
+        //signUpButton.layer.borderWidth = 1.5
+        signUpButton.highlightedColor = Colors.SFURedHighlight
         signUpButton.layer.cornerRadius = 6.0
         signUpButton.addTarget(self, action: #selector(self.signUp(_:)), for: .touchUpInside)
         self.view.addSubview(signUpButton)
