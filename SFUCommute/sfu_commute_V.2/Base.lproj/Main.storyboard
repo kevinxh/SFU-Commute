@@ -60,7 +60,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <segue destination="PNE-aL-auc" kind="show" id="hd4-Xo-A6y"/>
+                                    <segue destination="N8x-Cx-vmG" kind="show" id="WYi-2i-XrI"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="bezel" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="V3y-om-s0N">
@@ -319,7 +319,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="verifyTapped:" destination="6Jp-g0-ZmH" eventType="touchUpInside" id="a61-TR-GY0"/>
-                                    <segue destination="N8x-Cx-vmG" kind="show" id="pap-rP-RqH"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhS-Ce-bBl">
@@ -342,7 +341,7 @@
             </objects>
             <point key="canvasLocation" x="1810.4000000000001" y="-156.97151424287858"/>
         </scene>
-        <!--Map View-->
+        <!--Home-->
         <scene sceneID="bhf-me-lEn">
             <objects>
                 <viewController id="PNE-aL-auc" customClass="MapView" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -409,16 +408,22 @@
                             <constraint firstItem="GkO-NH-FkH" firstAttribute="top" secondItem="0I4-eq-e4Y" secondAttribute="bottom" constant="-20" id="hUD-CP-pVL"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Home" id="kHW-1I-OVA">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="wf0-zr-ljL"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="currentSpeedLabel" destination="WLP-8L-n4e" id="qP0-XK-ihd"/>
                         <outlet property="currentUnitsLabel" destination="rGb-eq-Ga2" id="VAR-NI-PFS"/>
                         <outlet property="header2View" destination="iNd-SC-FZx" id="p9g-uS-oZX"/>
                         <outlet property="mapView" destination="GkO-NH-FkH" id="13D-7F-IJc"/>
+                        <outlet property="menuButton" destination="wf0-zr-ljL" id="WHf-ah-eQq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="621"/>
+            <point key="canvasLocation" x="1860" y="620.23988005997012"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="fpB-8v-8hk">
@@ -426,12 +431,12 @@
                 <viewController id="N8x-Cx-vmG" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <connections>
                         <segue destination="7xW-Oh-nMp" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Fjm-0w-K5K"/>
-                        <segue destination="woc-gx-C1p" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="ghW-lw-qvU"/>
+                        <segue destination="XBN-iD-1c2" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="zVO-7y-bhK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nZc-tf-boz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2710" y="1140"/>
+            <point key="canvasLocation" x="-238" y="1080"/>
         </scene>
         <!--Menu Controller-->
         <scene sceneID="Fj9-xt-z1n">
@@ -600,49 +605,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTr-Zr-O8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3478" y="1140"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="WXC-f6-GbX">
-            <objects>
-                <viewController id="ArA-zW-Qgd" customClass="MapViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RKN-Ld-odq"/>
-                        <viewControllerLayoutGuide type="bottom" id="CBg-2p-JL0"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="JZE-6d-FtH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Map" id="DPc-0B-es3">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="zZG-NH-O9N"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="menuButton" destination="zZG-NH-O9N" id="Gep-zG-lJE"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bng-BD-hhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4292" y="405"/>
+            <point key="canvasLocation" x="921" y="1369"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="JUy-eS-3d2">
+        <scene sceneID="Zm2-Bf-14j">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="woc-gx-C1p" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XBN-iD-1c2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="icF-Cs-R9A">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eh8-DG-kuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ArA-zW-Qgd" kind="relationship" relationship="rootViewController" id="mIp-Av-vlq"/>
+                        <segue destination="PNE-aL-auc" kind="relationship" relationship="rootViewController" id="dWe-9V-s8c"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xcn-gH-BPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHE-eg-3PN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3479" y="405"/>
+            <point key="canvasLocation" x="920.79999999999995" y="620.23988005997012"/>
         </scene>
     </scenes>
 </document>

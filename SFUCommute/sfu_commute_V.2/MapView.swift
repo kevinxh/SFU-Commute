@@ -128,6 +128,9 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     @IBOutlet weak var header2View: UIView!
     @IBOutlet weak var currentUnitsLabel: UILabel!
     @IBOutlet weak var currentSpeedLabel: UILabel!
+
+
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     @IBAction func hiDidGetPressed(_ sender: UIButton) {
         print("hi \(mapView)")
@@ -135,6 +138,13 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //For the side bar menu
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -254,4 +264,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     }
     
     
+    
+    
+
 }

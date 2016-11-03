@@ -127,7 +127,6 @@
 			children = (
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
 				0A0933341DC57CE7001EB52A /* textField.swift */,
-				AE067E781DCADCAD00F308B7 /* MapViewController.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -168,6 +167,7 @@
 				AE067E721DCACEBA00F308B7 /* SWRevealViewController */,
 				621813BA1DBC2B4F00C744BD /* AppDelegate.swift */,
 				621813BC1DBC2B4F00C744BD /* ViewController.swift */,
+				AE067E781DCADCAD00F308B7 /* MapViewController.swift */,
 				621813BE1DBC2B4F00C744BD /* Main.storyboard */,
 				620364551DC6B01000074F59 /* MapView.swift */,
 				0A0933331DC4A402001EB52A /* Constants */,
