@@ -68,18 +68,18 @@ class SignupPage: UIViewController {
                     //request.httpMethod = postString
                     request.httpBody = postString.data(using: .utf8)
                     request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-type")
-                    print("I am making a request now:    ")
+                    //print("I am making a request now:    ")
                     URLSession.shared.dataTask(with: request, completionHandler: { (data, response, body) in
                         let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                        print(json)
+                        //print(json)
                         //print(json["error"])
                         let dict = json as? NSDictionary
-                        print("This is the error::::---------------")
-                        print(dict?["error"])
+                        //print("This is the error::::---------------")
+                        //print(dict?["error"])
                         //let responseString = String(data:data!, encoding: .utf8)
                         //print(responseString)
-                        print(body)
-                        print(response)
+                        //print(body)
+                        //print(response)
                     }).resume()
                 }
             }
