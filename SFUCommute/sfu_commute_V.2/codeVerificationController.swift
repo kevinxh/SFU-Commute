@@ -63,7 +63,7 @@ class codeVerificationController: UIViewController {
         button.setTitle("VERIFY", for: .normal)
         button.color = Colors.SFURed
         button.highlightedColor = Colors.SFURedHighlight
-        button.cornerRadius = 7.0
+        button.cornerRadius = 6.0
         button.isEnabled = false
         button.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(button)

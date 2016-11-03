@@ -107,7 +107,7 @@ class VerificationPage: UIViewController {
         button.setTitle("SEND", for: .normal)
         button.color = Colors.SFURed
         button.highlightedColor = Colors.SFURedHighlight
-        button.cornerRadius = 7.0
+        button.cornerRadius = 6.0
         button.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
