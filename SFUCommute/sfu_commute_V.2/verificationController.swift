@@ -120,25 +120,27 @@ class VerificationPage: UIViewController {
     }
 
     func sendRequest() {
-        // Need an Global object to store access_token
-        let headers: HTTPHeaders = [
-            "Authorization": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc3ODk0NDY3LCJleHAiOjE0ODMwNzg0Njd9.z98bhrHTJR-qtyhqus6w0SB7Of4eynzrYp3imXEaNgg"
-        ]
+        // This needs to be done during sign in or sign up!!!
+        AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc3ODk0NDY3LCJleHAiOjE0ODMwNzg0Njd9.z98bhrHTJR-qtyhqus6w0SB7Of4eynzrYp3imXEaNgg")
+        
         let phone = verifyTextField.text!
         let parameters : Parameters = ["phone": "1"+phone]
-        Alamofire.request("http://54.69.64.180/verify/text", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+
+        AuthorizedRequest.request(API.sendCodeMessage(parameters: parameters)).responseJSON { response in
             switch response.result{
                 case .success(let value):
                     let json = JSON(value)
                     if (json["success"] == true) {
                         let vc = codeVerificationController()
                         vc.phone = phone
-                        self.present(vc, animated: true, completion: nil)                    } else {
+                        self.present(vc, animated: true, completion: nil)
+                    } else {
                         self.textFieldTips = EasyTipView(text:json["error"].string!, preferences: self.preferences)
                         self.textFieldTips.show(forView: self.verifyTextField)
                     }
 
                 case .failure(let error):
+                    print(error)
                     self.textFieldTips = EasyTipView(text:error.localizedDescription, preferences: self.preferences)
                     self.textFieldTips.show(forView: self.verifyTextField)
 

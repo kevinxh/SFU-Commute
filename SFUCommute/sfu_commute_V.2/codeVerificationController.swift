@@ -24,10 +24,11 @@ class codeVerificationController: UIViewController {
     var preferences = EasyTipView.Preferences()
     var textFieldTips = EasyTipView(text:"Error")
     
-    var phone : String!
+    var phone : String! = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.white
         initTitle()
         initButton()
         initTextFields()
@@ -122,37 +123,38 @@ class codeVerificationController: UIViewController {
         }
     }
     
-    @IBAction func verifyTapped(_ sender: FlatButton) {
+    func verifyTapped(_ sender: FlatButton) {
         let text1 = code1.text!
         let text2 = code2.text!
         let text3 = code3.text!
         let text4 = code4.text!
         let code = text1 + text2 + text3 + text4
-        let headers: HTTPHeaders = [
-            "Authorization": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc4MTI1OTI1LCJleHAiOjE0ODMzMDk5MjV9.NCGIDOgFunAoh_ncF5OYIrU3AKikg-Z9Xt-A9P503mY"
-        ]
         textFieldTips.dismiss()
-        Alamofire.request("http://54.69.64.180/verify/text?code="+code, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        
+        AuthorizedRequest.request(API.verifyCodeMessage(code: code)).responseJSON { response in
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
                 if (json["success"] == true) {
                     self.textFieldTips = EasyTipView(text:"success", preferences: self.preferences)
                     self.textFieldTips.show(forView: self.textFields)
-                    //let resetToken = json["user"]["phone"]["verification"]["code"]
-                    //print(resetToken)
+                    
+                    // GO TO NEXT PAGE.
+                    
                 } else {
                     self.textFieldTips = EasyTipView(text:json["error"].string!, preferences: self.preferences)
                     self.textFieldTips.show(forView: self.textFields)
                 }
                 
             case .failure(let error):
+                print(error.localizedDescription)
                 self.textFieldTips = EasyTipView(text:error.localizedDescription, preferences: self.preferences)
                 self.textFieldTips.show(forView: self.textFields)
                 
             }
         }
     }
+    
     
     func textFieldTapped(_ sender: textField) {
         textFieldControl()
