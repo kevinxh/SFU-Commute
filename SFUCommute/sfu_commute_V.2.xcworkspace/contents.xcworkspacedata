@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "container:"
-      name = "SWRevealViewController">
-      <FileRef
-         location = "group:SWRevealViewController.m">
-      </FileRef>
-      <FileRef
-         location = "group:SWRevealViewController.h">
-      </FileRef>
-   </Group>
    <FileRef
       location = "group:sfu_commute_V.2.xcodeproj">
    </FileRef>
