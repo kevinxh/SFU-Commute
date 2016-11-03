@@ -89,9 +89,15 @@ class SignupPage: UIViewController {
        // }
 
     @IBAction func cancel(_ sender: AnyObject) {
-        let CurrentViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
+        /*let CurrentViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
         self.navigationController?.pushViewController(CurrentViewController!, animated: true)
+        */
+        self.dismiss(animated: true, completion: nil) //dismisses current view. Goes back to welcome page
     }
+    
+   
+
+    
 }
 
 
