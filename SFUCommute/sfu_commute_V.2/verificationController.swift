@@ -20,7 +20,7 @@ class VerificationPage: UIViewController {
     var goBackButton : UILabel = UILabel()
     @IBOutlet var verifyTextField: textField!
     @IBOutlet var phonePrefix: UILabel!
-    var textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.")
+    var textFieldTips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
     override func viewDidLoad() {
         super.viewDidLoad()
         initTitle()

@@ -22,7 +22,7 @@ class codeVerificationController: UIViewController {
     var code2 : textField = textField()
     var code3 : textField = textField()
     var code4 : textField = textField()
-    var textFieldTips = EasyTipView(text:"Error")
+    var tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
     var phone : String! = ""
 
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class codeVerificationController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        textFieldTips.dismiss()
+        tips.dismiss()
     }
     
     func initButton() {
@@ -134,27 +134,27 @@ class codeVerificationController: UIViewController {
         let text3 = code3.text!
         let text4 = code4.text!
         let code = text1 + text2 + text3 + text4
-        textFieldTips.dismiss()
+        tips.dismiss()
         
         AuthorizedRequest.request(API.verifyCodeMessage(code: code)).responseJSON { response in
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
                 if (json["success"] == true) {
-                    self.textFieldTips = EasyTipView(text:"success")
-                    self.textFieldTips.show(forView: self.textFields)
+                    self.tips = EasyTipView(text:"success")
+                    self.tips.show(forView: self.textFields)
                     
                     // GO TO NEXT PAGE.
                     
                 } else {
-                    self.textFieldTips = EasyTipView(text:json["error"].string!)
-                    self.textFieldTips.show(forView: self.textFields)
+                    self.tips = EasyTipView(text:json["error"].string!)
+                    self.tips.show(forView: self.textFields)
                 }
                 
             case .failure(let error):
                 print(error.localizedDescription)
-                self.textFieldTips = EasyTipView(text:error.localizedDescription)
-                self.textFieldTips.show(forView: self.textFields)
+                self.tips = EasyTipView(text:error.localizedDescription)
+                self.tips.show(forView: self.textFields)
                 
             }
         }

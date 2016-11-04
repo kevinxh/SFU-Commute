@@ -18,6 +18,7 @@ class signInController: UIViewController {
     var emailTextField: textField! = textField()
     var passwordTextField: textField! = textField()
     var signInButton : FlatButton = FlatButton()
+    var Tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +135,7 @@ class signInController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        //textFieldTips.dismiss()
+        Tips.dismiss()
     }
 
 }
