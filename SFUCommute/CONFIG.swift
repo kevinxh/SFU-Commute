@@ -20,7 +20,7 @@ class Config{
     func initTip() {
         tipPreferences.drawing.font = UIFont(name: "Futura-Medium", size: 13)!
         tipPreferences.drawing.foregroundColor = UIColor.white
-        tipPreferences.drawing.backgroundColor = Colors.SFUBlue
+        tipPreferences.drawing.backgroundColor = Colors.SFURedHighlight
         tipPreferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
     }
     

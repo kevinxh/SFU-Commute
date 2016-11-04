@@ -70,11 +70,7 @@ class signInController: UIViewController {
         signInTitle.titleText = "Sign In"
         signInTitle.subtitleText = "Please enter your email and password"
         self.view.addSubview(signInTitle)
-        signInTitle.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(275)
-            make.top.equalTo(self.view).offset(60)
-            make.centerX.equalTo(self.view)
-        }
+        signInTitle.pagePositionConstraints(superview : self.view)
         signInTitle.titleHeight = 50.0
     }
     
@@ -128,7 +124,19 @@ class signInController: UIViewController {
         if (!emailTextField.text!.isValidEmail()) {
             tips = EasyTipView(text: "Invalid Email address")
             tips.show(forView: emailTextField)
+        } else if (passwordTextField.text!.characters.count == 0) {
+            tips = EasyTipView(text: "Please enter password")
+            tips.show(forView: passwordTextField)
+        } else {
+            sendRequest()
         }
+    }
+    
+    func sendRequest() {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+        print(email)
+        print(password)
     }
     
     func goBack(_ sender: Any?) {

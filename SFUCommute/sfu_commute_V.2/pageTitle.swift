@@ -73,7 +73,8 @@ import FontAwesome_swift
     
     func initTitle() {
         title.textColor = UIColor.black
-        title.font = UIFont.systemFont(ofSize: 36.0, weight: 800)
+        // title.font = UIFont.systemFont(ofSize: 36.0, weight: 800)
+        title.font = UIFont(name: "Futura-Medium", size: 36)!
         title.numberOfLines = 0
         title.textAlignment = NSTextAlignment.center
         self.addSubview(title)
@@ -118,6 +119,14 @@ import FontAwesome_swift
         }
         subtitle.snp.updateConstraints{(make) -> Void in
             make.top.equalTo(self).offset(titleHeight + iconHeight)
+        }
+    }
+    
+    func pagePositionConstraints(superview : UIView) {
+        self.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(275)
+            make.top.equalTo(superview).offset(60)
+            make.centerX.equalTo(superview)
         }
     }
 }

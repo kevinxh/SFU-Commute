@@ -79,23 +79,9 @@ class welcomeController: UIViewController {
         signInButton.layer.cornerRadius = 6.0
         signInButton.addTarget(self, action: #selector(self.signIn(_:)), for: .touchUpInside)
         self.view.addSubview(signInButton)
-        signInButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(40)
-            make.right.equalTo(self.view).offset(-40)
-            make.height.equalTo(40)
-            make.bottom.equalTo(self.view).offset(-25)
-            make.centerX.equalTo(self.view)
-        }
+        signInButton.wideBottomConstraints(superview: self.view)
         
-        signUpButton.setTitle("Create an account", for: .normal)
-        signUpButton.setTitleColor(UIColor.white, for: .normal)
-        signUpButton.titleLabel?.font = UIFont(name: "Futura-Medium", size: 19)!
-        signUpButton.color = UIColor.clear
-        signUpButton.layer.backgroundColor = Colors.SFURed.cgColor
-        //signUpButton.layer.borderColor = UIColor.white.cgColor
-        //signUpButton.layer.borderWidth = 1.5
-        signUpButton.highlightedColor = Colors.SFURedHighlight
-        signUpButton.layer.cornerRadius = 6.0
+        signUpButton.SFURedDefault("Create an account")
         signUpButton.addTarget(self, action: #selector(self.signUp(_:)), for: .touchUpInside)
         self.view.addSubview(signUpButton)
         signUpButton.snp.makeConstraints{(make) -> Void in
@@ -116,16 +102,5 @@ class welcomeController: UIViewController {
     }
     
     @IBAction func unwindToWelcome(segue: UIStoryboardSegue) { }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

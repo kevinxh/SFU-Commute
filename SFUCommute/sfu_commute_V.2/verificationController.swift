@@ -75,6 +75,7 @@ class VerificationPage: UIViewController {
         
         // temporarily skip texting step, save some money LOL     --Kevin
         //self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
+        
         tips.dismiss()
         if (phone.characters.count != 10) {
             tips = EasyTipView(text:"Your phone number should be 10-digit.")
@@ -103,28 +104,15 @@ class VerificationPage: UIViewController {
         verifyTitle.titleText = "Verify your phone number"
         verifyTitle.subtitleText = "Step 1: SFU Commute will send you an SMS message to verify your phone number."
         self.view.addSubview(verifyTitle)
-        verifyTitle.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(275)
-            make.top.equalTo(self.view).offset(60)
-            make.centerX.equalTo(self.view)
-        }
+        verifyTitle.pagePositionConstraints(superview : self.view)
     }
     
     func initButton() {
-        button.setTitle("SEND", for: .normal)
-        button.color = Colors.SFURed
-        button.highlightedColor = Colors.SFURedHighlight
+        button.SFURedDefault("SEND")
         button.isEnabled = false
-        button.cornerRadius = 6.0
         button.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(button)
-        button.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(40)
-            make.right.equalTo(self.view).offset(-40)
-            make.height.equalTo(40)
-            make.bottom.equalTo(self.view).offset(-25)
-            make.centerX.equalTo(self.view)
-        }
+        button.wideBottomConstraints(superview: self.view)
         
         goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
         goBackButton.textColor = Colors.SFURed

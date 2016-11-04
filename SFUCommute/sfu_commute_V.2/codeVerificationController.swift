@@ -43,11 +43,7 @@ class codeVerificationController: UIViewController {
         verifyTitle.titleText = "Enter code"
         verifyTitle.subtitleText = "Step 2: A text message with verification code has sent to phone:\n +1 " + phone
         self.view.addSubview(verifyTitle)
-        verifyTitle.snp.makeConstraints{(make) -> Void in
-            make.width.equalTo(275)
-            make.top.equalTo(self.view).offset(60)
-            make.centerX.equalTo(self.view)
-        }
+        verifyTitle.pagePositionConstraints(superview : self.view)
         verifyTitle.titleHeight = 50.0
     }
     
@@ -57,21 +53,10 @@ class codeVerificationController: UIViewController {
     }
     
     func initButton() {
-        button.setTitle("VERIFY", for: .normal)
-        button.color = Colors.SFURed
-        button.highlightedColor = Colors.SFURedHighlight
-        button.cornerRadius = 6.0
-        button.isEnabled = false
+        button.SFURedDefault("VERIFY")
         button.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(button)
-        button.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(40)
-            make.right.equalTo(self.view).offset(-40)
-            make.height.equalTo(40)
-            make.bottom.equalTo(self.view).offset(-25)
-            make.centerX.equalTo(self.view)
-        }
-        
+        button.wideBottomConstraints(superview: self.view)
         goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
         goBackButton.textColor = Colors.SFURed
         goBackButton.font = UIFont.fontAwesome(ofSize: 30)
