@@ -20,7 +20,7 @@ class VerificationPage: UIViewController {
     var goBackButton : UILabel = UILabel()
     @IBOutlet var verifyTextField: textField!
     @IBOutlet var phonePrefix: UILabel!
-    var textFieldTips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
+    var tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
     override func viewDidLoad() {
         super.viewDidLoad()
         initTitle()
@@ -36,7 +36,7 @@ class VerificationPage: UIViewController {
     @IBAction func onChange(_ sender: textField) {
         let text = verifyTextField.text!
         let length : Int = text.characters.count
-        textFieldTips.dismiss()
+        tips.dismiss()
         if (length != 0) {
             button.isEnabled = true
         }
@@ -46,8 +46,8 @@ class VerificationPage: UIViewController {
             verifyTextField.resignFirstResponder()
         }else if (length == 11) {
             verifyTextField.text!.remove(at: text.index(before: text.endIndex))
-            textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.")
-            textFieldTips.show(forView: verifyTextField)
+            tips = EasyTipView(text:"Your phone number should be 10-digit.")
+            tips.show(forView: verifyTextField)
             // if user enters 10 digits, keyboard auto dismiss
             verifyTextField.resignFirstResponder()
         } else {
@@ -57,7 +57,7 @@ class VerificationPage: UIViewController {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        textFieldTips.dismiss()
+        tips.dismiss()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,12 +74,11 @@ class VerificationPage: UIViewController {
         let phone = verifyTextField.text!
         
         // temporarily skip texting step, save some money LOL     --Kevin
-        self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
-        
+        //self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
+        tips.dismiss()
         if (phone.characters.count != 10) {
-            textFieldTips.dismiss()
-            textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.")
-            textFieldTips.show(forView: verifyTextField)
+            tips = EasyTipView(text:"Your phone number should be 10-digit.")
+            tips.show(forView: verifyTextField)
         } else {
             sendRequest()
         }
@@ -163,14 +162,14 @@ class VerificationPage: UIViewController {
                     if (json["success"] == true) {
                         self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
                     } else {
-                        self.textFieldTips = EasyTipView(text:json["error"].string!)
-                        self.textFieldTips.show(forView: self.verifyTextField)
+                        self.tips = EasyTipView(text:json["error"].string!)
+                        self.tips.show(forView: self.verifyTextField)
                     }
 
                 case .failure(let error):
                     print(error)
-                    self.textFieldTips = EasyTipView(text:error.localizedDescription)
-                    self.textFieldTips.show(forView: self.verifyTextField)
+                    self.tips = EasyTipView(text:error.localizedDescription)
+                    self.tips.show(forView: self.verifyTextField)
 
             }
         }

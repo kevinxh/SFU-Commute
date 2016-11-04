@@ -18,7 +18,7 @@ class signInController: UIViewController {
     var emailTextField: textField! = textField()
     var passwordTextField: textField! = textField()
     var signInButton : FlatButton = FlatButton()
-    var Tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
+    var tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,8 +124,10 @@ class signInController: UIViewController {
     }
     
     func signInTapped(_ sender: FlatButton) {
+        tips.dismiss()
         if (!emailTextField.text!.isValidEmail()) {
-            print("not valid")
+            tips = EasyTipView(text: "Invalid Email address")
+            tips.show(forView: emailTextField)
         }
     }
     
@@ -135,7 +137,7 @@ class signInController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        Tips.dismiss()
+        tips.dismiss()
     }
 
 }
