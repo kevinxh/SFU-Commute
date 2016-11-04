@@ -218,11 +218,34 @@
                     <connections>
                         <outlet property="phonePrefix" destination="WhS-Ce-bBl" id="JAY-HQ-hfz"/>
                         <outlet property="verifyTextField" destination="HSW-Mp-OQp" id="QiM-9e-Jy9"/>
+                        <segue destination="HEg-on-1qY" kind="show" identifier="goToCodeVerification" id="ULl-mV-tkQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDV-QY-tTy" userLabel="VerificationPage" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1810.4000000000001" y="-156.97151424287858"/>
+        </scene>
+        <!--Code Verification Controller-->
+        <scene sceneID="bA5-NP-28X">
+            <objects>
+                <viewController id="HEg-on-1qY" customClass="codeVerificationController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aFf-UE-o5j"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rnp-0P-BRC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Sf-bs-ky6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="K05-yd-pys" kind="unwind" identifier="unwindToVerification" unwindAction="unwindToVerificationWithSegue:" id="Mh8-cy-a3v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oaK-Os-1Pm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="K05-yd-pys" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2722" y="-157"/>
         </scene>
         <!--Map View-->
         <scene sceneID="bhf-me-lEn">

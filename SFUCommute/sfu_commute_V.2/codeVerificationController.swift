@@ -17,6 +17,7 @@ class codeVerificationController: UIViewController {
     var verifyTitle: pageTitle! = pageTitle()
     var button : FlatButton = FlatButton()
     var textFields : UIStackView = UIStackView()
+    var goBackButton : UILabel = UILabel()
     var code1 : textField = textField()
     var code2 : textField = textField()
     var code3 : textField = textField()
@@ -74,6 +75,26 @@ class codeVerificationController: UIViewController {
             make.bottom.equalTo(self.view).offset(-25)
             make.centerX.equalTo(self.view)
         }
+        
+        goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
+        goBackButton.textColor = Colors.SFURed
+        goBackButton.font = UIFont.fontAwesome(ofSize: 30)
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer()
+        tap.numberOfTapsRequired = 1
+        goBackButton.addGestureRecognizer(tap)
+        goBackButton.isUserInteractionEnabled = true
+        tap.addTarget(self, action: #selector(self.goBack(_:)))
+        self.view.addSubview(goBackButton)
+        goBackButton.snp.makeConstraints{(make) -> Void in
+            make.left.equalTo(self.view).offset(15)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+            make.top.equalTo(self.view).offset(30)
+        }
+    }
+    
+    func goBack(_ sender: FlatButton) {
+        self.performSegue(withIdentifier: "unwindToVerification", sender: self)
     }
     
     func initTips() {
