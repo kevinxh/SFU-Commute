@@ -66,7 +66,7 @@ import FontAwesome_swift
     func initIcon() {
         icon.textAlignment = NSTextAlignment.center
         icon.textColor = Colors.SFURed
-        icon.font = UIFont.fontAwesome(ofSize: 100)
+        icon.font = UIFont.fontAwesome(ofSize: 90)
         self.addSubview(icon)
         
     }

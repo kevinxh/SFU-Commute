@@ -20,14 +20,11 @@ class VerificationPage: UIViewController {
     var goBackButton : UILabel = UILabel()
     @IBOutlet var verifyTextField: textField!
     @IBOutlet var phonePrefix: UILabel!
-    var preferences = EasyTipView.Preferences()
     var textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.")
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         initTitle()
         initTextField()
-        initTips()
         initButton()
     }
 
@@ -40,17 +37,21 @@ class VerificationPage: UIViewController {
         let text = verifyTextField.text!
         let length : Int = text.characters.count
         textFieldTips.dismiss()
+        if (length != 0) {
+            button.isEnabled = true
+        }
         if (length == 10) {
             // if user enters 10 digits, keyboard auto dismiss
             verifyTextField.borderColor = Colors.SFUBlue.cgColor
             verifyTextField.resignFirstResponder()
-        }
-        if (length == 11) {
+        }else if (length == 11) {
             verifyTextField.text!.remove(at: text.index(before: text.endIndex))
-            textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.", preferences: preferences)
+            textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.")
             textFieldTips.show(forView: verifyTextField)
             // if user enters 10 digits, keyboard auto dismiss
             verifyTextField.resignFirstResponder()
+        } else {
+            verifyTextField.setDefaultBorderColor()
         }
     }
 
@@ -73,11 +74,11 @@ class VerificationPage: UIViewController {
         let phone = verifyTextField.text!
         
         // temporarily skip texting step, save some money LOL     --Kevin
-        // self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
+        self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
         
         if (phone.characters.count != 10) {
             textFieldTips.dismiss()
-            textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.", preferences: preferences)
+            textFieldTips = EasyTipView(text:"Your phone number should be 10-digit.")
             textFieldTips.show(forView: verifyTextField)
         } else {
             sendRequest()
@@ -98,15 +99,6 @@ class VerificationPage: UIViewController {
         }
     }
     
-    func initTips() {
-
-        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 13)!
-        preferences.drawing.foregroundColor = UIColor.white
-        preferences.drawing.backgroundColor = Colors.SFUBlue
-        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
-        EasyTipView.globalPreferences = preferences
-    }
-    
     func initTitle() {
         verifyTitle.iconName = "fa-mobile"
         verifyTitle.titleText = "Verify your phone number"
@@ -123,6 +115,7 @@ class VerificationPage: UIViewController {
         button.setTitle("SEND", for: .normal)
         button.color = Colors.SFURed
         button.highlightedColor = Colors.SFURedHighlight
+        button.isEnabled = false
         button.cornerRadius = 6.0
         button.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(button)
@@ -151,7 +144,7 @@ class VerificationPage: UIViewController {
         }
     }
     
-    func goBack(_ sender: FlatButton) {
+    func goBack(_ sender: Any?) {
         // segue back to the last page.. need to be implemented after sign up page
     }
 
@@ -170,13 +163,13 @@ class VerificationPage: UIViewController {
                     if (json["success"] == true) {
                         self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
                     } else {
-                        self.textFieldTips = EasyTipView(text:json["error"].string!, preferences: self.preferences)
+                        self.textFieldTips = EasyTipView(text:json["error"].string!)
                         self.textFieldTips.show(forView: self.verifyTextField)
                     }
 
                 case .failure(let error):
                     print(error)
-                    self.textFieldTips = EasyTipView(text:error.localizedDescription, preferences: self.preferences)
+                    self.textFieldTips = EasyTipView(text:error.localizedDescription)
                     self.textFieldTips.show(forView: self.verifyTextField)
 
             }

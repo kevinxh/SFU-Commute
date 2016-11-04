@@ -22,9 +22,7 @@ class codeVerificationController: UIViewController {
     var code2 : textField = textField()
     var code3 : textField = textField()
     var code4 : textField = textField()
-    var preferences = EasyTipView.Preferences()
     var textFieldTips = EasyTipView(text:"Error")
-    
     var phone : String! = ""
 
     override func viewDidLoad() {
@@ -33,8 +31,6 @@ class codeVerificationController: UIViewController {
         initTitle()
         initButton()
         initTextFields()
-        initTips()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,21 +89,12 @@ class codeVerificationController: UIViewController {
         }
     }
     
-    func goBack(_ sender: FlatButton) {
+    func goBack(_ sender: Any?) {
         self.performSegue(withIdentifier: "unwindToVerification", sender: self)
-    }
-    
-    func initTips() {
-        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 13)!
-        preferences.drawing.foregroundColor = UIColor.white
-        preferences.drawing.backgroundColor = Colors.SFUBlue
-        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.bottom
-        EasyTipView.globalPreferences = preferences
     }
     
     func initTextFields() {
         textFields = UIStackView(arrangedSubviews: [code1, code2, code3, code4])
-        textFields.backgroundColor = Colors.SFURed
         textFields.axis = .horizontal
         textFields.distribution = .equalSpacing
         textFields.alignment = .center
@@ -128,9 +115,6 @@ class codeVerificationController: UIViewController {
             textField.snp.makeConstraints{(make) -> Void in
                 make.height.equalTo(50)
                 make.width.equalTo(50)
-                //make.top.equalTo(textFields)
-                //make.left.greaterThanOrEqualTo(textFields.snp.left)
-                //make.right.equalTo(code2.snp.left).offset(-20)
             }
         }
         
@@ -157,19 +141,19 @@ class codeVerificationController: UIViewController {
             case .success(let value):
                 let json = JSON(value)
                 if (json["success"] == true) {
-                    self.textFieldTips = EasyTipView(text:"success", preferences: self.preferences)
+                    self.textFieldTips = EasyTipView(text:"success")
                     self.textFieldTips.show(forView: self.textFields)
                     
                     // GO TO NEXT PAGE.
                     
                 } else {
-                    self.textFieldTips = EasyTipView(text:json["error"].string!, preferences: self.preferences)
+                    self.textFieldTips = EasyTipView(text:json["error"].string!)
                     self.textFieldTips.show(forView: self.textFields)
                 }
                 
             case .failure(let error):
                 print(error.localizedDescription)
-                self.textFieldTips = EasyTipView(text:error.localizedDescription, preferences: self.preferences)
+                self.textFieldTips = EasyTipView(text:error.localizedDescription)
                 self.textFieldTips.show(forView: self.textFields)
                 
             }
@@ -220,7 +204,7 @@ class codeVerificationController: UIViewController {
         for index in 1...4 {
             let textField = self.view.viewWithTag(index) as! textField
             if (textField.text!.characters.count == 0) {
-                textField.borderColor = UIColor(red: 64/255, green: 64/255, blue: 64/255, alpha: 0.6).cgColor
+                textField.setDefaultBorderColor()
             } else {
                 textField.borderColor = Colors.SFUBlue.cgColor
             }
@@ -235,16 +219,4 @@ class codeVerificationController: UIViewController {
             button.isEnabled = true
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -22,6 +22,7 @@
                     </view>
                     <connections>
                         <segue destination="SoD-pi-Xv3" kind="show" identifier="signup" id="PXF-14-v7L"/>
+                        <segue destination="98a-0A-Y6c" kind="show" identifier="signin" id="bve-hr-OK5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -247,6 +248,28 @@
             </objects>
             <point key="canvasLocation" x="2722" y="-157"/>
         </scene>
+        <!--Sign In Controller-->
+        <scene sceneID="Wwr-Xl-lcf">
+            <objects>
+                <viewController id="98a-0A-Y6c" customClass="signInController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nea-JO-MCV"/>
+                        <viewControllerLayoutGuide type="bottom" id="BtO-OA-Ip6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="inN-Pi-nZf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="v6e-6A-mUt" kind="unwind" identifier="unwindToWelcome" unwindAction="unwindToWelcomeWithSegue:" id="LSD-gv-Yg3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jbg-mQ-iPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="v6e-6A-mUt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="921" y="612"/>
+        </scene>
         <!--Map View-->
         <scene sceneID="bhf-me-lEn">
             <objects>
@@ -323,7 +346,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="621"/>
+            <point key="canvasLocation" x="1810" y="613"/>
         </scene>
     </scenes>
 </document>

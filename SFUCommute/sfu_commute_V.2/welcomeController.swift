@@ -17,6 +17,7 @@ class welcomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalConfig.initApplication()
         initBackground()
         initTitle()
         initButton()
@@ -51,9 +52,9 @@ class welcomeController: UIViewController {
     
     func initTitle() {
         welcomeTitle.iconName = ""
-        welcomeTitle.titleText = "Welcome"
+        welcomeTitle.titleText = "WELCOME"
         welcomeTitle.title.textColor = Colors.SFURed
-        welcomeTitle.title.font = UIFont(name: "Futura-Medium", size: 58)!
+        welcomeTitle.title.font = UIFont(name: "Futura-Medium", size: 52)!
         welcomeTitle.subtitleText = "Start sharing rides with your SFU classmates"
         welcomeTitle.subtitle.textColor = Colors.SFURed.withAlphaComponent(0.8)
         self.view.addSubview(welcomeTitle)
@@ -103,13 +104,15 @@ class welcomeController: UIViewController {
         }
     }
     
-    func signUp(_ sebder: FlatButton) {
+    func signUp(_ sebder: Any?) {
         performSegue(withIdentifier: "signup", sender: self)
     }
     
-    func signIn(_ sebder: FlatButton) {
-        print("sign in")
+    func signIn(_ sebder: Any?) {
+        performSegue(withIdentifier: "signin", sender: self)
     }
+    
+    @IBAction func unwindToWelcome(segue: UIStoryboardSegue) { }
     
 
     /*
