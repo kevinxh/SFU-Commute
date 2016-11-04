@@ -104,9 +104,7 @@ class welcomeController: UIViewController {
     }
     
     func signUp(_ sebder: FlatButton) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signup") as! SignupPage
-        self.navigationController?.pushViewController(vc, animated: true)
-        //self.present(vc, animated: true, completion: nil)
+        performSegue(withIdentifier: "signup", sender: self)
     }
     
     func signIn(_ sebder: FlatButton) {

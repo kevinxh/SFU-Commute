@@ -21,7 +21,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
                     <connections>
-                        <segue destination="SoD-pi-Xv3" kind="show" id="PXF-14-v7L"/>
+                        <segue destination="SoD-pi-Xv3" kind="show" identifier="signup" id="PXF-14-v7L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
