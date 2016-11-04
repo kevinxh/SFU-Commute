@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import SwiftyButton
 import EasyTipView
+import Alamofire
+import SwiftyJSON
 
 class signInController: UIViewController {
     
@@ -135,8 +137,30 @@ class signInController: UIViewController {
     func sendRequest() {
         let email = emailTextField.text!
         let password = passwordTextField.text!
-        print(email)
-        print(password)
+        let parameters : Parameters = ["email": email, "password": password]
+        Alamofire.request(API.signIn(parameters: parameters)).responseJSON { response in
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+                // More response parsing, display individual errors
+                
+                if (json["success"] == true) {
+                    AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
+                    //self.performSegue(withIdentifier: "???", sender: self)
+                } else {
+                    self.tips = EasyTipView(text:json["error"].stringValue)
+                    self.tips.show(forView: self.emailTextField)
+                }
+                
+            case .failure(let error):
+                print(error)
+                self.tips = EasyTipView(text:error.localizedDescription)
+                self.tips.show(forView: self.emailTextField)
+                
+            }
+        }
     }
     
     func goBack(_ sender: Any?) {

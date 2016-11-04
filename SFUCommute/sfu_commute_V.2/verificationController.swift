@@ -137,7 +137,7 @@ class VerificationPage: UIViewController {
 
 
     func sendRequest() {
-        // This needs to be done during sign in or sign up!!!
+        // This needs to be done during sign in AND sign up!!!
         AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc3ODk0NDY3LCJleHAiOjE0ODMwNzg0Njd9.z98bhrHTJR-qtyhqus6w0SB7Of4eynzrYp3imXEaNgg")
         
         let phone = verifyTextField.text!
@@ -150,7 +150,7 @@ class VerificationPage: UIViewController {
                     if (json["success"] == true) {
                         self.performSegue(withIdentifier: "goToCodeVerification", sender: self)
                     } else {
-                        self.tips = EasyTipView(text:json["error"].string!)
+                        self.tips = EasyTipView(text:json["error"].stringValue)
                         self.tips.show(forView: self.verifyTextField)
                     }
 
