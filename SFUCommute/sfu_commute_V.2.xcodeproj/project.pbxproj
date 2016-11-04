@@ -21,7 +21,7 @@
 		621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813EA1DBC386D00C744BD /* RequestProtocols.swift */; };
 		62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FB22A71DC26BF10036D02E /* verificationController.swift */; };
 		6C4110DFCF82670DE54DDFCB /* Pods_sfu_commute_V_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5542A1E49050BF1F3765CE62 /* Pods_sfu_commute_V_2Tests.framework */; };
-		AE067E791DCADCAD00F308B7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE067E781DCADCAD00F308B7 /* MapViewController.swift */; };
+		AE908E731DCC26600073EC96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813BA1DBC2B4F00C744BD /* AppDelegate.swift */; };
 		C1B8FDD7DAF68B2A2C388B06 /* Pods_sfu_commute_V_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD973C9591A8A75D291DED0 /* Pods_sfu_commute_V_2.framework */; };
 		D4D16A35B8844BE9284E98FD /* Pods_sfu_commute_V_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E51E8603567FF3E7CEE21F5 /* Pods_sfu_commute_V_2UITests.framework */; };
 /* End PBXBuildFile section */
@@ -81,7 +81,6 @@
 		621813EA1DBC386D00C744BD /* RequestProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocols.swift; sourceTree = "<group>"; };
 		62FB22A71DC26BF10036D02E /* verificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = verificationController.swift; sourceTree = "<group>"; };
 		9E51E8603567FF3E7CEE21F5 /* Pods_sfu_commute_V_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sfu_commute_V_2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE067E781DCADCAD00F308B7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		BFBDBD095563127DE78C1EDF /* Pods-sfu_commute_V.2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2Tests/Pods-sfu_commute_V.2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BFDDFD43DFA9AA46708D250A /* Pods-sfu_commute_V.2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2/Pods-sfu_commute_V.2.debug.xcconfig"; sourceTree = "<group>"; };
 		C760B6A4301D475E95CF68C2 /* Pods-sfu_commute_V.2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2Tests/Pods-sfu_commute_V.2Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,7 +160,6 @@
 			children = (
 				621813BA1DBC2B4F00C744BD /* AppDelegate.swift */,
 				621813BC1DBC2B4F00C744BD /* ViewController.swift */,
-				AE067E781DCADCAD00F308B7 /* MapViewController.swift */,
 				621813BE1DBC2B4F00C744BD /* Main.storyboard */,
 				620364551DC6B01000074F59 /* MapView.swift */,
 				0A0933331DC4A402001EB52A /* Constants */,
@@ -508,10 +506,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE067E791DCADCAD00F308B7 /* MapViewController.swift in Sources */,
 				62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */,
 				620364561DC6B01000074F59 /* MapView.swift in Sources */,
 				621813BD1DBC2B4F00C744BD /* ViewController.swift in Sources */,
+				AE908E731DCC26600073EC96 /* AppDelegate.swift in Sources */,
 				621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */,
 				0A0933351DC57CE7001EB52A /* textField.swift in Sources */,
 				0A0933321DC4A331001EB52A /* Colors.swift in Sources */,
