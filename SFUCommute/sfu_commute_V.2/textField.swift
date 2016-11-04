@@ -43,6 +43,7 @@ import UIKit
         self.layer.borderColor = borderColor
         self.layer.borderWidth = borderWidth
         self.textAlignment = .center
+        self.tintColor = Colors.SFUBlue
         self.font = UIFont(name: "Futura-Medium", size: 22)!
     }
     
