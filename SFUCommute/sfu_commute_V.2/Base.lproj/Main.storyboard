@@ -59,9 +59,6 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
-                                <connections>
-                                    <segue destination="N8x-Cx-vmG" kind="show" id="WYi-2i-XrI"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="bezel" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="V3y-om-s0N">
                                 <frame key="frameInset" minX="59" minY="330" width="256" height="30"/>
@@ -344,7 +341,7 @@
         <!--Home-->
         <scene sceneID="bhf-me-lEn">
             <objects>
-                <viewController id="PNE-aL-auc" customClass="MapView" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PNE-aL-auc" customClass="SideMenuController" customModule="SideMenuController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0I4-eq-e4Y"/>
                         <viewControllerLayoutGuide type="bottom" id="c6K-fI-YzC"/>
@@ -423,20 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1860" y="620.23988005997012"/>
-        </scene>
-        <!--Reveal View Controller-->
-        <scene sceneID="fpB-8v-8hk">
-            <objects>
-                <viewController id="N8x-Cx-vmG" customClass="SWRevealViewController" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="7xW-Oh-nMp" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Fjm-0w-K5K"/>
-                        <segue destination="XBN-iD-1c2" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="zVO-7y-bhK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nZc-tf-boz" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-238" y="1080"/>
+            <point key="canvasLocation" x="921" y="678"/>
         </scene>
         <!--Menu Controller-->
         <scene sceneID="Fj9-xt-z1n">
@@ -606,24 +590,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTr-Zr-O8K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="921" y="1369"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Zm2-Bf-14j">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XBN-iD-1c2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eh8-DG-kuZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="PNE-aL-auc" kind="relationship" relationship="rootViewController" id="dWe-9V-s8c"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pHE-eg-3PN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="920.79999999999995" y="620.23988005997012"/>
         </scene>
     </scenes>
 </document>

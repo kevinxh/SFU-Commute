@@ -3,28 +3,34 @@ PODS:
   - EasyTipView (1.0.2)
   - FontAwesome.swift (1.0.0)
   - Mapbox-iOS-SDK (3.3.4)
+  - SideMenuController (0.2.1)
   - SnapKit (3.0.2)
   - SwiftyButton (0.6.0)
   - SwiftyJSON (3.1.1)
+  - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - EasyTipView (~> 1.0.2)
   - FontAwesome.swift (~> 1.0.0)
   - Mapbox-iOS-SDK (~> 3.3.4)
+  - SideMenuController
   - SnapKit (~> 3.0.2)
   - SwiftyButton
   - SwiftyJSON
+  - SWRevealViewController
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
+  SideMenuController: 4c543122289d74e1db9d1e24fd3264581fd6ac4e
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftyButton: 4c9b61c499f172971a1b8c2eebbbdc20a26d8a08
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 55d55edb67405a628259bc1ac1108d47d96d1bfb
+PODFILE CHECKSUM: 228c2aa3b01593f101fafac78893e9b7a3536034
 
 COCOAPODS: 1.2.0.beta.1

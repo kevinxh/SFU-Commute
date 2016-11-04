@@ -11,7 +11,6 @@
 		0A0933321DC4A331001EB52A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0933311DC4A331001EB52A /* Colors.swift */; };
 		0A0933351DC57CE7001EB52A /* textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0933341DC57CE7001EB52A /* textField.swift */; };
 		620364561DC6B01000074F59 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620364551DC6B01000074F59 /* MapView.swift */; };
-		621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813BA1DBC2B4F00C744BD /* AppDelegate.swift */; };
 		621813BD1DBC2B4F00C744BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813BC1DBC2B4F00C744BD /* ViewController.swift */; };
 		621813C01DBC2B4F00C744BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621813BE1DBC2B4F00C744BD /* Main.storyboard */; };
 		621813C21DBC2B4F00C744BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621813C11DBC2B4F00C744BD /* Assets.xcassets */; };
@@ -22,7 +21,6 @@
 		621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813EA1DBC386D00C744BD /* RequestProtocols.swift */; };
 		62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FB22A71DC26BF10036D02E /* verificationController.swift */; };
 		6C4110DFCF82670DE54DDFCB /* Pods_sfu_commute_V_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5542A1E49050BF1F3765CE62 /* Pods_sfu_commute_V_2Tests.framework */; };
-		AE067E771DCACF6B00F308B7 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE067E761DCACF6B00F308B7 /* SWRevealViewController.m */; };
 		AE067E791DCADCAD00F308B7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE067E781DCADCAD00F308B7 /* MapViewController.swift */; };
 		C1B8FDD7DAF68B2A2C388B06 /* Pods_sfu_commute_V_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD973C9591A8A75D291DED0 /* Pods_sfu_commute_V_2.framework */; };
 		D4D16A35B8844BE9284E98FD /* Pods_sfu_commute_V_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E51E8603567FF3E7CEE21F5 /* Pods_sfu_commute_V_2UITests.framework */; };
@@ -83,9 +81,6 @@
 		621813EA1DBC386D00C744BD /* RequestProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocols.swift; sourceTree = "<group>"; };
 		62FB22A71DC26BF10036D02E /* verificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = verificationController.swift; sourceTree = "<group>"; };
 		9E51E8603567FF3E7CEE21F5 /* Pods_sfu_commute_V_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sfu_commute_V_2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE067E741DCACF6A00F308B7 /* sfu_commute_V.2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sfu_commute_V.2-Bridging-Header.h"; sourceTree = "<group>"; };
-		AE067E751DCACF6B00F308B7 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		AE067E761DCACF6B00F308B7 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		AE067E781DCADCAD00F308B7 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		BFBDBD095563127DE78C1EDF /* Pods-sfu_commute_V.2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2Tests/Pods-sfu_commute_V.2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BFDDFD43DFA9AA46708D250A /* Pods-sfu_commute_V.2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2/Pods-sfu_commute_V.2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,7 +159,6 @@
 		621813B91DBC2B4F00C744BD /* sfu_commute_V.2 */ = {
 			isa = PBXGroup;
 			children = (
-				AE067E721DCACEBA00F308B7 /* SWRevealViewController */,
 				621813BA1DBC2B4F00C744BD /* AppDelegate.swift */,
 				621813BC1DBC2B4F00C744BD /* ViewController.swift */,
 				AE067E781DCADCAD00F308B7 /* MapViewController.swift */,
@@ -206,17 +200,6 @@
 				621813EA1DBC386D00C744BD /* RequestProtocols.swift */,
 			);
 			name = CloudCalls;
-			sourceTree = "<group>";
-		};
-		AE067E721DCACEBA00F308B7 /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				AE067E751DCACF6B00F308B7 /* SWRevealViewController.h */,
-				AE067E761DCACF6B00F308B7 /* SWRevealViewController.m */,
-				AE067E741DCACF6A00F308B7 /* sfu_commute_V.2-Bridging-Header.h */,
-			);
-			name = SWRevealViewController;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		BBEAFA2123FB76548181812C /* Pods */ = {
@@ -533,9 +516,7 @@
 				0A0933351DC57CE7001EB52A /* textField.swift in Sources */,
 				0A0933321DC4A331001EB52A /* Colors.swift in Sources */,
 				621813E91DBC327F00C744BD /* SignupPage.swift in Sources */,
-				AE067E771DCACF6B00F308B7 /* SWRevealViewController.m in Sources */,
 				0A09332E1DC47516001EB52A /* pageTitle.swift in Sources */,
-				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
