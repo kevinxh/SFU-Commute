@@ -121,14 +121,10 @@ class VerificationPage: UIViewController {
     }
     
     func goBack(_ sender: Any?) {
-        // segue back to the last page.. need to be implemented after sign up page
+        self.performSegue(withIdentifier: "unwindToSignUp", sender: self)
     }
 
-
     func sendRequest() {
-        // This needs to be done during sign in AND sign up!!!
-        AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc3ODk0NDY3LCJleHAiOjE0ODMwNzg0Njd9.z98bhrHTJR-qtyhqus6w0SB7Of4eynzrYp3imXEaNgg")
-        
         let phone = verifyTextField.text!
         let parameters : Parameters = ["phone": "1"+phone]
 

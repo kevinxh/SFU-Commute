@@ -63,11 +63,11 @@ class signInController: UIViewController {
         emailTextField.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
         view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(50)
+            make.height.equalTo(35)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
-            make.top.greaterThanOrEqualTo(signInTitle.subtitle.snp.bottom).offset(80)
+            make.top.greaterThanOrEqualTo(signInTitle.subtitle.snp.bottom).offset(30)
         }
         
         passwordTextField.keyboardType = .default
@@ -76,11 +76,11 @@ class signInController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(self.passwordChanged(_:)), for: .editingChanged)
         view.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(50)
+            make.height.equalTo(35)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
-            make.top.equalTo(emailTextField.snp.bottom).offset(15)
+            make.top.equalTo(emailTextField.snp.bottom).offset(10)
         }
     }
     
@@ -93,7 +93,7 @@ class signInController: UIViewController {
     }
     
     func passwordChanged(_ sender: textField) {
-        if (passwordTextField.text!.characters.count > 0) {
+        if (passwordTextField.text!.isNotEmpty()) {
             passwordTextField.borderColor = Colors.SFUBlue.cgColor
         } else {
             passwordTextField.setDefaultBorderColor()
@@ -109,6 +109,7 @@ class signInController: UIViewController {
             tips = EasyTipView(text: "Please enter password")
             tips.show(forView: passwordTextField)
         } else {
+            signInButton.isEnabled = false
             sendRequest()
         }
     }
@@ -129,12 +130,14 @@ class signInController: UIViewController {
                     AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
                     //self.performSegue(withIdentifier: "???", sender: self)
                 } else {
+                    self.signInButton.isEnabled = true
                     self.tips = EasyTipView(text:json["error"].stringValue)
                     self.tips.show(forView: self.emailTextField)
                 }
                 
             case .failure(let error):
                 print(error)
+                self.signInButton.isEnabled = true
                 self.tips = EasyTipView(text:error.localizedDescription)
                 self.tips.show(forView: self.emailTextField)
                 
