@@ -14,6 +14,8 @@ import SwiftyButton
 
 class SignupPage: UIViewController {
     
+    var signUpTitle: pageTitle! = pageTitle()
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
@@ -34,6 +36,7 @@ class SignupPage: UIViewController {
         firstName.text       = "first name"
         lastName.text        = "last name"
         initTips()
+        initTitle()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,6 +53,15 @@ class SignupPage: UIViewController {
         preferences.drawing.backgroundColor = Colors.SFUBlue
         preferences.drawing.arrowPosition   = EasyTipView.ArrowPosition.bottom
         EasyTipView.globalPreferences       = preferences
+    }
+    
+    func initTitle() {
+        signUpTitle.iconName = "fa-user"
+        signUpTitle.titleText = "Sign Up"
+        signUpTitle.subtitleText = "Please enter the following information"
+        self.view.addSubview(signUpTitle)
+        signUpTitle.pagePositionConstraints(superview : self.view)
+        signUpTitle.titleHeight = 50.0
     }
     
     func forData() {
