@@ -18,6 +18,7 @@ class SignupPage: UIViewController {
     var backButton : goBackButton = goBackButton()
     var signUpButton : FlatButton = FlatButton()
     var emailTextField: textField! = textField()
+    var passwordTextField: textField! = textField()
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -95,6 +96,19 @@ class SignupPage: UIViewController {
             make.centerX.equalTo(self.view)
             make.top.greaterThanOrEqualTo(signUpTitle.subtitle.snp.bottom).offset(50)
         }
+        
+        passwordTextField.keyboardType = .default
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.placeholder = "Password"
+        passwordTextField.addTarget(self, action: #selector(self.passwordChanged(_:)), for: .editingChanged)
+        view.addSubview(passwordTextField)
+        passwordTextField.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(50)
+            make.left.equalTo(self.view).offset(40)
+            make.right.equalTo(self.view).offset(-40)
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(emailTextField.snp.bottom).offset(15)
+        }
     }
     
     func emailChanged(_ sender: textField) {
@@ -102,6 +116,14 @@ class SignupPage: UIViewController {
             emailTextField.borderColor = Colors.SFUBlue.cgColor
         } else {
             emailTextField.setDefaultBorderColor()
+        }
+    }
+    
+    func passwordChanged(_ sender: textField) {
+        if (passwordTextField.text!.characters.count > 0) {
+            passwordTextField.borderColor = Colors.SFUBlue.cgColor
+        } else {
+            passwordTextField.setDefaultBorderColor()
         }
     }
     
