@@ -15,6 +15,7 @@ import SwiftyButton
 class SignupPage: UIViewController {
     
     var signUpTitle: pageTitle! = pageTitle()
+    var backButton : goBackButton = goBackButton()
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -37,6 +38,7 @@ class SignupPage: UIViewController {
         lastName.text        = "last name"
         initTips()
         initTitle()
+        initButton()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -62,6 +64,17 @@ class SignupPage: UIViewController {
         self.view.addSubview(signUpTitle)
         signUpTitle.pagePositionConstraints(superview : self.view)
         signUpTitle.titleHeight = 50.0
+    }
+    
+    func initButton() {
+        backButton.applyStyle()
+        backButton.tap.addTarget(self, action: #selector(self.goBack(_:)))
+        self.view.addSubview(backButton)
+        backButton.applyConstraints(superview: self.view)
+    }
+    
+    func goBack(_ sender: Any?) {
+        self.performSegue(withIdentifier: "unwindToWelcomeFromSignUp", sender: self)
     }
     
     func forData() {

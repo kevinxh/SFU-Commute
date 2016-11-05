@@ -15,7 +15,7 @@ import SwiftyJSON
 
 class signInController: UIViewController {
     
-    var goBackButton : UILabel = UILabel()
+    var backButton : goBackButton! = goBackButton()
     var signInTitle: pageTitle! = pageTitle()
     var emailTextField: textField! = textField()
     var passwordTextField: textField! = textField()
@@ -35,21 +35,10 @@ class signInController: UIViewController {
     }
     
     func initButton() {
-        goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
-        goBackButton.textColor = Colors.SFURed
-        goBackButton.font = UIFont.fontAwesome(ofSize: 30)
-        let tap : UITapGestureRecognizer = UITapGestureRecognizer()
-        tap.numberOfTapsRequired = 1
-        goBackButton.addGestureRecognizer(tap)
-        goBackButton.isUserInteractionEnabled = true
-        tap.addTarget(self, action: #selector(self.goBack(_:)))
-        self.view.addSubview(goBackButton)
-        goBackButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(15)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-            make.top.equalTo(self.view).offset(30)
-        }
+        backButton.applyStyle()
+        backButton.tap.addTarget(self, action: #selector(self.goBack(_:)))
+        self.view.addSubview(backButton)
+        backButton.applyConstraints(superview: self.view)
         
         signInButton.setTitle("SIGN IN", for: .normal)
         signInButton.color = Colors.SFURed
@@ -164,7 +153,7 @@ class signInController: UIViewController {
     }
     
     func goBack(_ sender: Any?) {
-        self.performSegue(withIdentifier: "unwindToWelcome", sender: self)
+        self.performSegue(withIdentifier: "unwindToWelcomeFromSignIn", sender: self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

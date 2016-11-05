@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -178,9 +178,11 @@
                         <outlet property="password" destination="IsI-c3-77C" id="6Dx-jl-UxW"/>
                         <outlet property="phoneNumber" destination="EE9-ha-Oj8" id="x28-zs-tGz"/>
                         <outlet property="registerUI" destination="Lth-ct-1I9" id="wfd-dR-knq"/>
+                        <segue destination="Nbu-3a-yDP" kind="unwind" identifier="unwindToWelcomeFromSignUp" unwindAction="unwindToWelcomeWithSegue:" id="Jen-xj-4g1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMq-fg-XOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Nbu-3a-yDP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="920.79999999999995" y="-165.06746626686657"/>
         </scene>
@@ -262,7 +264,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="v6e-6A-mUt" kind="unwind" identifier="unwindToWelcome" unwindAction="unwindToWelcomeWithSegue:" id="LSD-gv-Yg3"/>
+                        <segue destination="v6e-6A-mUt" kind="unwind" identifier="unwindToWelcomeFromSignIn" unwindAction="unwindToWelcomeWithSegue:" id="LSD-gv-Yg3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbg-mQ-iPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
