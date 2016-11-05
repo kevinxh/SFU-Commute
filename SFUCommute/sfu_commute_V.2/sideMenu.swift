@@ -14,13 +14,14 @@ struct sideMenuItemData {
     let iconName : String!
 }
 
-class sideMenu: UITableViewController {
+class sideMenuNavTable: UITableViewController {
     
     var arrayOfNav = [sideMenuItemData]()
     
     @IBOutlet var navTable: UITableView!
     
     override func viewDidLoad() {
+        
         navTable.backgroundColor = Colors.darkBlueGrey
         arrayOfNav = [sideMenuItemData(cell: 1, itemName: "Home", iconName: "fa-home" ),
                       sideMenuItemData(cell: 2, itemName: "Browse", iconName: "fa-bars" ),
