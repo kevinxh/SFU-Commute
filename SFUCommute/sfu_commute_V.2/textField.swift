@@ -43,7 +43,12 @@ import UIKit
         self.layer.borderColor = borderColor
         self.layer.borderWidth = borderWidth
         self.textAlignment = .center
+        self.tintColor = Colors.SFUBlue
         self.font = UIFont(name: "Futura-Medium", size: 22)!
+    }
+    
+    func setDefaultBorderColor() {
+        self.layer.borderColor = UIColor(red: 64/255, green: 64/255, blue: 64/255, alpha: 0.6).cgColor
     }
     
     // Change padding of textfield
