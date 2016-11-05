@@ -84,6 +84,7 @@ class codeVerificationController: UIViewController {
         for index in 1...4 {
             let textField = self.view.viewWithTag(index) as! textField
             textField.keyboardType = .numberPad
+            textField.font = UIFont(name: "Futura-Medium", size: 22)!
             textField.addTarget(self, action: #selector(self.textFieldTapped(_:)), for: .touchDown)
             textField.addTarget(self, action: #selector(self.textFieldChanged(_:)), for: .editingChanged)
             textFields.addSubview(textField)

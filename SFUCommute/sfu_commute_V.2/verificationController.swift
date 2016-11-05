@@ -86,6 +86,7 @@ class VerificationPage: UIViewController {
     }
 
     func initTextField() {
+        verifyTextField.font = UIFont(name: "Futura-Medium", size: 22)!
         verifyTextField.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.left.equalTo(phonePrefix.snp.right).offset(8)

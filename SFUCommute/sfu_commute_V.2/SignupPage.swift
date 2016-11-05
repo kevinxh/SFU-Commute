@@ -25,24 +25,8 @@ class SignupPage: UIViewController {
     var lastNameTextField: textField! = textField()
     var tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
     
-    /*@IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var confirmPassword: UITextField!
-    @IBOutlet weak var phoneNumber: UITextField!
-    @IBOutlet weak var firstName: UITextField!
-    @IBOutlet weak var lastName: UITextField!
-    @IBOutlet weak var error: UILabel!
-    @IBOutlet weak var registerUI: UIButton!
-    var preferences = EasyTipView.Preferences()*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*email.text           = "email"
-        password.text        = "password"
-        confirmPassword.text = "confirm password"
-        phoneNumber.text     = "phone number"
-        firstName.text       = "first name"
-        lastName.text        = "last name"*/
         initTitle()
         initButton()
         initTextFields()
