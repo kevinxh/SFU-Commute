@@ -16,6 +16,7 @@ class SignupPage: UIViewController {
     
     var signUpTitle: pageTitle! = pageTitle()
     var backButton : goBackButton = goBackButton()
+    var signUpButton : FlatButton = FlatButton()
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -71,6 +72,11 @@ class SignupPage: UIViewController {
         backButton.tap.addTarget(self, action: #selector(self.goBack(_:)))
         self.view.addSubview(backButton)
         backButton.applyConstraints(superview: self.view)
+        
+        signUpButton.SFURedDefault("SIGN UP")
+        signUpButton.addTarget(self, action: #selector(self.register(_:)), for: .touchUpInside)
+        self.view.addSubview(signUpButton)
+        signUpButton.wideBottomConstraints(superview: self.view)
     }
     
     func goBack(_ sender: Any?) {

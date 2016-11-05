@@ -40,20 +40,11 @@ class signInController: UIViewController {
         self.view.addSubview(backButton)
         backButton.applyConstraints(superview: self.view)
         
-        signInButton.setTitle("SIGN IN", for: .normal)
-        signInButton.color = Colors.SFURed
-        signInButton.highlightedColor = Colors.SFURedHighlight
-        signInButton.cornerRadius = 6.0
-        //signInButton.isEnabled = false
+        
+        signInButton.SFURedDefault("SIGN IN")
         signInButton.addTarget(self, action: #selector(self.signInTapped(_:)), for: .touchUpInside)
         self.view.addSubview(signInButton)
-        signInButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(40)
-            make.right.equalTo(self.view).offset(-40)
-            make.height.equalTo(40)
-            make.bottom.equalTo(self.view).offset(-25)
-            make.centerX.equalTo(self.view)
-        }
+        signInButton.wideBottomConstraints(superview: self.view)
     }
     
     func initTitle() {
