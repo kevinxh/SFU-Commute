@@ -15,7 +15,7 @@ import SwiftyJSON
 
 class signInController: UIViewController {
     
-    var goBackButton : UILabel = UILabel()
+    var backButton : goBackButton! = goBackButton()
     var signInTitle: pageTitle! = pageTitle()
     var emailTextField: textField! = textField()
     var passwordTextField: textField! = textField()
@@ -35,36 +35,15 @@ class signInController: UIViewController {
     }
     
     func initButton() {
-        goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
-        goBackButton.textColor = Colors.SFURed
-        goBackButton.font = UIFont.fontAwesome(ofSize: 30)
-        let tap : UITapGestureRecognizer = UITapGestureRecognizer()
-        tap.numberOfTapsRequired = 1
-        goBackButton.addGestureRecognizer(tap)
-        goBackButton.isUserInteractionEnabled = true
-        tap.addTarget(self, action: #selector(self.goBack(_:)))
-        self.view.addSubview(goBackButton)
-        goBackButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(15)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-            make.top.equalTo(self.view).offset(30)
-        }
+        backButton.applyStyle()
+        backButton.tap.addTarget(self, action: #selector(self.goBack(_:)))
+        self.view.addSubview(backButton)
+        backButton.applyConstraints(superview: self.view)
         
-        signInButton.setTitle("SIGN IN", for: .normal)
-        signInButton.color = Colors.SFURed
-        signInButton.highlightedColor = Colors.SFURedHighlight
-        signInButton.cornerRadius = 6.0
-        //signInButton.isEnabled = false
+        signInButton.SFURedDefault("SIGN IN")
         signInButton.addTarget(self, action: #selector(self.signInTapped(_:)), for: .touchUpInside)
         self.view.addSubview(signInButton)
-        signInButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(40)
-            make.right.equalTo(self.view).offset(-40)
-            make.height.equalTo(40)
-            make.bottom.equalTo(self.view).offset(-25)
-            make.centerX.equalTo(self.view)
-        }
+        signInButton.wideBottomConstraints(superview: self.view)
     }
     
     func initTitle() {
@@ -84,11 +63,11 @@ class signInController: UIViewController {
         emailTextField.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
         view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(50)
+            make.height.equalTo(35)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
-            make.top.greaterThanOrEqualTo(signInTitle.subtitle.snp.bottom).offset(80)
+            make.top.greaterThanOrEqualTo(signInTitle.subtitle.snp.bottom).offset(30)
         }
         
         passwordTextField.keyboardType = .default
@@ -97,11 +76,11 @@ class signInController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(self.passwordChanged(_:)), for: .editingChanged)
         view.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(50)
+            make.height.equalTo(35)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
-            make.top.equalTo(emailTextField.snp.bottom).offset(15)
+            make.top.equalTo(emailTextField.snp.bottom).offset(10)
         }
     }
     
@@ -114,7 +93,7 @@ class signInController: UIViewController {
     }
     
     func passwordChanged(_ sender: textField) {
-        if (passwordTextField.text!.characters.count > 0) {
+        if (passwordTextField.text!.isNotEmpty()) {
             passwordTextField.borderColor = Colors.SFUBlue.cgColor
         } else {
             passwordTextField.setDefaultBorderColor()
@@ -130,6 +109,7 @@ class signInController: UIViewController {
             tips = EasyTipView(text: "Please enter password")
             tips.show(forView: passwordTextField)
         } else {
+            signInButton.isEnabled = false
             sendRequest()
         }
     }
@@ -150,12 +130,14 @@ class signInController: UIViewController {
                     AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
                     //self.performSegue(withIdentifier: "???", sender: self)
                 } else {
+                    self.signInButton.isEnabled = true
                     self.tips = EasyTipView(text:json["error"].stringValue)
                     self.tips.show(forView: self.emailTextField)
                 }
                 
             case .failure(let error):
                 print(error)
+                self.signInButton.isEnabled = true
                 self.tips = EasyTipView(text:error.localizedDescription)
                 self.tips.show(forView: self.emailTextField)
                 
@@ -164,7 +146,7 @@ class signInController: UIViewController {
     }
     
     func goBack(_ sender: Any?) {
-        self.performSegue(withIdentifier: "unwindToWelcome", sender: self)
+        self.performSegue(withIdentifier: "unwindToWelcomeFromSignIn", sender: self)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

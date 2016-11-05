@@ -13,6 +13,7 @@
 		0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C051DC9D0A700C4A3F6 /* button.swift */; };
 		0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C091DCAAD7700C4A3F6 /* API.swift */; };
 		0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */; };
+		0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
 		0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC881DCC6C2B00F87B35 /* signInController.swift */; };
 		0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8A1DCC889D00F87B35 /* string.swift */; };
@@ -70,6 +71,7 @@
 		0A0D4C051DC9D0A700C4A3F6 /* button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		0A0D4C091DCAAD7700C4A3F6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeController.swift; sourceTree = "<group>"; };
+		0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goBackButton.swift; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0AF2CC881DCC6C2B00F87B35 /* signInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInController.swift; sourceTree = "<group>"; };
 		0AF2CC8A1DCC889D00F87B35 /* string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = string.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
 				0A0D4C051DC9D0A700C4A3F6 /* button.swift */,
 				0A0933341DC57CE7001EB52A /* textField.swift */,
+				0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				621813E91DBC327F00C744BD /* SignupPage.swift in Sources */,
 				0A09332E1DC47516001EB52A /* pageTitle.swift in Sources */,
 				0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */,
+				0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */,
 				0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */,
 				0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */,
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,

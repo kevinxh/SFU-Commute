@@ -17,7 +17,7 @@ class VerificationPage: UIViewController {
     
     var verifyTitle: pageTitle! = pageTitle()
     var button : FlatButton = FlatButton()
-    var goBackButton : UILabel = UILabel()
+    var backButton : goBackButton = goBackButton()
     @IBOutlet var verifyTextField: textField!
     @IBOutlet var phonePrefix: UILabel!
     var tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
@@ -86,6 +86,7 @@ class VerificationPage: UIViewController {
     }
 
     func initTextField() {
+        verifyTextField.font = UIFont(name: "Futura-Medium", size: 22)!
         verifyTextField.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.left.equalTo(phonePrefix.snp.right).offset(8)
@@ -114,32 +115,17 @@ class VerificationPage: UIViewController {
         self.view.addSubview(button)
         button.wideBottomConstraints(superview: self.view)
         
-        goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
-        goBackButton.textColor = Colors.SFURed
-        goBackButton.font = UIFont.fontAwesome(ofSize: 30)
-        let tap : UITapGestureRecognizer = UITapGestureRecognizer()
-        tap.numberOfTapsRequired = 1
-        goBackButton.addGestureRecognizer(tap)
-        goBackButton.isUserInteractionEnabled = true
-        tap.addTarget(self, action: #selector(self.goBack(_:)))
-        self.view.addSubview(goBackButton)
-        goBackButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(15)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-            make.top.equalTo(self.view).offset(30)
-        }
+        backButton.applyStyle()
+        backButton.tap.addTarget(self, action: #selector(self.goBack(_:)))
+        self.view.addSubview(backButton)
+        backButton.applyConstraints(superview: self.view)
     }
     
     func goBack(_ sender: Any?) {
-        // segue back to the last page.. need to be implemented after sign up page
+        self.performSegue(withIdentifier: "unwindToSignUp", sender: self)
     }
 
-
     func sendRequest() {
-        // This needs to be done during sign in AND sign up!!!
-        AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImsuaGU5MzNAZ21haWwuY29tIiwiaWF0IjoxNDc3ODk0NDY3LCJleHAiOjE0ODMwNzg0Njd9.z98bhrHTJR-qtyhqus6w0SB7Of4eynzrYp3imXEaNgg")
-        
         let phone = verifyTextField.text!
         let parameters : Parameters = ["phone": "1"+phone]
 

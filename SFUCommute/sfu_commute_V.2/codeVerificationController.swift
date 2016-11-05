@@ -17,7 +17,7 @@ class codeVerificationController: UIViewController {
     var verifyTitle: pageTitle! = pageTitle()
     var button : FlatButton = FlatButton()
     var textFields : UIStackView = UIStackView()
-    var goBackButton : UILabel = UILabel()
+    var backButton : goBackButton = goBackButton()
     var code1 : textField = textField()
     var code2 : textField = textField()
     var code3 : textField = textField()
@@ -57,21 +57,11 @@ class codeVerificationController: UIViewController {
         button.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(button)
         button.wideBottomConstraints(superview: self.view)
-        goBackButton.text = String.fontAwesomeIcon(code: "fa-chevron-left")
-        goBackButton.textColor = Colors.SFURed
-        goBackButton.font = UIFont.fontAwesome(ofSize: 30)
-        let tap : UITapGestureRecognizer = UITapGestureRecognizer()
-        tap.numberOfTapsRequired = 1
-        goBackButton.addGestureRecognizer(tap)
-        goBackButton.isUserInteractionEnabled = true
-        tap.addTarget(self, action: #selector(self.goBack(_:)))
-        self.view.addSubview(goBackButton)
-        goBackButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(self.view).offset(15)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-            make.top.equalTo(self.view).offset(30)
-        }
+        
+        backButton.applyStyle()
+        backButton.tap.addTarget(self, action: #selector(self.goBack(_:)))
+        self.view.addSubview(backButton)
+        backButton.applyConstraints(superview: self.view)
     }
     
     func goBack(_ sender: Any?) {
@@ -94,6 +84,7 @@ class codeVerificationController: UIViewController {
         for index in 1...4 {
             let textField = self.view.viewWithTag(index) as! textField
             textField.keyboardType = .numberPad
+            textField.font = UIFont(name: "Futura-Medium", size: 22)!
             textField.addTarget(self, action: #selector(self.textFieldTapped(_:)), for: .touchDown)
             textField.addTarget(self, action: #selector(self.textFieldChanged(_:)), for: .editingChanged)
             textFields.addSubview(textField)

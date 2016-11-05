@@ -14,4 +14,17 @@ extension String {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
+    
+    func isNotEmpty() -> Bool {
+        let length = self.characters.count
+        return length > 0
+    }
+    
+    func isName() -> Bool {
+        if (self.characters.count == 0) {
+            return false
+        }
+        let letters = NSCharacterSet.letters
+        return self.rangeOfCharacter(from: letters.inverted) == nil
+    }
 }

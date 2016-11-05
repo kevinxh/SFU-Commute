@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class textField: UITextField {
     
-    @IBInspectable var radius : CGFloat = 2.0 {
+    @IBInspectable var radius : CGFloat = 6.0 {
         didSet{
             self.layer.cornerRadius = radius
         }
@@ -44,7 +44,7 @@ import UIKit
         self.layer.borderWidth = borderWidth
         self.textAlignment = .center
         self.tintColor = Colors.SFUBlue
-        self.font = UIFont(name: "Futura-Medium", size: 22)!
+        self.font = UIFont(name: "Futura-Medium", size: 18)!
     }
     
     func setDefaultBorderColor() {
