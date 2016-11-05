@@ -8,88 +8,51 @@
 
 import UIKit
 
+struct sideMenuItemData {
+    let cell : Int!
+    let itemName : String!
+    let iconName : String!
+}
+
 class sideMenu: UITableViewController {
-
+    
+    var arrayOfNav = [sideMenuItemData]()
+    
+    @IBOutlet var navTable: UITableView!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        navTable.backgroundColor = Colors.darkBlueGrey
+        arrayOfNav = [sideMenuItemData(cell: 1, itemName: "Home", iconName: "fa-home" ),
+                      sideMenuItemData(cell: 2, itemName: "Browse", iconName: "fa-bars" ),
+                      sideMenuItemData(cell: 3, itemName: "History", iconName: "fa-history" ),
+            sideMenuItemData(cell: 4, itemName: "My Rides", iconName: "fa-car" ),
+            sideMenuItemData(cell: 5, itemName: "Messages", iconName: "fa-commenting" ),
+            sideMenuItemData(cell: 6, itemName: "Settings", iconName: "fa-cog" )
+        ]
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return arrayOfNav.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = Bundle.main.loadNibNamed("sideMenuItem", owner: self, options: nil)?.first as! sideMenuItem
+        cell.itemName = arrayOfNav[indexPath.row].itemName
+        cell.iconName = arrayOfNav[indexPath.row].iconName
+        cell.backgroundColor = UIColor.clear
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // this will be non-nil if a blur effect is applied
+        guard tableView.backgroundView == nil else {
+            return
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

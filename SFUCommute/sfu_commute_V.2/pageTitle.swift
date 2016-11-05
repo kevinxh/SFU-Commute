@@ -74,7 +74,7 @@ import FontAwesome_swift
     func initTitle() {
         title.textColor = UIColor.black
         // title.font = UIFont.systemFont(ofSize: 36.0, weight: 800)
-        title.font = UIFont(name: "Futura-Medium", size: 36)!
+        title.font = UIFont(name: "Futura-Bold", size: 36)!
         title.numberOfLines = 0
         title.textAlignment = NSTextAlignment.center
         self.addSubview(title)

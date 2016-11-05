@@ -123,6 +123,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     var lastSpeed = SpeedDisplay(speedMetersPerSecond: 0)
     var currentUnits = speedUnit.metersPerSecond
     
+    @IBOutlet var navBar: UINavigationBar!
     @IBOutlet weak var mapView: MGLMapView!
     
     @IBOutlet weak var header2View: UIView!
@@ -142,9 +143,13 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         self.blurTitleViews()
         self.setupMap()
         self.setupLocationManager()
-        
-        
+        self.view.backgroundColor = Colors.darkBlueGrey
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
     private func locationManager(manager: CLLocationManager,
                                  didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {

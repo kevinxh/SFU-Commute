@@ -14,7 +14,10 @@
 		0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C091DCAAD7700C4A3F6 /* API.swift */; };
 		0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */; };
 		0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */; };
-		0A4EB7A61DCDD2C6004A6DE7 /* sideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A51DCDD2C6004A6DE7 /* sideMenu.swift */; };
+		0A4EB7AA1DCE5D2E004A6DE7 /* navBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */; };
+		0A4EB7AC1DCE654D004A6DE7 /* sideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7AB1DCE654D004A6DE7 /* sideMenu.swift */; };
+		0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */; };
+		0A4EB7B21DCE6B5C004A6DE7 /* sideMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
 		0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC881DCC6C2B00F87B35 /* signInController.swift */; };
 		0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8A1DCC889D00F87B35 /* string.swift */; };
@@ -73,7 +76,10 @@
 		0A0D4C091DCAAD7700C4A3F6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeController.swift; sourceTree = "<group>"; };
 		0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goBackButton.swift; sourceTree = "<group>"; };
-		0A4EB7A51DCDD2C6004A6DE7 /* sideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenu.swift; sourceTree = "<group>"; };
+		0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navBar.swift; sourceTree = "<group>"; };
+		0A4EB7AB1DCE654D004A6DE7 /* sideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenu.swift; sourceTree = "<group>"; };
+		0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuItem.swift; sourceTree = "<group>"; };
+		0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sideMenuItem.xib; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0AF2CC881DCC6C2B00F87B35 /* signInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInController.swift; sourceTree = "<group>"; };
 		0AF2CC8A1DCC889D00F87B35 /* string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = string.swift; sourceTree = "<group>"; };
@@ -139,8 +145,12 @@
 			children = (
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
 				0A0D4C051DC9D0A700C4A3F6 /* button.swift */,
+				0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */,
 				0A0933341DC57CE7001EB52A /* textField.swift */,
 				0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */,
+				0A4EB7AB1DCE654D004A6DE7 /* sideMenu.swift */,
+				0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */,
+				0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -196,7 +206,6 @@
 				62FB22A71DC26BF10036D02E /* verificationController.swift */,
 				0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */,
 				0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */,
-				0A4EB7A51DCDD2C6004A6DE7 /* sideMenu.swift */,
 				0AF2CC881DCC6C2B00F87B35 /* signInController.swift */,
 				621813E81DBC327F00C744BD /* SignupPage.swift */,
 				62FB22A61DC18D120036D02E /* CloudCalls */,
@@ -377,6 +386,7 @@
 			files = (
 				621813C51DBC2B4F00C744BD /* LaunchScreen.storyboard in Resources */,
 				621813C21DBC2B4F00C744BD /* Assets.xcassets in Resources */,
+				0A4EB7B21DCE6B5C004A6DE7 /* sideMenuItem.xib in Resources */,
 				621813C01DBC2B4F00C744BD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,20 +550,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4EB7AA1DCE5D2E004A6DE7 /* navBar.swift in Sources */,
 				0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */,
 				62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */,
 				620364561DC6B01000074F59 /* MapView.swift in Sources */,
 				621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */,
 				0A0933351DC57CE7001EB52A /* textField.swift in Sources */,
+				0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */,
 				0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */,
 				0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */,
 				0AF2CC901DCC9B8C00F87B35 /* buttons.swift in Sources */,
 				0A0933321DC4A331001EB52A /* Colors.swift in Sources */,
 				621813E91DBC327F00C744BD /* SignupPage.swift in Sources */,
 				0A09332E1DC47516001EB52A /* pageTitle.swift in Sources */,
-				0A4EB7A61DCDD2C6004A6DE7 /* sideMenu.swift in Sources */,
 				0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */,
 				0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */,
+				0A4EB7AC1DCE654D004A6DE7 /* sideMenu.swift in Sources */,
 				0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */,
 				0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */,
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,
