@@ -21,14 +21,13 @@ class sideMenuNavTable: UITableViewController {
     @IBOutlet var navTable: UITableView!
     
     override func viewDidLoad() {
-        
-        navTable.backgroundColor = Colors.darkBlueGrey
+        navTable.backgroundColor = UIColor.clear
         arrayOfNav = [sideMenuItemData(cell: 1, itemName: "Home", iconName: "fa-home" ),
                       sideMenuItemData(cell: 2, itemName: "Browse", iconName: "fa-bars" ),
                       sideMenuItemData(cell: 3, itemName: "History", iconName: "fa-history" ),
-            sideMenuItemData(cell: 4, itemName: "My Rides", iconName: "fa-car" ),
-            sideMenuItemData(cell: 5, itemName: "Messages", iconName: "fa-commenting" ),
-            sideMenuItemData(cell: 6, itemName: "Settings", iconName: "fa-cog" )
+                      sideMenuItemData(cell: 4, itemName: "My Rides", iconName: "fa-car" ),
+                      sideMenuItemData(cell: 5, itemName: "Messages", iconName: "fa-commenting" ),
+                      sideMenuItemData(cell: 6, itemName: "Settings", iconName: "fa-cog" )
         ]
     }
     
@@ -47,7 +46,7 @@ class sideMenuNavTable: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // this will be non-nil if a blur effect is applied
@@ -55,5 +54,5 @@ class sideMenuNavTable: UITableViewController {
             return
         }
     }
-
+    
 }

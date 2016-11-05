@@ -103,7 +103,7 @@ class signInController: UIViewController {
     func signInTapped(_ sender: FlatButton) {
         
         // skip the step for dev
-        self.performSegue(withIdentifier: "toMapViewFromSignIn", sender: self)
+        //self.performSegue(withIdentifier: "toMapViewFromSignIn", sender: self)
         tips.dismiss()
         if (!emailTextField.text!.isValidEmail()) {
             tips = EasyTipView(text: "Invalid Email address")

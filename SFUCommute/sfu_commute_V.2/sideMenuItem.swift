@@ -16,7 +16,7 @@ import UIKit
     
     @IBInspectable var iconName : String! = "fa-awesome"{
         didSet{
-            icon.font = UIFont.fontAwesome(ofSize: 35)
+            icon.font = UIFont.fontAwesome(ofSize: 30)
             icon.text = String.fontAwesomeIcon(code: iconName)
         }
     }
@@ -36,7 +36,6 @@ import UIKit
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }
