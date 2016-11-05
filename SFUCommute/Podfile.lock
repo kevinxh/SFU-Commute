@@ -3,6 +3,7 @@ PODS:
   - EasyTipView (1.0.2)
   - FontAwesome.swift (1.0.0)
   - Mapbox-iOS-SDK (3.3.4)
+  - SideMenu (2.0.5)
   - SnapKit (3.0.2)
   - SwiftyButton (0.6.0)
   - SwiftyJSON (3.1.1)
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - EasyTipView (~> 1.0.2)
   - FontAwesome.swift (~> 1.0.0)
   - Mapbox-iOS-SDK (~> 3.3.4)
+  - SideMenu
   - SnapKit (~> 3.0.2)
   - SwiftyButton
   - SwiftyJSON
@@ -21,10 +23,11 @@ SPEC CHECKSUMS:
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
+  SideMenu: 0ecfd407b24e7d36c57fc50ca7f5d7cedb7c8841
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftyButton: 4c9b61c499f172971a1b8c2eebbbdc20a26d8a08
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 060f6add5842b1cfe3d573b593431cea445b23c7
+PODFILE CHECKSUM: b72ce6bd0ed3f7e46a95cad937219b4bfe655f27
 
 COCOAPODS: 1.2.0.beta.1

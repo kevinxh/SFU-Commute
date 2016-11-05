@@ -109,7 +109,8 @@ class signInController: UIViewController {
             tips = EasyTipView(text: "Please enter password")
             tips.show(forView: passwordTextField)
         } else {
-            signInButton.isEnabled = false
+            // avoid multiple requests
+            // signInButton.isEnabled = false
             sendRequest()
         }
     }
@@ -128,7 +129,7 @@ class signInController: UIViewController {
                 
                 if (json["success"] == true) {
                     AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
-                    //self.performSegue(withIdentifier: "???", sender: self)
+                    self.performSegue(withIdentifier: "toMapViewFromSignIn", sender: self)
                 } else {
                     self.signInButton.isEnabled = true
                     self.tips = EasyTipView(text:json["error"].stringValue)

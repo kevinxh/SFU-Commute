@@ -51,7 +51,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMq-fg-XOn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Nbu-3a-yDP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="920.79999999999995" y="-165.06746626686657"/>
+            <point key="canvasLocation" x="921" y="-302"/>
         </scene>
         <!--Verification Page-->
         <scene sceneID="UvQ-rf-SpU">
@@ -95,7 +95,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDV-QY-tTy" userLabel="VerificationPage" sceneMemberID="firstResponder"/>
                 <exit id="BeE-Mt-8uy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1810.4000000000001" y="-156.97151424287858"/>
+            <point key="canvasLocation" x="1842" y="-303"/>
         </scene>
         <!--Code Verification Controller-->
         <scene sceneID="bA5-NP-28X">
@@ -117,7 +117,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaK-Os-1Pm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="K05-yd-pys" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2722" y="-157"/>
+            <point key="canvasLocation" x="2698" y="-303"/>
         </scene>
         <!--Sign In Controller-->
         <scene sceneID="Wwr-Xl-lcf">
@@ -134,14 +134,86 @@
                     </view>
                     <connections>
                         <segue destination="v6e-6A-mUt" kind="unwind" identifier="unwindToWelcomeFromSignIn" unwindAction="unwindToWelcomeWithSegue:" id="LSD-gv-Yg3"/>
+                        <segue destination="F1H-9M-ryO" kind="show" identifier="toMapViewFromSignIn" id="klE-WD-SH9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbg-mQ-iPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="v6e-6A-mUt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="921" y="612"/>
+            <point key="canvasLocation" x="921" y="367"/>
         </scene>
-        <!--Map View-->
+        <!--Root View Controller-->
+        <scene sceneID="Cdc-RD-prP">
+            <objects>
+                <tableViewController id="8Bb-UV-EnU" customClass="sideMenu" customModule="sfu_commute_V_2" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9sS-iD-bQF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FRo-p4-VpF" customClass="UITableViewVibrantCell" customModule="SideMenu">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FRo-p4-VpF" id="nBe-N8-sd1">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8Bb-UV-EnU" id="rMp-z2-2Ob"/>
+                            <outlet property="delegate" destination="8Bb-UV-EnU" id="niz-p8-bjv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="IHu-jS-bwj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="msw-dC-I0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6468" y="149"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="7H7-VM-7Eo">
+            <objects>
+                <navigationController id="1iq-gf-blb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0va-ZQ-GJJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="8Bb-UV-EnU" kind="relationship" relationship="rootViewController" id="cXx-dc-KIg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VaQ-28-RCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5540" y="149"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Mq-Xb-WSM">
+            <objects>
+                <navigationController id="F1H-9M-ryO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gEl-q9-c4X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="qcK-eE-rK6">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="PNE-aL-auc" kind="relationship" relationship="rootViewController" id="iTp-Cw-P29"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="quk-s7-8pd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3766" y="149"/>
+        </scene>
+        <!--SFU Commute-->
         <scene sceneID="bhf-me-lEn">
             <objects>
                 <viewController id="PNE-aL-auc" customClass="MapView" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -208,6 +280,13 @@
                             <constraint firstItem="GkO-NH-FkH" firstAttribute="top" secondItem="0I4-eq-e4Y" secondAttribute="bottom" constant="-20" id="hUD-CP-pVL"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="SFU Commute" id="sYV-Kf-puf">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="BLB-6P-y2T">
+                            <connections>
+                                <segue destination="1iq-gf-blb" kind="presentation" id="9Jk-yd-xuB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="currentSpeedLabel" destination="WLP-8L-n4e" id="qP0-XK-ihd"/>
                         <outlet property="currentUnitsLabel" destination="rGb-eq-Ga2" id="VAR-NI-PFS"/>
@@ -217,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="613"/>
+            <point key="canvasLocation" x="4658" y="149"/>
         </scene>
     </scenes>
 </document>
