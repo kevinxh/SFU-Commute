@@ -40,7 +40,6 @@ class signInController: UIViewController {
         self.view.addSubview(backButton)
         backButton.applyConstraints(superview: self.view)
         
-        
         signInButton.SFURedDefault("SIGN IN")
         signInButton.addTarget(self, action: #selector(self.signInTapped(_:)), for: .touchUpInside)
         self.view.addSubview(signInButton)

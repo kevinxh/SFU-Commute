@@ -17,6 +17,7 @@ class SignupPage: UIViewController {
     var signUpTitle: pageTitle! = pageTitle()
     var backButton : goBackButton = goBackButton()
     var signUpButton : FlatButton = FlatButton()
+    var emailTextField: textField! = textField()
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -40,6 +41,7 @@ class SignupPage: UIViewController {
         initTips()
         initTitle()
         initButton()
+        initTextFields()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -77,6 +79,30 @@ class SignupPage: UIViewController {
         signUpButton.addTarget(self, action: #selector(self.register(_:)), for: .touchUpInside)
         self.view.addSubview(signUpButton)
         signUpButton.wideBottomConstraints(superview: self.view)
+    }
+    
+    func initTextFields() {
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.autocorrectionType = .no
+        emailTextField.autocapitalizationType = .none
+        emailTextField.placeholder = "Email"
+        emailTextField.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
+        view.addSubview(emailTextField)
+        emailTextField.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(50)
+            make.left.equalTo(self.view).offset(40)
+            make.right.equalTo(self.view).offset(-40)
+            make.centerX.equalTo(self.view)
+            make.top.greaterThanOrEqualTo(signUpTitle.subtitle.snp.bottom).offset(50)
+        }
+    }
+    
+    func emailChanged(_ sender: textField) {
+        if (emailTextField.text!.isValidEmail()) {
+            emailTextField.borderColor = Colors.SFUBlue.cgColor
+        } else {
+            emailTextField.setDefaultBorderColor()
+        }
     }
     
     func goBack(_ sender: Any?) {
