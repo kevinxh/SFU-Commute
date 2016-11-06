@@ -341,7 +341,7 @@
         <scene sceneID="7H7-VM-7Eo">
             <objects>
                 <navigationController storyboardIdentifier="sideMenuNavigationController" navigationBarHidden="YES" id="1iq-gf-blb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0va-ZQ-GJJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0va-ZQ-GJJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

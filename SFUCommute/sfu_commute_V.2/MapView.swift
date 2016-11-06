@@ -154,6 +154,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     func initSideMenu(){
         SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "sideMenuNavigationController") as? UISideMenuNavigationController
         SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: mapView)
+        SideMenuManager.menuFadeStatusBar = false
     }
     
     func initNavBar() {

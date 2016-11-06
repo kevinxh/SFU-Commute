@@ -63,7 +63,7 @@ class signInController: UIViewController {
         emailTextField.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
         view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -76,7 +76,7 @@ class signInController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(self.passwordChanged(_:)), for: .editingChanged)
         view.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)

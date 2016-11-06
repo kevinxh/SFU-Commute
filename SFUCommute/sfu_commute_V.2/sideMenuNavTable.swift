@@ -23,7 +23,7 @@ class sideMenuNavTable: UITableViewController {
     override func viewDidLoad() {
         navTable.backgroundColor = UIColor.clear
         arrayOfNav = [sideMenuItemData(cell: 1, itemName: "Home", iconName: "fa-home" ),
-                      sideMenuItemData(cell: 2, itemName: "Browse", iconName: "fa-bars" ),
+                      sideMenuItemData(cell: 2, itemName: "Browse", iconName: "fa-search" ),
                       sideMenuItemData(cell: 3, itemName: "History", iconName: "fa-history" ),
                       sideMenuItemData(cell: 4, itemName: "My Rides", iconName: "fa-car" ),
                       sideMenuItemData(cell: 5, itemName: "Messages", iconName: "fa-commenting" ),
