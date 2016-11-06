@@ -15,11 +15,12 @@ class sideMenuController: UIViewController {
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var userName: UILabel!
     @IBOutlet var signOutIcon: UILabel!
+    @IBOutlet var signOutView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initUserInfo()
-        initSignOutIcon()
+        initSignOut()
     }
     
     func initUserInfo(){
@@ -28,14 +29,26 @@ class sideMenuController: UIViewController {
         userImage.layer.borderColor = Colors.SFUBlue.cgColor
     }
     
-    func initSignOutIcon(){
+    func initSignOut(){
         signOutIcon.font = UIFont.fontAwesome(ofSize: 30)
         signOutIcon.textColor = UIColor.white
         signOutIcon.text = String.fontAwesomeIcon(code: "fa-sign-out")
+        
+        let tap = UITapGestureRecognizer()
+        tap.numberOfTapsRequired = 1
+        tap.addTarget(self, action: #selector(self.signOut(_:)))
+        signOutView.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func signOut(_ sender: Any?) {
+        // TO DO: release all user data!
+        
+        //this segue is modally, need to be changed in future!
+        self.performSegue(withIdentifier: "toWelcomeFromSideMenuSignOut", sender: self)
     }
 }

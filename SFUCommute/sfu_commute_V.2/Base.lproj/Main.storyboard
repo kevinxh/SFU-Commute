@@ -112,7 +112,7 @@
                     </view>
                     <connections>
                         <segue destination="K05-yd-pys" kind="unwind" identifier="unwindToVerification" unwindAction="unwindToVerificationWithSegue:" id="Mh8-cy-a3v"/>
-                        <segue destination="PNE-aL-auc" kind="show" id="Shv-Ry-VI4"/>
+                        <segue destination="PNE-aL-auc" kind="show" identifier="toMapViewFromSignUp" id="Shv-Ry-VI4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaK-Os-1Pm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -191,27 +191,37 @@
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcU-9q-8dC">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NS-uI-qTb">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAk-az-KQp">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NS-uI-qTb">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="GTF-iN-kXJ"/>
+                                                    <constraint firstAttribute="width" constant="30" id="YoF-l0-KTp"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-wd-nQH">
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="GTF-iN-kXJ"/>
-                                            <constraint firstAttribute="width" constant="50" id="YoF-l0-KTp"/>
+                                            <constraint firstAttribute="width" constant="100" id="4rk-EX-ccY"/>
+                                            <constraint firstItem="MtH-wd-nQH" firstAttribute="leading" secondItem="0NS-uI-qTb" secondAttribute="trailing" id="6Er-rW-stX"/>
+                                            <constraint firstAttribute="height" constant="30" id="PQw-x5-zhL"/>
+                                            <constraint firstItem="0NS-uI-qTb" firstAttribute="centerX" secondItem="OAk-az-KQp" secondAttribute="centerX" constant="-30" id="hJv-KA-oT9"/>
+                                            <constraint firstItem="MtH-wd-nQH" firstAttribute="centerY" secondItem="OAk-az-KQp" secondAttribute="centerY" id="kuQ-EP-p41"/>
+                                            <constraint firstItem="0NS-uI-qTb" firstAttribute="centerY" secondItem="OAk-az-KQp" secondAttribute="centerY" id="nUV-YY-bSh"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-wd-nQH">
-                                        <frame key="frameInset" minX="220" minY="38" width="80" height="21"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="MtH-wd-nQH" firstAttribute="centerY" secondItem="lcU-9q-8dC" secondAttribute="centerY" id="ChA-hx-S9u"/>
-                                    <constraint firstItem="0NS-uI-qTb" firstAttribute="centerY" secondItem="lcU-9q-8dC" secondAttribute="centerY" id="NUI-Qo-pqh"/>
-                                    <constraint firstItem="MtH-wd-nQH" firstAttribute="leading" secondItem="0NS-uI-qTb" secondAttribute="trailing" id="e8g-2x-Pxb"/>
-                                    <constraint firstItem="0NS-uI-qTb" firstAttribute="centerX" secondItem="lcU-9q-8dC" secondAttribute="centerX" id="oCt-Lv-GmL"/>
+                                    <constraint firstItem="OAk-az-KQp" firstAttribute="centerY" secondItem="lcU-9q-8dC" secondAttribute="centerY" id="ckr-0d-kpK"/>
+                                    <constraint firstItem="OAk-az-KQp" firstAttribute="centerX" secondItem="lcU-9q-8dC" secondAttribute="centerX" id="eDS-fq-Tr6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -234,9 +244,11 @@
                     <connections>
                         <outlet property="sideMenuNavContainer" destination="6D9-B5-zXD" id="VBB-nN-ESE"/>
                         <outlet property="signOutIcon" destination="0NS-uI-qTb" id="PVp-us-EzU"/>
+                        <outlet property="signOutView" destination="OAk-az-KQp" id="qME-I8-bFZ"/>
                         <outlet property="userImage" destination="FNp-4p-0je" id="6Hj-W1-XR9"/>
                         <outlet property="userInfo" destination="lGw-ZI-H6t" id="Nq0-VQ-wEH"/>
                         <outlet property="userName" destination="QBy-0q-w9p" id="aYa-d3-ahd"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toWelcomeFromSideMenuSignOut" id="KdX-tY-nfl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPA-PJ-gzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -460,6 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoF-jF-SDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="8926" y="-565"/>
         </scene>
     </scenes>
     <resources>

@@ -132,6 +132,7 @@ class signInController: UIViewController {
                 
                 if (json["success"] == true) {
                     AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
+                    self.signInButton.isEnabled = true
                     self.performSegue(withIdentifier: "toMapViewFromSignIn", sender: self)
                 } else {
                     self.signInButton.isEnabled = true
@@ -144,7 +145,6 @@ class signInController: UIViewController {
                 self.signInButton.isEnabled = true
                 self.tips = EasyTipView(text:error.localizedDescription)
                 self.tips.show(forView: self.emailTextField)
-                
             }
         }
     }

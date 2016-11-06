@@ -117,11 +117,7 @@ class codeVerificationController: UIViewController {
             case .success(let value):
                 let json = JSON(value)
                 if (json["success"] == true) {
-                    self.tips = EasyTipView(text:"success")
-                    self.tips.show(forView: self.textFields)
-                    
-                    // GO TO NEXT PAGE.
-                    
+                    self.performSegue(withIdentifier: "toMapViewFromSignUp", sender: self)
                 } else {
                     self.tips = EasyTipView(text:json["error"].string!)
                     self.tips.show(forView: self.textFields)
