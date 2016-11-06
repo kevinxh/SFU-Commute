@@ -219,7 +219,7 @@
                         <constraints>
                             <constraint firstItem="uYT-Fc-cYb" firstAttribute="top" secondItem="lcU-9q-8dC" secondAttribute="bottom" id="2RO-Yb-LDq"/>
                             <constraint firstAttribute="trailing" secondItem="6D9-B5-zXD" secondAttribute="trailing" id="33c-ol-CJZ"/>
-                            <constraint firstItem="lGw-ZI-H6t" firstAttribute="top" secondItem="fSc-04-oai" secondAttribute="bottom" id="9Cv-Gj-dtk"/>
+                            <constraint firstItem="lGw-ZI-H6t" firstAttribute="top" secondItem="fSc-04-oai" secondAttribute="bottom" id="BXf-b9-vMq"/>
                             <constraint firstItem="lGw-ZI-H6t" firstAttribute="leading" secondItem="H1g-cA-Kde" secondAttribute="leading" id="NPX-BQ-A9w"/>
                             <constraint firstItem="6D9-B5-zXD" firstAttribute="top" secondItem="lGw-ZI-H6t" secondAttribute="bottom" id="eol-J2-eGm"/>
                             <constraint firstAttribute="trailing" secondItem="lcU-9q-8dC" secondAttribute="trailing" id="iIh-BG-FoB"/>
@@ -356,8 +356,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GkO-NH-FkH" customClass="MGLMapView">
-                                <frame key="frameInset" width="383" height="767"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkO-NH-FkH" customClass="MGLMapView">
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLP-8L-n4e">
                                         <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -404,16 +403,12 @@
                             <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uF7-Qi-Epi" customClass="navBar" customModule="sfu_commute_V_2" customModuleProvider="target">
                                 <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-BoldItalic" family="Avenir Next" pointSize="23"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="4" vertical="4"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Title" id="Adq-4J-UOx">
-                                        <barButtonItem key="leftBarButtonItem" title="Menu" id="ZxJ-vi-JIn">
-                                            <connections>
-                                                <segue destination="1iq-gf-blb" kind="presentation" id="7H2-GS-sfD"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="SFU Commute" id="Adq-4J-UOx"/>
                                 </items>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="barColor">
@@ -427,11 +422,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iNd-SC-FZx" secondAttribute="trailing" constant="-54" id="1ZW-4M-1yK"/>
                             <constraint firstItem="uF7-Qi-Epi" firstAttribute="leading" secondItem="bt9-o9-cpG" secondAttribute="leading" id="3Ge-KF-ec3"/>
                             <constraint firstItem="uF7-Qi-Epi" firstAttribute="top" secondItem="0I4-eq-e4Y" secondAttribute="bottom" id="FFx-99-a02"/>
+                            <constraint firstItem="c6K-fI-YzC" firstAttribute="top" secondItem="GkO-NH-FkH" secondAttribute="bottom" id="IYg-D5-IHR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GkO-NH-FkH" secondAttribute="trailing" constant="-20" id="S5U-Dy-qmV"/>
-                            <constraint firstItem="c6K-fI-YzC" firstAttribute="top" secondItem="GkO-NH-FkH" secondAttribute="bottom" constant="-100" id="VVW-0W-Aq9"/>
+                            <constraint firstItem="GkO-NH-FkH" firstAttribute="top" secondItem="uF7-Qi-Epi" secondAttribute="bottom" id="Yey-XX-aY7"/>
                             <constraint firstItem="c6K-fI-YzC" firstAttribute="top" secondItem="iNd-SC-FZx" secondAttribute="bottom" constant="-54" id="cme-Dq-Ook"/>
                             <constraint firstItem="GkO-NH-FkH" firstAttribute="leading" secondItem="bt9-o9-cpG" secondAttribute="leadingMargin" constant="-20" id="gsz-z5-JMQ"/>
-                            <constraint firstItem="GkO-NH-FkH" firstAttribute="top" secondItem="0I4-eq-e4Y" secondAttribute="bottom" constant="-20" id="hUD-CP-pVL"/>
                             <constraint firstAttribute="trailing" secondItem="uF7-Qi-Epi" secondAttribute="trailing" id="kJI-lj-KrE"/>
                         </constraints>
                     </view>
@@ -441,6 +436,8 @@
                         <outlet property="header2View" destination="iNd-SC-FZx" id="p9g-uS-oZX"/>
                         <outlet property="mapView" destination="GkO-NH-FkH" id="13D-7F-IJc"/>
                         <outlet property="navBar" destination="uF7-Qi-Epi" id="cLX-ot-Gf4"/>
+                        <outlet property="navBarItem" destination="Adq-4J-UOx" id="pmY-sl-nLw"/>
+                        <segue destination="1iq-gf-blb" kind="presentation" identifier="showSideMenu" id="1tV-Tu-TGH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
