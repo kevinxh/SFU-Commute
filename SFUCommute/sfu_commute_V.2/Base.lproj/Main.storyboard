@@ -328,7 +328,7 @@
         <!--Side Menu Navigation Controller-->
         <scene sceneID="7H7-VM-7Eo">
             <objects>
-                <navigationController navigationBarHidden="YES" id="1iq-gf-blb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="sideMenuNavigationController" navigationBarHidden="YES" id="1iq-gf-blb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0va-ZQ-GJJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -451,6 +451,10 @@
         <scene sceneID="Uq6-AS-qbW">
             <objects>
                 <viewController id="x5s-Ys-bkM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ftb-uZ-l6H"/>
+                        <viewControllerLayoutGuide type="bottom" id="VwO-Tw-UUd"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="G8C-7L-wnJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

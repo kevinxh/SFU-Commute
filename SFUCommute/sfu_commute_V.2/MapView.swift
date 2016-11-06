@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Mapbox
 import CoreLocation
+import SideMenu
 
 var maximumSpeed:Double = 0.0
 
@@ -136,6 +137,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initSideMenu()
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -144,6 +146,11 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         self.setupMap()
         self.setupLocationManager()
         self.view.backgroundColor = Colors.darkBlueGrey
+    }
+    
+    func initSideMenu(){
+        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "sideMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: mapView)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
