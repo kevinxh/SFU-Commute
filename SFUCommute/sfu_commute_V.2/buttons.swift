@@ -22,7 +22,7 @@ extension FlatButton {
         self.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(superview).offset(40)
             make.right.equalTo(superview).offset(-40)
-            make.height.equalTo(40)
+            make.height.equalTo(45)
             make.bottom.equalTo(superview).offset(-25)
             make.centerX.equalTo(superview)
         }

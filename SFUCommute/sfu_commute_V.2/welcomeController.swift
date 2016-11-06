@@ -87,8 +87,8 @@ class welcomeController: UIViewController {
         signUpButton.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
-            make.height.equalTo(40)
-            make.bottom.equalTo(signInButton).offset(-50)
+            make.height.equalTo(45)
+            make.bottom.equalTo(signInButton).offset(-60)
             make.centerX.equalTo(self.view)
         }
     }

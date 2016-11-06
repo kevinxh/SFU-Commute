@@ -63,7 +63,7 @@ class signInController: UIViewController {
         emailTextField.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
         view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -76,7 +76,7 @@ class signInController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(self.passwordChanged(_:)), for: .editingChanged)
         view.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -101,6 +101,9 @@ class signInController: UIViewController {
     }
     
     func signInTapped(_ sender: FlatButton) {
+        
+        // skip the step for dev
+        //self.performSegue(withIdentifier: "toMapViewFromSignIn", sender: self)
         tips.dismiss()
         if (!emailTextField.text!.isValidEmail()) {
             tips = EasyTipView(text: "Invalid Email address")
@@ -109,6 +112,7 @@ class signInController: UIViewController {
             tips = EasyTipView(text: "Please enter password")
             tips.show(forView: passwordTextField)
         } else {
+            // avoid multiple requests
             signInButton.isEnabled = false
             sendRequest()
         }
@@ -128,7 +132,8 @@ class signInController: UIViewController {
                 
                 if (json["success"] == true) {
                     AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
-                    //self.performSegue(withIdentifier: "???", sender: self)
+                    self.signInButton.isEnabled = true
+                    self.performSegue(withIdentifier: "toMapViewFromSignIn", sender: self)
                 } else {
                     self.signInButton.isEnabled = true
                     self.tips = EasyTipView(text:json["error"].stringValue)
@@ -140,7 +145,6 @@ class signInController: UIViewController {
                 self.signInButton.isEnabled = true
                 self.tips = EasyTipView(text:error.localizedDescription)
                 self.tips.show(forView: self.emailTextField)
-                
             }
         }
     }

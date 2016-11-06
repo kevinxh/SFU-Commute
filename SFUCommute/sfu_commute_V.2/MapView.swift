@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Mapbox
 import CoreLocation
+import SideMenu
+import FontAwesome_swift
 
 var maximumSpeed:Double = 0.0
 
@@ -125,6 +127,8 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     
     @IBOutlet weak var mapView: MGLMapView!
     
+    @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet var navBarItem: UINavigationItem!
     @IBOutlet weak var header2View: UIView!
     @IBOutlet weak var currentUnitsLabel: UILabel!
     @IBOutlet weak var currentSpeedLabel: UILabel!
@@ -135,6 +139,8 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initSideMenu()
+        initNavBar()
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -142,9 +148,33 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         self.blurTitleViews()
         self.setupMap()
         self.setupLocationManager()
-        
-        
+        self.view.backgroundColor = Colors.darkBlueGrey
     }
+    
+    func initSideMenu(){
+        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "sideMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: mapView)
+        SideMenuManager.menuFadeStatusBar = false
+    }
+    
+    func initNavBar() {
+        let leftBarIconButton = UIBarButtonItem()
+        let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 24)] as [String: Any]
+        leftBarIconButton.setTitleTextAttributes(attributes, for: .normal)
+        leftBarIconButton.title = String.fontAwesomeIcon(code: "fa-bars")
+        leftBarIconButton.tintColor = UIColor.white
+        leftBarIconButton.action = #selector(self.leftBarIconButtonTapped)
+        navBarItem.leftBarButtonItem = leftBarIconButton
+    }
+    
+    func leftBarIconButtonTapped(_ sender: Any?){
+        performSegue(withIdentifier: "showSideMenu", sender: self)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
+    
     private func locationManager(manager: CLLocationManager,
                                  didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {

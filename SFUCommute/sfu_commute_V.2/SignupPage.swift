@@ -71,7 +71,7 @@ class SignupPage: UIViewController {
         emailTextField.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
         view.addSubview(emailTextField)
         emailTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -85,7 +85,7 @@ class SignupPage: UIViewController {
         passwordTextField.addTarget(self, action: #selector(self.passwordChanged(_:)), for: .editingChanged)
         view.addSubview(passwordTextField)
         passwordTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -99,7 +99,7 @@ class SignupPage: UIViewController {
         repeatPasswordTextField.addTarget(self, action: #selector(self.repeatPasswordChanged(_:)), for: .editingChanged)
         view.addSubview(repeatPasswordTextField)
         repeatPasswordTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -112,7 +112,7 @@ class SignupPage: UIViewController {
         firstNameTextField.addTarget(self, action: #selector(self.firstNameChanged(_:)), for: .editingChanged)
         view.addSubview(firstNameTextField)
         firstNameTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
@@ -125,7 +125,7 @@ class SignupPage: UIViewController {
         lastNameTextField.addTarget(self, action: #selector(self.lastNameChanged(_:)), for: .editingChanged)
         view.addSubview(lastNameTextField)
         lastNameTextField.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(35)
+            make.height.equalTo(40)
             make.left.equalTo(self.view).offset(40)
             make.right.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)

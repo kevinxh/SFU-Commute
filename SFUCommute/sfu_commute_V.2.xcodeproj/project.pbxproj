@@ -14,6 +14,11 @@
 		0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C091DCAAD7700C4A3F6 /* API.swift */; };
 		0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */; };
 		0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */; };
+		0A4EB7AA1DCE5D2E004A6DE7 /* navBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */; };
+		0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */; };
+		0A4EB7B21DCE6B5C004A6DE7 /* sideMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */; };
+		0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */; };
+		0A4EB7B61DCE823F004A6DE7 /* sideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
 		0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC881DCC6C2B00F87B35 /* signInController.swift */; };
 		0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8A1DCC889D00F87B35 /* string.swift */; };
@@ -72,6 +77,11 @@
 		0A0D4C091DCAAD7700C4A3F6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeController.swift; sourceTree = "<group>"; };
 		0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goBackButton.swift; sourceTree = "<group>"; };
+		0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navBar.swift; sourceTree = "<group>"; };
+		0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuItem.swift; sourceTree = "<group>"; };
+		0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sideMenuItem.xib; sourceTree = "<group>"; };
+		0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuNavTable.swift; sourceTree = "<group>"; };
+		0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuController.swift; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0AF2CC881DCC6C2B00F87B35 /* signInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInController.swift; sourceTree = "<group>"; };
 		0AF2CC8A1DCC889D00F87B35 /* string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = string.swift; sourceTree = "<group>"; };
@@ -137,8 +147,12 @@
 			children = (
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
 				0A0D4C051DC9D0A700C4A3F6 /* button.swift */,
+				0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */,
 				0A0933341DC57CE7001EB52A /* textField.swift */,
 				0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */,
+				0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */,
+				0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */,
+				0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -192,6 +206,7 @@
 				0A0933331DC4A402001EB52A /* Constants */,
 				0A09332F1DC4A240001EB52A /* Components */,
 				62FB22A71DC26BF10036D02E /* verificationController.swift */,
+				0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */,
 				0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */,
 				0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */,
 				0AF2CC881DCC6C2B00F87B35 /* signInController.swift */,
@@ -329,20 +344,23 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "jyotsna jaswal";
+				ORGANIZATIONNAME = "Lightspeed-Tech.";
 				TargetAttributes = {
 					621813B61DBC2B4F00C744BD = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4FGQXPDA42;
 						ProvisioningStyle = Automatic;
 					};
 					621813CA1DBC2B5000C744BD = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4FGQXPDA42;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 621813B61DBC2B4F00C744BD;
 					};
 					621813D51DBC2B5000C744BD = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 4FGQXPDA42;
+						ProvisioningStyle = Manual;
 						TestTargetID = 621813B61DBC2B4F00C744BD;
 					};
 				};
@@ -374,6 +392,7 @@
 			files = (
 				621813C51DBC2B4F00C744BD /* LaunchScreen.storyboard in Resources */,
 				621813C21DBC2B4F00C744BD /* Assets.xcassets in Resources */,
+				0A4EB7B21DCE6B5C004A6DE7 /* sideMenuItem.xib in Resources */,
 				621813C01DBC2B4F00C744BD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,11 +556,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4EB7AA1DCE5D2E004A6DE7 /* navBar.swift in Sources */,
 				0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */,
 				62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */,
 				620364561DC6B01000074F59 /* MapView.swift in Sources */,
 				621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */,
 				0A0933351DC57CE7001EB52A /* textField.swift in Sources */,
+				0A4EB7B61DCE823F004A6DE7 /* sideMenuController.swift in Sources */,
+				0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */,
 				0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */,
 				0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */,
 				0AF2CC901DCC9B8C00F87B35 /* buttons.swift in Sources */,
@@ -554,6 +576,7 @@
 				0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */,
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,
 				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
+				0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,9 +652,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -648,7 +673,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -679,9 +704,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -692,7 +719,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -706,6 +733,8 @@
 			baseConfigurationReference = BFDDFD43DFA9AA46708D250A /* Pods-sfu_commute_V.2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -725,6 +754,8 @@
 			baseConfigurationReference = 1EF19632162A5460ABF674F3 /* Pods-sfu_commute_V.2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -745,9 +776,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				INFOPLIST_FILE = sfu_commute_V.2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jyotsnajaswal.sfu-commute-V-2Tests";
+				PRODUCT_BUNDLE_IDENTIFIER = "Lightspeed-Tech.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sfu_commute_V.2.app/sfu_commute_V.2";
@@ -760,9 +793,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				INFOPLIST_FILE = sfu_commute_V.2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jyotsnajaswal.sfu-commute-V-2Tests";
+				PRODUCT_BUNDLE_IDENTIFIER = "Lightspeed-Tech.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sfu_commute_V.2.app/sfu_commute_V.2";
@@ -774,6 +809,8 @@
 			baseConfigurationReference = CF1120BAF77A63846ED154E4 /* Pods-sfu_commute_V.2UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				INFOPLIST_FILE = sfu_commute_V.2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jyotsnajaswal.sfu-commute-V-2UITests";
@@ -788,6 +825,8 @@
 			baseConfigurationReference = DE986FAE9DF0E13B332E40E7 /* Pods-sfu_commute_V.2UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				INFOPLIST_FILE = sfu_commute_V.2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jyotsnajaswal.sfu-commute-V-2UITests";
