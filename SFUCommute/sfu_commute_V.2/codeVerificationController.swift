@@ -129,7 +129,7 @@ class codeVerificationController: UIViewController {
                 self.tips.show(forView: self.textFields)
                 
             }
-        }
+        }.resume()
     }
     
     

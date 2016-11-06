@@ -12,6 +12,7 @@ import Mapbox
 import CoreLocation
 import SideMenu
 import FontAwesome_swift
+import CoreLocation
 
 var maximumSpeed:Double = 0.0
 
@@ -119,6 +120,31 @@ struct SpeedDisplay {
 
 
 class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
+    
+    var emailStartPoint: textField! = textField()
+    
+    func initTextFields() {
+        if #available(iOS 10.0, *) {
+            emailStartPoint.textContentType = .fullStreetAddress
+        } else {
+            // Fallback on earlier versions
+        }
+        emailStartPoint.autocorrectionType = .no
+        emailStartPoint.autocapitalizationType = .none
+        print("This is the manager::::::::::::::::::::::::::::::::::::::")
+        print(manager)
+        emailStartPoint.placeholder = ""
+        //emailStartPoint.addTarget(self, action: #selector(self.emailChanged(_:)), for: .editingChanged)
+        view.addSubview(emailStartPoint)
+        emailStartPoint.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(30)
+            make.left.equalTo(self.view).offset(40)
+            make.right.equalTo(self.view).offset(-40)
+            make.centerX.equalTo(self.view)
+            make.top.equalToSuperview()
+        }
+    }
+    
     let manager = CLLocationManager()
     var firstPoint = true
     var lastCoordinate: CLLocation?
@@ -141,6 +167,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         super.viewDidLoad()
         initSideMenu()
         initNavBar()
+        initTextFields()
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -210,7 +237,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     func setupMap(){
         mapView.delegate = self
         //MGLStyle.darkStyleURL(withVersion: 1)
-        mapView.styleURL = MGLStyle.darkStyleURL(withVersion: 8)
+        mapView.styleURL = MGLStyle.darkStyleURL()
     }
     
     func setupLocationManager(){
@@ -227,6 +254,10 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
         mapView.showsUserLocation = true
+        //print(manager.locality ? manager.locality : "")
+        //print(manager.postalCode ? manager.postalCode : "")
+        //print(placemark.administrativeArea ? placemark.administrativeArea : "")
+        //print(manager.country ? manager.country : "")
     }
     func blurTitleViews(){
         let degrees:Double = -45; //the value in degrees
@@ -257,7 +288,6 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     func drawPolyline(locations: [CLLocation], colour:UIColor) {
         var coordinates:[CLLocationCoordinate2D] = []
         coordinates.append(lastCoordinate!.coordinate)
-        
         // Parsing GeoJSON can be CPU intensive, do it on a background thread
         DispatchQueue.global(qos: .userInitiated).async {
             for location in locations{
