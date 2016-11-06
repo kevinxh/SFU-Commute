@@ -221,7 +221,7 @@ class SignupPage: UIViewController {
                     
                     // to do: error handling!
                     self.signUpButton.isEnabled = true
-                    self.tips = EasyTipView(text:"Error occurs, please try again later")
+                    self.tips = EasyTipView(text:"Error occured, please try again later")
                     self.tips.show(forView: self.emailTextField)
                 }
                 
@@ -232,7 +232,7 @@ class SignupPage: UIViewController {
                 self.tips.show(forView: self.emailTextField)
                 
             }
-        }
+        }.resume()
     }
     
     @IBAction func unwindToSignUp(segue: UIStoryboardSegue) {}

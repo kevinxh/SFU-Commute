@@ -146,7 +146,7 @@ class signInController: UIViewController {
                 self.tips = EasyTipView(text:error.localizedDescription)
                 self.tips.show(forView: self.emailTextField)
             }
-        }
+        }.resume()
     }
     
     func goBack(_ sender: Any?) {

@@ -210,7 +210,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     func setupMap(){
         mapView.delegate = self
         //MGLStyle.darkStyleURL(withVersion: 1)
-        mapView.styleURL = MGLStyle.darkStyleURL(withVersion: 8)
+        mapView.styleURL = MGLStyle.darkStyleURL()
     }
     
     func setupLocationManager(){
