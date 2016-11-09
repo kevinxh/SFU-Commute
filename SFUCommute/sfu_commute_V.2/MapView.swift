@@ -12,6 +12,7 @@ import Mapbox
 import CoreLocation
 //import SideMenu
 import FontAwesome_swift
+import SwiftyButton
 
 var maximumSpeed:Double = 0.0
 
@@ -119,17 +120,23 @@ struct SpeedDisplay {
 
 
 class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
+    
     let manager = CLLocationManager()
     var firstPoint = true
     var lastCoordinate: CLLocation?
     var lastSpeed = SpeedDisplay(speedMetersPerSecond: 0)
     var currentUnits = speedUnit.metersPerSecond
     
+    // UI
+    @IBOutlet var locationBox: UIView!
     @IBOutlet var navItem: UINavigationItem!
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var header2View: UIView!
     @IBOutlet weak var currentUnitsLabel: UILabel!
     @IBOutlet weak var currentSpeedLabel: UILabel!
+    var locationBoxSearchButton: FlatButton! = FlatButton()
+    let locationBoxIcon = UILabel()
+    let locationBoxLabel = UILabel()
     
     @IBAction func hiDidGetPressed(_ sender: UIButton) {
         print("hi \(mapView)")
@@ -138,6 +145,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavBar()
+        initLocationBox()
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -146,6 +154,51 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         self.setupMap()
         self.setupLocationManager()
     }
+    
+    func initLocationBox() {
+        // initialize button
+        locationBoxSearchButton.setTitle(String.fontAwesomeIcon(code: "fa-search"), for: .normal)
+        locationBoxSearchButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 32)
+        locationBoxSearchButton.color = Colors.SFURed
+        locationBoxSearchButton.highlightedColor = Colors.SFURedHighlight
+        locationBoxSearchButton.cornerRadius = 10.0
+        locationBoxSearchButton.addTarget(self, action: #selector(self.searchStartPoint(_:)), for: .touchUpInside)
+        self.locationBox.addSubview(locationBoxSearchButton)
+        locationBoxSearchButton.snp.makeConstraints{(make) -> Void in
+            make.height.width.equalTo(locationBox.snp.height).offset(-10)
+            make.right.equalTo(locationBox).offset(-10)
+            make.centerY.equalTo(locationBox)
+        }
+        
+        // initialize icon
+        locationBoxIcon.font = UIFont.fontAwesome(ofSize: 32)
+        locationBoxIcon.text = String.fontAwesomeIcon(code: "fa-map-marker")
+        locationBoxIcon.textColor = Colors.SFURed
+        self.locationBox.addSubview(locationBoxIcon)
+        locationBoxIcon.snp.makeConstraints{(make) -> Void in
+            make.height.width.equalTo(locationBox.snp.height).offset(-32)
+            make.left.equalTo(locationBox).offset(12)
+            make.centerY.equalTo(locationBox)
+        }
+        
+        // initialize label
+        locationBoxLabel.text = "START LOCATION"
+        locationBoxLabel.textAlignment = .left
+        locationBoxLabel.font = UIFont(name: "Futura-Medium", size: 16)!
+        locationBoxLabel.textColor = Colors.SFURed
+        self.locationBox.addSubview(locationBoxLabel)
+        locationBoxLabel.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(150)
+            make.height.equalTo(30)
+            make.left.equalTo(locationBoxIcon.snp.right)
+            make.top.equalTo(locationBox)
+        }
+    }
+    
+    func searchStartPoint(_ sebder: Any?) {
+        
+    }
+
     
     func initNavBar() {
         let leftBarIconButton = UIBarButtonItem()
@@ -157,6 +210,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         leftBarIconButton.action = #selector(SWRevealViewController.revealToggle(_:))
         navItem.leftBarButtonItem = leftBarIconButton
         self.mapView.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        revealViewController().rearViewRevealWidth = view.frame.width - 80
     }
     
     private func locationManager(manager: CLLocationManager,
