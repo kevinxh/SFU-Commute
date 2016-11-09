@@ -13,6 +13,7 @@ import UIKit
     
     @IBOutlet var icon: UILabel!
     @IBOutlet var sideMenuItemLabel: UILabel!
+    var segueIdentifier : String = ""
     
     @IBInspectable var iconName : String! = "fa-awesome"{
         didSet{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a5E-C3-QDe">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -112,7 +112,7 @@
                     </view>
                     <connections>
                         <segue destination="K05-yd-pys" kind="unwind" identifier="unwindToVerification" unwindAction="unwindToVerificationWithSegue:" id="Mh8-cy-a3v"/>
-                        <segue destination="PNE-aL-auc" kind="show" identifier="toMapViewFromSignUp" id="Shv-Ry-VI4"/>
+                        <segue destination="a5E-C3-QDe" kind="show" identifier="toMapViewFromSignUp" id="Cig-lY-NKe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaK-Os-1Pm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,13 +135,54 @@
                     </view>
                     <connections>
                         <segue destination="v6e-6A-mUt" kind="unwind" identifier="unwindToWelcomeFromSignIn" unwindAction="unwindToWelcomeWithSegue:" id="LSD-gv-Yg3"/>
-                        <segue destination="PNE-aL-auc" kind="show" identifier="toMapViewFromSignIn" id="BFr-iT-kyr"/>
+                        <segue destination="a5E-C3-QDe" kind="show" identifier="toMapViewFromSignIn" id="jrQ-71-KP4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbg-mQ-iPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="v6e-6A-mUt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="921" y="367"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="bbz-I3-XzC">
+            <objects>
+                <viewController id="a5E-C3-QDe" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mro-nw-8RY"/>
+                        <viewControllerLayoutGuide type="bottom" id="8un-vw-hWn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w2l-qe-bRL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <segue destination="DQ9-ly-VbZ" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="WmZ-Ha-5jF"/>
+                        <segue destination="Q32-iC-3hp" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="8rf-ZN-laO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PHB-j1-kZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3719" y="35"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZIR-Re-sq9">
+            <objects>
+                <navigationController id="Q32-iC-3hp" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="jY1-10-w8j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PNE-aL-auc" kind="relationship" relationship="rootViewController" id="sIK-kr-Rma"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s4M-kQ-3UD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6950" y="300"/>
         </scene>
         <!--Side Menu Controller-->
         <scene sceneID="pqV-c2-Rgh">
@@ -241,6 +282,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BX7-vo-DNp"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="sideMenuNavContainer" destination="6D9-B5-zXD" id="VBB-nN-ESE"/>
                         <outlet property="signOutIcon" destination="0NS-uI-qTb" id="PVp-us-EzU"/>
@@ -253,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPA-PJ-gzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6400.8000000000002" y="148.87556221889056"/>
+            <point key="canvasLocation" x="4593" y="35"/>
         </scene>
         <!--Menu-->
         <scene sceneID="Cdc-RD-prP">
@@ -326,6 +368,12 @@
                     <navigationItem key="navigationItem" title="Menu" id="IHu-jS-bwj"/>
                     <connections>
                         <outlet property="navTable" destination="9sS-iD-bQF" id="qik-2U-8dd"/>
+                        <segue destination="ijM-ff-Hso" kind="custom" identifier="showBrowseFromSideMenu" customClass="SWRevealViewControllerSeguePushController" id="gX2-3e-ibC"/>
+                        <segue destination="Q32-iC-3hp" kind="custom" identifier="showHomeFromSideMenu" customClass="SWRevealViewControllerSeguePushController" id="qVj-MQ-1oa"/>
+                        <segue destination="Dsc-qL-a8Q" kind="custom" identifier="showUpcomingFromSideMenu" customClass="SWRevealViewControllerSeguePushController" id="cJR-aQ-9he"/>
+                        <segue destination="NFI-Wc-gTS" kind="custom" identifier="showHistoryFromSideMenu" customClass="SWRevealViewControllerSeguePushController" id="bK8-2x-9fy"/>
+                        <segue destination="LKd-cE-YxD" kind="custom" identifier="showMessagesFromSideMenu" customClass="SWRevealViewControllerSeguePushController" id="b7x-of-VEX"/>
+                        <segue destination="4BD-US-5ef" kind="custom" identifier="showSettingsFromSideMenu" customClass="SWRevealViewControllerSeguePushController" id="SvB-zm-AbJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msw-dC-I0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -335,28 +383,36 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="7358" y="149"/>
+            <point key="canvasLocation" x="5452" y="34"/>
         </scene>
-        <!--Side Menu Navigation Controller-->
-        <scene sceneID="7H7-VM-7Eo">
+        <!--Trip Scheduling View Controller-->
+        <scene sceneID="eFB-VU-8Je">
             <objects>
-                <navigationController storyboardIdentifier="sideMenuNavigationController" navigationBarHidden="YES" id="1iq-gf-blb" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0va-ZQ-GJJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="DQ9-ly-VbZ" kind="relationship" relationship="rootViewController" id="zcx-dj-wZE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VaQ-28-RCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="3Yc-qt-UUJ" customClass="tripSchedulingViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kbA-BY-WtR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iua-tq-ibJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eeV-jF-F4e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Scheduling Page Jonathan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0be-w2-DqS">
+                                <frame key="frameInset" minX="98" minY="289" width="178" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqL-qA-m2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5540" y="149"/>
+            <point key="canvasLocation" x="8534" y="300"/>
         </scene>
-        <!--Map View-->
+        <!--SFU Commute-->
         <scene sceneID="bhf-me-lEn">
             <objects>
                 <viewController id="PNE-aL-auc" customClass="MapView" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -365,7 +421,7 @@
                         <viewControllerLayoutGuide type="bottom" id="c6K-fI-YzC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bt9-o9-cpG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkO-NH-FkH" customClass="MGLMapView">
@@ -412,73 +468,321 @@
                                     <constraint firstAttribute="bottom" secondItem="F6M-Re-oxN" secondAttribute="bottom" constant="35" id="rb1-jG-tp1"/>
                                 </constraints>
                             </view>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uF7-Qi-Epi" customClass="navBar" customModule="sfu_commute_V_2" customModuleProvider="target">
-                                <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="AvenirNext-BoldItalic" family="Avenir Next" pointSize="23"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <offsetWrapper key="textShadowOffset" horizontal="4" vertical="4"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="SFU Commute" id="Adq-4J-UOx"/>
-                                </items>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barColor">
-                                        <color key="value" red="0.17254901960784313" green="0.19215686274509802" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="iNd-SC-FZx" secondAttribute="trailing" constant="-54" id="1ZW-4M-1yK"/>
-                            <constraint firstItem="uF7-Qi-Epi" firstAttribute="leading" secondItem="bt9-o9-cpG" secondAttribute="leading" id="3Ge-KF-ec3"/>
-                            <constraint firstItem="uF7-Qi-Epi" firstAttribute="top" secondItem="0I4-eq-e4Y" secondAttribute="bottom" id="FFx-99-a02"/>
                             <constraint firstItem="c6K-fI-YzC" firstAttribute="top" secondItem="GkO-NH-FkH" secondAttribute="bottom" id="IYg-D5-IHR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GkO-NH-FkH" secondAttribute="trailing" constant="-20" id="S5U-Dy-qmV"/>
-                            <constraint firstItem="GkO-NH-FkH" firstAttribute="top" secondItem="uF7-Qi-Epi" secondAttribute="bottom" id="Yey-XX-aY7"/>
                             <constraint firstItem="c6K-fI-YzC" firstAttribute="top" secondItem="iNd-SC-FZx" secondAttribute="bottom" constant="-54" id="cme-Dq-Ook"/>
                             <constraint firstItem="GkO-NH-FkH" firstAttribute="leading" secondItem="bt9-o9-cpG" secondAttribute="leadingMargin" constant="-20" id="gsz-z5-JMQ"/>
-                            <constraint firstAttribute="trailing" secondItem="uF7-Qi-Epi" secondAttribute="trailing" id="kJI-lj-KrE"/>
+                            <constraint firstItem="GkO-NH-FkH" firstAttribute="top" secondItem="0I4-eq-e4Y" secondAttribute="bottom" id="lgd-bX-KiI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="SFU Commute" id="dbt-4a-9dX"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="currentSpeedLabel" destination="WLP-8L-n4e" id="qP0-XK-ihd"/>
                         <outlet property="currentUnitsLabel" destination="rGb-eq-Ga2" id="VAR-NI-PFS"/>
                         <outlet property="header2View" destination="iNd-SC-FZx" id="p9g-uS-oZX"/>
                         <outlet property="mapView" destination="GkO-NH-FkH" id="13D-7F-IJc"/>
-                        <outlet property="navBar" destination="uF7-Qi-Epi" id="cLX-ot-Gf4"/>
-                        <outlet property="navBarItem" destination="Adq-4J-UOx" id="pmY-sl-nLw"/>
-                        <segue destination="1iq-gf-blb" kind="presentation" identifier="showSideMenu" id="1tV-Tu-TGH"/>
+                        <outlet property="navItem" destination="dbt-4a-9dX" id="D3h-lI-6H5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4658" y="149"/>
+            <point key="canvasLocation" x="7713" y="300"/>
         </scene>
-        <!--View Controller-->
+        <!--History-->
+        <scene sceneID="bnE-Js-XqU">
+            <objects>
+                <viewController id="Dit-uJ-wMX" customClass="historyViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6eZ-ir-eCr"/>
+                        <viewControllerLayoutGuide type="bottom" id="hqS-Rk-FRU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K4X-PC-1Fh">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History Page" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoN-c2-Z6W">
+                                <frame key="frameInset" minX="114" minY="257" width="147" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="History" id="WFn-Ub-x9B"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7J-Wm-xWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7713" y="973"/>
+        </scene>
+        <!--Messages-->
+        <scene sceneID="KuH-gI-kz0">
+            <objects>
+                <viewController id="7Ru-KF-2F5" customClass="messagesViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5KI-DV-SRJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="DuO-vw-vFT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u3g-Gb-PDN">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Messages Page" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0N-I5-L86">
+                                <frame key="frameInset" minX="114" minY="257" width="147" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Messages" id="BKp-1d-gO6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UMx-gB-r6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7713" y="1657"/>
+        </scene>
+        <!--Browse-->
         <scene sceneID="Uq6-AS-qbW">
             <objects>
-                <viewController id="x5s-Ys-bkM" sceneMemberID="viewController">
+                <viewController id="x5s-Ys-bkM" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ftb-uZ-l6H"/>
                         <viewControllerLayoutGuide type="bottom" id="VwO-Tw-UUd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="G8C-7L-wnJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Browse Page Connor" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-sr-J00">
+                                <frame key="frameInset" minX="114" minY="289" width="147" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.90343348859999995" blue="0.59056320149999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Browse" id="1hJ-Q2-jeh"/>
+                    <connections>
+                        <outlet property="navItem" destination="1hJ-Q2-jeh" id="v1O-hB-Qo6"/>
+                        <segue destination="tkS-Vx-WRU" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="o8O-3y-uHd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoF-jF-SDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8926" y="-565"/>
+            <point key="canvasLocation" x="7714" y="-1019"/>
+        </scene>
+        <!--Upcoming Trips-->
+        <scene sceneID="AjK-mj-Jik">
+            <objects>
+                <viewController id="QNQ-m6-oGH" customClass="upcomingTripsViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I2z-O9-2a9"/>
+                        <viewControllerLayoutGuide type="bottom" id="mfX-os-jwV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ig4-c3-wsO">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upcoming Trips Page" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXT-Lb-qCT">
+                                <frame key="frameInset" minX="114" minY="257" width="147" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Upcoming Trips" id="M7k-j9-GbN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4zp-45-v1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7713" y="-353"/>
+        </scene>
+        <!--Trip Info View Controller-->
+        <scene sceneID="lgJ-2P-LXA">
+            <objects>
+                <viewController id="tkS-Vx-WRU" customClass="tripInfoViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KRt-iY-DXi"/>
+                        <viewControllerLayoutGuide type="bottom" id="6dw-r1-IyB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gf3-Vr-blY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Detail Page Jonathan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-r5-J0R">
+                                <frame key="frameInset" minX="98" minY="289" width="178" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.35252978470000002" green="1" blue="0.3464275027" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="viK-gV-Mkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8535" y="-1019"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eGj-1d-FVS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ijM-ff-Hso" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="fsH-Ku-vcs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x5s-Ys-bkM" kind="relationship" relationship="rootViewController" id="tLD-RZ-tvR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="biV-2T-9j6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6950" y="-1018"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Buv-jj-utc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dsc-qL-a8Q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="idx-CL-xHg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QNQ-m6-oGH" kind="relationship" relationship="rootViewController" id="YHi-Ly-Y35"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lSf-X2-Sds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6950" y="-353"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fUP-qK-hh1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFI-Wc-gTS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="PhS-1w-fnD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dit-uJ-wMX" kind="relationship" relationship="rootViewController" id="ofE-de-bSw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KwI-TV-Rr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6950" y="973"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rO8-4H-V0e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKd-cE-YxD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yGr-2t-n0b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7Ru-KF-2F5" kind="relationship" relationship="rootViewController" id="H4D-Yj-N2n"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fDQ-pK-s4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6950" y="1657"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="q9K-fN-af5">
+            <objects>
+                <viewController id="pda-kN-sbW" customClass="settingsViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KKc-Cf-abi"/>
+                        <viewControllerLayoutGuide type="bottom" id="v1L-6f-0A9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BRF-0a-UoM">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Messages Page" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad8-YM-Dbm">
+                                <frame key="frameInset" minX="114" minY="257" width="147" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="odf-wK-36q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TUl-jd-aBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7713" y="2334"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eOj-uk-pOh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4BD-US-5ef" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="OB1-9Z-bYN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pda-kN-sbW" kind="relationship" relationship="rootViewController" id="5JP-BH-aUD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sm0-dj-j1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6950" y="2334"/>
         </scene>
     </scenes>
     <resources>
         <image name="user-placeholder" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Shv-Ry-VI4"/>
+        <segue reference="jrQ-71-KP4"/>
+        <segue reference="8rf-ZN-laO"/>
     </inferredMetricsTieBreakers>
 </document>

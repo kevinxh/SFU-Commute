@@ -13,6 +13,15 @@
 		0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C051DC9D0A700C4A3F6 /* button.swift */; };
 		0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C091DCAAD7700C4A3F6 /* API.swift */; };
 		0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */; };
+		0A14540A1DD29B14001A693B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454091DD29B14001A693B /* SWRevealViewController.m */; };
+		0A14540D1DD2B2E3001A693B /* browseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14540C1DD2B2E3001A693B /* browseViewController.swift */; };
+		0A14540F1DD2B3DA001A693B /* tripInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14540E1DD2B3DA001A693B /* tripInfoViewController.swift */; };
+		0A1454111DD2B4A8001A693B /* tripSchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454101DD2B4A8001A693B /* tripSchedulingViewController.swift */; };
+		0A1454131DD2B598001A693B /* upcomingTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454121DD2B598001A693B /* upcomingTripsViewController.swift */; };
+		0A1454151DD2C0E4001A693B /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454141DD2C0E4001A693B /* UIViewController.swift */; };
+		0A1454171DD2C705001A693B /* historyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454161DD2C705001A693B /* historyViewController.swift */; };
+		0A1454191DD2C8A0001A693B /* messagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454181DD2C8A0001A693B /* messagesViewController.swift */; };
+		0A14541B1DD2C92B001A693B /* settingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14541A1DD2C92B001A693B /* settingsViewController.swift */; };
 		0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */; };
 		0A4EB7AA1DCE5D2E004A6DE7 /* navBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */; };
 		0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */; };
@@ -76,6 +85,17 @@
 		0A0D4C051DC9D0A700C4A3F6 /* button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		0A0D4C091DCAAD7700C4A3F6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeController.swift; sourceTree = "<group>"; };
+		0A1454071DD29B13001A693B /* sfu_commute_V.2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sfu_commute_V.2-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A1454081DD29B14001A693B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		0A1454091DD29B14001A693B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		0A14540C1DD2B2E3001A693B /* browseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = browseViewController.swift; sourceTree = "<group>"; };
+		0A14540E1DD2B3DA001A693B /* tripInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripInfoViewController.swift; sourceTree = "<group>"; };
+		0A1454101DD2B4A8001A693B /* tripSchedulingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripSchedulingViewController.swift; sourceTree = "<group>"; };
+		0A1454121DD2B598001A693B /* upcomingTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = upcomingTripsViewController.swift; sourceTree = "<group>"; };
+		0A1454141DD2C0E4001A693B /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		0A1454161DD2C705001A693B /* historyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = historyViewController.swift; sourceTree = "<group>"; };
+		0A1454181DD2C8A0001A693B /* messagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messagesViewController.swift; sourceTree = "<group>"; };
+		0A14541A1DD2C92B001A693B /* settingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsViewController.swift; sourceTree = "<group>"; };
 		0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goBackButton.swift; sourceTree = "<group>"; };
 		0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = navBar.swift; sourceTree = "<group>"; };
 		0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuItem.swift; sourceTree = "<group>"; };
@@ -85,7 +105,7 @@
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0AF2CC881DCC6C2B00F87B35 /* signInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInController.swift; sourceTree = "<group>"; };
 		0AF2CC8A1DCC889D00F87B35 /* string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = string.swift; sourceTree = "<group>"; };
-		0AF2CC8D1DCC8FC800F87B35 /* CONFIG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CONFIG.swift; path = ../CONFIG.swift; sourceTree = "<group>"; };
+		0AF2CC8D1DCC8FC800F87B35 /* CONFIG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONFIG.swift; sourceTree = "<group>"; };
 		0AF2CC8F1DCC9B8C00F87B35 /* buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buttons.swift; sourceTree = "<group>"; };
 		1EF19632162A5460ABF674F3 /* Pods-sfu_commute_V.2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2.release.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2/Pods-sfu_commute_V.2.release.xcconfig"; sourceTree = "<group>"; };
 		3CD973C9591A8A75D291DED0 /* Pods_sfu_commute_V_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sfu_commute_V_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +165,7 @@
 		0A09332F1DC4A240001EB52A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0A14540B1DD29B3D001A693B /* SWRealViewController */,
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
 				0A0D4C051DC9D0A700C4A3F6 /* button.swift */,
 				0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */,
@@ -165,11 +186,22 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		0A14540B1DD29B3D001A693B /* SWRealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0A1454081DD29B14001A693B /* SWRevealViewController.h */,
+				0A1454091DD29B14001A693B /* SWRevealViewController.m */,
+				0A1454071DD29B13001A693B /* sfu_commute_V.2-Bridging-Header.h */,
+			);
+			name = SWRealViewController;
+			sourceTree = "<group>";
+		};
 		0AF2CC8C1DCC88D000F87B35 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				0AF2CC8A1DCC889D00F87B35 /* string.swift */,
 				0AF2CC8F1DCC9B8C00F87B35 /* buttons.swift */,
+				0A1454141DD2C0E4001A693B /* UIViewController.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -201,13 +233,20 @@
 			children = (
 				621813BA1DBC2B4F00C744BD /* AppDelegate.swift */,
 				621813BE1DBC2B4F00C744BD /* Main.storyboard */,
-				620364551DC6B01000074F59 /* MapView.swift */,
 				0AF2CC8C1DCC88D000F87B35 /* Extensions */,
 				0A0933331DC4A402001EB52A /* Constants */,
 				0A09332F1DC4A240001EB52A /* Components */,
 				62FB22A71DC26BF10036D02E /* verificationController.swift */,
+				0A1454161DD2C705001A693B /* historyViewController.swift */,
+				0A14541A1DD2C92B001A693B /* settingsViewController.swift */,
+				620364551DC6B01000074F59 /* MapView.swift */,
 				0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */,
+				0A1454121DD2B598001A693B /* upcomingTripsViewController.swift */,
+				0A1454181DD2C8A0001A693B /* messagesViewController.swift */,
+				0A14540C1DD2B2E3001A693B /* browseViewController.swift */,
 				0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */,
+				0A14540E1DD2B3DA001A693B /* tripInfoViewController.swift */,
+				0A1454101DD2B4A8001A693B /* tripSchedulingViewController.swift */,
 				0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */,
 				0AF2CC881DCC6C2B00F87B35 /* signInController.swift */,
 				621813E81DBC327F00C744BD /* SignupPage.swift */,
@@ -349,6 +388,7 @@
 					621813B61DBC2B4F00C744BD = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4FGQXPDA42;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					621813CA1DBC2B5000C744BD = {
@@ -557,7 +597,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A4EB7AA1DCE5D2E004A6DE7 /* navBar.swift in Sources */,
+				0A1454191DD2C8A0001A693B /* messagesViewController.swift in Sources */,
 				0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */,
+				0A1454151DD2C0E4001A693B /* UIViewController.swift in Sources */,
+				0A1454171DD2C705001A693B /* historyViewController.swift in Sources */,
+				0A14541B1DD2C92B001A693B /* settingsViewController.swift in Sources */,
+				0A1454111DD2B4A8001A693B /* tripSchedulingViewController.swift in Sources */,
+				0A1454131DD2B598001A693B /* upcomingTripsViewController.swift in Sources */,
 				62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */,
 				620364561DC6B01000074F59 /* MapView.swift in Sources */,
 				621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */,
@@ -565,16 +611,19 @@
 				0A4EB7B61DCE823F004A6DE7 /* sideMenuController.swift in Sources */,
 				0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */,
 				0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */,
+				0A14540F1DD2B3DA001A693B /* tripInfoViewController.swift in Sources */,
 				0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */,
 				0AF2CC901DCC9B8C00F87B35 /* buttons.swift in Sources */,
 				0A0933321DC4A331001EB52A /* Colors.swift in Sources */,
 				621813E91DBC327F00C744BD /* SignupPage.swift in Sources */,
+				0A14540D1DD2B2E3001A693B /* browseViewController.swift in Sources */,
 				0A09332E1DC47516001EB52A /* pageTitle.swift in Sources */,
 				0A0D4C061DC9D0A700C4A3F6 /* button.swift in Sources */,
 				0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */,
 				0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */,
 				0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */,
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,
+				0A14540A1DD29B14001A693B /* SWRevealViewController.m in Sources */,
 				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
 				0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */,
 			);
@@ -733,6 +782,7 @@
 			baseConfigurationReference = BFDDFD43DFA9AA46708D250A /* Pods-sfu_commute_V.2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -744,6 +794,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Lightspeed-Tech.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sfu_commute_V.2/sfu_commute_V.2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -754,6 +806,7 @@
 			baseConfigurationReference = 1EF19632162A5460ABF674F3 /* Pods-sfu_commute_V.2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4FGQXPDA42;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -765,6 +818,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Lightspeed-Tech.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "sfu_commute_V.2/sfu_commute_V.2-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
