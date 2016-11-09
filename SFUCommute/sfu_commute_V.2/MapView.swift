@@ -193,6 +193,9 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
             make.left.equalTo(locationBoxIcon.snp.right)
             make.top.equalTo(locationBox)
         }
+        
+        //locationBox.layer.borderWidth = 1.0
+        //locationBox.layer.borderColor = UIColor.darkGray.cgColor
     }
     
     func searchStartPoint(_ sebder: Any?) {
@@ -248,7 +251,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     func setupMap(){
         mapView.delegate = self
         //MGLStyle.darkStyleURL(withVersion: 1)
-        mapView.styleURL = MGLStyle.darkStyleURL(withVersion: 8)
+        mapView.styleURL = MGLStyle.streetsStyleURL(withVersion: 9)
     }
     
     func setupLocationManager(){

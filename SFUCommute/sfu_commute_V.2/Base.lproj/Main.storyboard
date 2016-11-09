@@ -174,7 +174,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="jY1-10-w8j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="PNE-aL-auc" kind="relationship" relationship="rootViewController" id="sIK-kr-Rma"/>
@@ -266,7 +266,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="uYT-Fc-cYb" firstAttribute="top" secondItem="lcU-9q-8dC" secondAttribute="bottom" id="2RO-Yb-LDq"/>
                             <constraint firstAttribute="trailing" secondItem="6D9-B5-zXD" secondAttribute="trailing" id="33c-ol-CJZ"/>
@@ -458,6 +458,17 @@
                                     <constraint firstAttribute="height" constant="60" id="lHi-JS-LGI"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="lJU-XV-GL6"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomBorder">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="VborderColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNd-SC-FZx">
                                 <subviews>
@@ -657,7 +668,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="fsH-Ku-vcs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.4392156862745098" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -680,7 +691,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="idx-CL-xHg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -702,7 +713,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="PhS-1w-fnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -724,7 +735,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yGr-2t-n0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -774,7 +785,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="OB1-9Z-bYN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17254901959999999" green="0.19215686269999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
@@ -794,6 +805,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jrQ-71-KP4"/>
-        <segue reference="8rf-ZN-laO"/>
+        <segue reference="qVj-MQ-1oa"/>
     </inferredMetricsTieBreakers>
 </document>
