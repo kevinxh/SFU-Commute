@@ -169,11 +169,12 @@
         <!--Navigation Controller-->
         <scene sceneID="ZIR-Re-sq9">
             <objects>
-                <navigationController id="Q32-iC-3hp" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="Q32-iC-3hp" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="jY1-10-w8j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="jY1-10-w8j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
@@ -410,9 +411,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqL-qA-m2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8534" y="300"/>
+            <point key="canvasLocation" x="9310" y="300"/>
         </scene>
-        <!--SFU Commute-->
+        <!--Map-->
         <scene sceneID="bhf-me-lEn">
             <objects>
                 <viewController id="PNE-aL-auc" customClass="MapView" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -421,7 +422,7 @@
                         <viewControllerLayoutGuide type="bottom" id="c6K-fI-YzC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bt9-o9-cpG">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GkO-NH-FkH" customClass="MGLMapView">
@@ -463,7 +464,7 @@
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="bottomBorder">
-                                        <real key="value" value="1.5"/>
+                                        <real key="value" value="1.2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="VborderColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -500,7 +501,7 @@
                             <constraint firstItem="GkO-NH-FkH" firstAttribute="leading" secondItem="bt9-o9-cpG" secondAttribute="leadingMargin" constant="-20" id="gsz-z5-JMQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="SFU Commute" id="dbt-4a-9dX"/>
+                    <navigationItem key="navigationItem" title="Map" id="dbt-4a-9dX"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="currentSpeedLabel" destination="WLP-8L-n4e" id="qP0-XK-ihd"/>
@@ -509,11 +510,50 @@
                         <outlet property="locationBox" destination="5Br-Ck-KsJ" id="v2l-6Z-y8A"/>
                         <outlet property="mapView" destination="GkO-NH-FkH" id="13D-7F-IJc"/>
                         <outlet property="navItem" destination="dbt-4a-9dX" id="D3h-lI-6H5"/>
+                        <segue destination="85g-he-5U7" kind="show" identifier="showSearchAddress" id="zIx-yl-04L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQQ-mf-Rhu" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7712.8000000000002" y="300"/>
+        </scene>
+        <!--Address Search View Controller-->
+        <scene sceneID="wXi-n3-kqR">
+            <objects>
+                <viewController id="85g-he-5U7" customClass="addressSearchViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kul-3a-Jjc"/>
+                        <viewControllerLayoutGuide type="bottom" id="lIL-Hb-Mbr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hQV-q8-Vzy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mNr-r3-QUL">
+                                <frame key="frameInset" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addressSearchResultCells" id="c1m-iu-RTH">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c1m-iu-RTH" id="dyH-0q-zKy">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchResults" destination="mNr-r3-QUL" id="gjO-b4-HsT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YoK-Qc-QQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8533.6000000000004" y="300"/>
         </scene>
         <!--History-->
         <scene sceneID="bnE-Js-XqU">
@@ -710,7 +750,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFI-Wc-gTS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="PhS-1w-fnD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="PhS-1w-fnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -732,7 +772,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKd-cE-YxD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yGr-2t-n0b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yGr-2t-n0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>

@@ -193,22 +193,17 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
             make.left.equalTo(locationBoxIcon.snp.right)
             make.top.equalTo(locationBox)
         }
-        
-        //locationBox.layer.borderWidth = 1.0
-        //locationBox.layer.borderColor = UIColor.darkGray.cgColor
     }
     
     func searchStartPoint(_ sebder: Any?) {
-        
+        self.performSegue(withIdentifier: "showSearchAddress", sender: nil)
     }
 
-    
     func initNavBar() {
         let leftBarIconButton = UIBarButtonItem()
         let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 24)] as [String: Any]
         leftBarIconButton.setTitleTextAttributes(attributes, for: .normal)
         leftBarIconButton.title = String.fontAwesomeIcon(code: "fa-bars")
-        leftBarIconButton.tintColor = UIColor.white
         leftBarIconButton.target = self.revealViewController()
         leftBarIconButton.action = #selector(SWRevealViewController.revealToggle(_:))
         navItem.leftBarButtonItem = leftBarIconButton
