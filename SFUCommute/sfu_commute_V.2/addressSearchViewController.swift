@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct dataForSearchController{
+    var status : mapViewSteps
+    var button : Int
+}
+
 class addressSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet var searchResults: UITableView!
@@ -15,9 +20,11 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     var CustomSearchController: customSearchController!
     
     var status : mapViewSteps = .toSetStartLocation
-    var dataArray : [String] = ["Burnaby", "Coquitlam"]
+    var dataArray : [String] = ["Gaglardi - Broadway", "Hastings - Willingdon", "Production Skytrain Station"]
     var filteredArray = [String]()
     var shouldShowSearchResults = false
+    
+    var triggerButton : Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,12 +143,19 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "unwindToMapViewFromSearch") {
-            if (status == .toSetStartLocation) {
-                let location = (sender as! UITableViewCell).textLabel?.text
-                let mapview = segue.destination as! MapView
+            let location = (sender as! UITableViewCell).textLabel?.text
+            let mapview = segue.destination as! MapView
+            
+            if (triggerButton == 1) {
                 mapview.startLocation.text = location
-                mapview.navigationItem.prompt = "Please search for destination"
+            } else if (triggerButton == 2) {
+                mapview.destination.text = location
+            }
+            
+            if (status == .toSetStartLocation) {
                 mapview.status = .toSetDestination
+            } else if (status == .toSetDestination) {
+                mapview.status = .toTapCreateButton
             }
         }
     }
