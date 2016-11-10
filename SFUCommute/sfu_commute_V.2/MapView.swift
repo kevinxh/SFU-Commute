@@ -117,7 +117,11 @@ struct SpeedDisplay {
     }
 }
 
-
+enum mapViewSteps {
+    case toSetStartLocation
+    case toSetDestination
+    case toTapCreateButton
+}
 
 class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     
@@ -126,6 +130,8 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     var lastCoordinate: CLLocation?
     var lastSpeed = SpeedDisplay(speedMetersPerSecond: 0)
     var currentUnits = speedUnit.metersPerSecond
+    
+    var status : mapViewSteps = .toSetStartLocation
     
     // UI
     @IBOutlet var locationBox: UIView!
@@ -165,7 +171,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         locationBoxSearchButton.color = Colors.SFURed
         locationBoxSearchButton.highlightedColor = Colors.SFURedHighlight
         locationBoxSearchButton.cornerRadius = 10.0
-        locationBoxSearchButton.addTarget(self, action: #selector(self.searchStartPoint(_:)), for: .touchUpInside)
+        locationBoxSearchButton.addTarget(self, action: #selector(self.search(_:)), for: .touchUpInside)
         self.locationBox.addSubview(locationBoxSearchButton)
         locationBoxSearchButton.snp.makeConstraints{(make) -> Void in
             make.height.width.equalTo(locationBox.snp.height).offset(-10)
@@ -211,8 +217,8 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         }
     }
     
-    func searchStartPoint(_ sebder: Any?) {
-        self.performSegue(withIdentifier: "showSearchAddress", sender: nil)
+    func search(_ sebder: Any?) {
+        self.performSegue(withIdentifier: "showSearchAddress", sender: self.status)
     }
 
     func initNavBar() {
@@ -223,6 +229,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         leftBarIconButton.target = self.revealViewController()
         leftBarIconButton.action = #selector(SWRevealViewController.revealToggle(_:))
         navItem.leftBarButtonItem = leftBarIconButton
+        navItem.prompt = "Please search for start location"
         self.mapView.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         revealViewController().rearViewRevealWidth = view.frame.width - 80
     }
@@ -341,6 +348,14 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         
         // Fallback to the default tint color.
         return mapView.tintColor
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showSearchAddress") {
+            let s = sender as! mapViewSteps
+            let search = segue.destination as! addressSearchViewController
+            search.status = s
+        }
     }
     
     @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }

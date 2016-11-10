@@ -14,6 +14,7 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     var searchController: UISearchController!
     var CustomSearchController: customSearchController!
     
+    var status : mapViewSteps = .toSetStartLocation
     var dataArray : [String] = ["Burnaby", "Coquitlam"]
     var filteredArray = [String]()
     var shouldShowSearchResults = false
@@ -135,9 +136,13 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "unwindToMapViewFromSearch") {
-            let location = (sender as! UITableViewCell).textLabel?.text
-            let mapview = segue.destination as! MapView
-            mapview.startLocation.text = location
+            if (status == .toSetStartLocation) {
+                let location = (sender as! UITableViewCell).textLabel?.text
+                let mapview = segue.destination as! MapView
+                mapview.startLocation.text = location
+                mapview.navigationItem.prompt = "Please search for destination"
+                mapview.status = .toSetDestination
+            }
         }
     }
 }

@@ -171,7 +171,7 @@
             <objects>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" id="Q32-iC-3hp" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="jY1-10-w8j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="jY1-10-w8j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -761,7 +761,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFI-Wc-gTS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="PhS-1w-fnD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="PhS-1w-fnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -783,7 +783,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKd-cE-YxD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yGr-2t-n0b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yGr-2t-n0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
