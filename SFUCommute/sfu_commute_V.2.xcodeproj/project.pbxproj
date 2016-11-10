@@ -29,6 +29,10 @@
 		0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */; };
 		0A4EB7B61DCE823F004A6DE7 /* sideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
+		0A8B9BC91DD3EF7C00BD8192 /* customSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */; };
+		0A8B9BCB1DD3F08500BD8192 /* customSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */; };
+		0AD3F0921DD3202100CC6C36 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3F0911DD3202100CC6C36 /* UIView.swift */; };
+		0AD3F0941DD3243400CC6C36 /* addressSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3F0931DD3243400CC6C36 /* addressSearchViewController.swift */; };
 		0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC881DCC6C2B00F87B35 /* signInController.swift */; };
 		0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8A1DCC889D00F87B35 /* string.swift */; };
 		0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8D1DCC8FC800F87B35 /* CONFIG.swift */; };
@@ -103,6 +107,10 @@
 		0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuNavTable.swift; sourceTree = "<group>"; };
 		0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuController.swift; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customSearchBar.swift; sourceTree = "<group>"; };
+		0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customSearchController.swift; sourceTree = "<group>"; };
+		0AD3F0911DD3202100CC6C36 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		0AD3F0931DD3243400CC6C36 /* addressSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addressSearchViewController.swift; sourceTree = "<group>"; };
 		0AF2CC881DCC6C2B00F87B35 /* signInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signInController.swift; sourceTree = "<group>"; };
 		0AF2CC8A1DCC889D00F87B35 /* string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = string.swift; sourceTree = "<group>"; };
 		0AF2CC8D1DCC8FC800F87B35 /* CONFIG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONFIG.swift; sourceTree = "<group>"; };
@@ -170,6 +178,8 @@
 				0A0D4C051DC9D0A700C4A3F6 /* button.swift */,
 				0A4EB7A91DCE5D2E004A6DE7 /* navBar.swift */,
 				0A0933341DC57CE7001EB52A /* textField.swift */,
+				0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */,
+				0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */,
 				0A4EB7A31DCD787A004A6DE7 /* goBackButton.swift */,
 				0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */,
 				0A4EB7AF1DCE6B5C004A6DE7 /* sideMenuItem.swift */,
@@ -202,6 +212,7 @@
 				0AF2CC8A1DCC889D00F87B35 /* string.swift */,
 				0AF2CC8F1DCC9B8C00F87B35 /* buttons.swift */,
 				0A1454141DD2C0E4001A693B /* UIViewController.swift */,
+				0AD3F0911DD3202100CC6C36 /* UIView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 				0A09332F1DC4A240001EB52A /* Components */,
 				62FB22A71DC26BF10036D02E /* verificationController.swift */,
 				0A1454161DD2C705001A693B /* historyViewController.swift */,
+				0AD3F0931DD3243400CC6C36 /* addressSearchViewController.swift */,
 				0A14541A1DD2C92B001A693B /* settingsViewController.swift */,
 				620364551DC6B01000074F59 /* MapView.swift */,
 				0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */,
@@ -600,7 +612,9 @@
 				0A1454191DD2C8A0001A693B /* messagesViewController.swift in Sources */,
 				0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */,
 				0A1454151DD2C0E4001A693B /* UIViewController.swift in Sources */,
+				0A8B9BC91DD3EF7C00BD8192 /* customSearchBar.swift in Sources */,
 				0A1454171DD2C705001A693B /* historyViewController.swift in Sources */,
+				0AD3F0941DD3243400CC6C36 /* addressSearchViewController.swift in Sources */,
 				0A14541B1DD2C92B001A693B /* settingsViewController.swift in Sources */,
 				0A1454111DD2B4A8001A693B /* tripSchedulingViewController.swift in Sources */,
 				0A1454131DD2B598001A693B /* upcomingTripsViewController.swift in Sources */,
@@ -613,6 +627,7 @@
 				0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */,
 				0A14540F1DD2B3DA001A693B /* tripInfoViewController.swift in Sources */,
 				0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */,
+				0AD3F0921DD3202100CC6C36 /* UIView.swift in Sources */,
 				0AF2CC901DCC9B8C00F87B35 /* buttons.swift in Sources */,
 				0A0933321DC4A331001EB52A /* Colors.swift in Sources */,
 				621813E91DBC327F00C744BD /* SignupPage.swift in Sources */,
@@ -623,6 +638,7 @@
 				0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */,
 				0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */,
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,
+				0A8B9BCB1DD3F08500BD8192 /* customSearchController.swift in Sources */,
 				0A14540A1DD29B14001A693B /* SWRevealViewController.m in Sources */,
 				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
 				0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */,

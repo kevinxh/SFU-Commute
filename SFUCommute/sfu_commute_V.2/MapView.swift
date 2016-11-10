@@ -12,6 +12,7 @@ import Mapbox
 import CoreLocation
 //import SideMenu
 import FontAwesome_swift
+import SwiftyButton
 
 var maximumSpeed:Double = 0.0
 
@@ -116,20 +117,39 @@ struct SpeedDisplay {
     }
 }
 
-
+enum mapViewSteps {
+    case toSetStartLocation
+    case toSetDestination
+    case toTapCreateButton
+}
 
 class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
+    
     let manager = CLLocationManager()
     var firstPoint = true
     var lastCoordinate: CLLocation?
     var lastSpeed = SpeedDisplay(speedMetersPerSecond: 0)
     var currentUnits = speedUnit.metersPerSecond
     
+    var status : mapViewSteps = .toSetStartLocation
+    
+    // UI
+    @IBOutlet var locationBox: UIView!
     @IBOutlet var navItem: UINavigationItem!
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var header2View: UIView!
     @IBOutlet weak var currentUnitsLabel: UILabel!
     @IBOutlet weak var currentSpeedLabel: UILabel!
+    var createTripButton : FlatButton = FlatButton()
+    var locationBoxSearchButton: FlatButton! = FlatButton()
+    let locationBoxIcon = UILabel()
+    let locationBoxLabel = UILabel()
+    let startLocation = UILabel()
+    var locationBox2 = UIView()
+    var locationBox2SearchButton: FlatButton! = FlatButton()
+    let locationBoxIcon2 = UILabel()
+    let locationBoxLabel2 = UILabel()
+    let destination = UILabel()
     
     @IBAction func hiDidGetPressed(_ sender: UIButton) {
         print("hi \(mapView)")
@@ -138,6 +158,8 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavBar()
+        initLocationBox()
+        initButton()
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -145,18 +167,171 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         self.blurTitleViews()
         self.setupMap()
         self.setupLocationManager()
+        mapView.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(locationBox.snp.bottom)
+            make.left.right.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if (status == .toSetStartLocation) {
+            self.navigationItem.prompt = "Please search for start location"
+        } else if (status == .toSetDestination) {
+            appendLocationBox()
+            self.navigationItem.prompt = "Please search for destination"
+        } else if (status == .toTapCreateButton) {
+            self.navigationItem.prompt = nil
+            createTripButton.isEnabled = true
+        }
+    }
+    
+    func initLocationBox() {
+        // initialize button
+        locationBoxSearchButton.tag = 1
+        locationBoxSearchButton.setTitle(String.fontAwesomeIcon(code: "fa-search"), for: .normal)
+        locationBoxSearchButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 32)
+        locationBoxSearchButton.color = Colors.SFURed
+        locationBoxSearchButton.highlightedColor = Colors.SFURedHighlight
+        locationBoxSearchButton.cornerRadius = 10.0
+        locationBoxSearchButton.addTarget(self, action: #selector(self.search(_:)), for: .touchUpInside)
+        self.locationBox.addSubview(locationBoxSearchButton)
+        locationBoxSearchButton.snp.makeConstraints{(make) -> Void in
+            make.height.width.equalTo(locationBox.snp.height).offset(-10)
+            make.right.equalTo(locationBox).offset(-10)
+            make.centerY.equalTo(locationBox)
+        }
+        
+        // initialize icon
+        locationBoxIcon.font = UIFont.fontAwesome(ofSize: 32)
+        locationBoxIcon.text = String.fontAwesomeIcon(code: "fa-map-marker")
+        locationBoxIcon.textColor = Colors.SFURed
+        self.locationBox.addSubview(locationBoxIcon)
+        locationBoxIcon.snp.makeConstraints{(make) -> Void in
+            make.height.width.equalTo(locationBox.snp.height).offset(-32)
+            make.left.equalTo(locationBox).offset(12)
+            make.centerY.equalTo(locationBox)
+        }
+        
+        // initialize label
+        locationBoxLabel.text = "START LOCATION"
+        locationBoxLabel.textAlignment = .left
+        locationBoxLabel.font = UIFont(name: "Futura-Medium", size: 16)!
+        locationBoxLabel.textColor = Colors.SFURed
+        self.locationBox.addSubview(locationBoxLabel)
+        locationBoxLabel.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(150)
+            make.height.equalTo(30)
+            make.left.equalTo(locationBoxIcon.snp.right)
+            make.top.equalTo(locationBox)
+        }
+        
+        // initialize label
+        startLocation.text = ""
+        startLocation.textAlignment = .left
+        startLocation.font = UIFont(name: "Futura-Medium", size: 20)!
+        startLocation.textColor = UIColor.black
+        self.locationBox.addSubview(startLocation)
+        startLocation.snp.makeConstraints{(make) -> Void in
+            make.left.equalTo(locationBoxIcon.snp.right)
+            make.right.equalTo(locationBoxSearchButton.snp.left)
+            make.top.equalTo(locationBoxLabel.snp.bottom).offset(-10)
+            make.bottom.equalTo(locationBox)
+        }
+    }
+    
+    // append second location box programatically
+    // the second location box has the same height and background as the first one
+    func appendLocationBox(){
+        locationBox2 = UIView(frame: CGRect(x: 0, y: locationBox.frame.maxY, width: self.view.frame.width, height: locationBox.frame.height))
+        locationBox2.backgroundColor = locationBox.backgroundColor
+        self.view.addSubview(locationBox2)
+        mapView.snp.remakeConstraints{(make) -> Void in
+            make.top.equalTo(locationBox2.snp.bottom)
+            make.left.right.bottom.equalTo(self.view)
+        }
+        locationBox2.snp.makeConstraints{(make) -> Void in
+            make.left.right.equalTo(self.view)
+            make.top.equalTo(locationBox.snp.bottom)
+            make.height.equalTo(locationBox.frame.height)
+        }
+        
+        // initialize button
+        locationBox2SearchButton.tag = 2
+        locationBox2SearchButton.setTitle(String.fontAwesomeIcon(code: "fa-search"), for: .normal)
+        locationBox2SearchButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 32)
+        locationBox2SearchButton.color = Colors.SFUBlue
+        locationBox2SearchButton.highlightedColor = Colors.SFUBlueHighlight
+        locationBox2SearchButton.cornerRadius = 10.0
+        locationBox2SearchButton.addTarget(self, action: #selector(self.search(_:)), for: .touchUpInside)
+        locationBox2.addSubview(locationBox2SearchButton)
+        locationBox2SearchButton.snp.makeConstraints{(make) -> Void in
+            make.height.width.equalTo(locationBox2.snp.height).offset(-10)
+            make.right.equalTo(locationBox2).offset(-10)
+            make.centerY.equalTo(locationBox2)
+        }
+        
+        // initialize icon
+        locationBoxIcon2.font = UIFont.fontAwesome(ofSize: 32)
+        locationBoxIcon2.text = String.fontAwesomeIcon(code: "fa-map-marker")
+        locationBoxIcon2.textColor = Colors.SFUBlue
+        locationBox2.addSubview(locationBoxIcon2)
+        locationBoxIcon2.snp.makeConstraints{(make) -> Void in
+            make.height.width.equalTo(locationBox2.snp.height).offset(-32)
+            make.left.equalTo(locationBox2).offset(12)
+            make.centerY.equalTo(locationBox2)
+        }
+        
+        // initialize label
+        locationBoxLabel2.text = "DESTINATION"
+        locationBoxLabel2.textAlignment = .left
+        locationBoxLabel2.font = UIFont(name: "Futura-Medium", size: 16)!
+        locationBoxLabel2.textColor = Colors.SFUBlue
+        locationBox2.addSubview(locationBoxLabel2)
+        locationBoxLabel2.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(150)
+            make.height.equalTo(30)
+            make.left.equalTo(locationBoxIcon2.snp.right)
+            make.top.equalTo(locationBox2)
+        }
+        
+        // initialize label
+        destination.text = ""
+        destination.textAlignment = .left
+        destination.font = UIFont(name: "Futura-Medium", size: 20)!
+        destination.textColor = UIColor.black
+        locationBox2.addSubview(destination)
+        destination.snp.makeConstraints{(make) -> Void in
+            make.left.equalTo(locationBoxIcon2.snp.right)
+            make.right.equalTo(locationBox2SearchButton.snp.left)
+            make.top.equalTo(locationBoxLabel2.snp.bottom).offset(-10)
+            make.bottom.equalTo(locationBox2)
+        }
+    }
+    
+    func search(_ sender: Any?) {
+        let data = dataForSearchController(status: self.status, button: (sender as! FlatButton).tag)
+        self.performSegue(withIdentifier: "showSearchAddress", sender: data)
+    }
+
     func initNavBar() {
         let leftBarIconButton = UIBarButtonItem()
         let attributes = [NSFontAttributeName: UIFont.fontAwesome(ofSize: 24)] as [String: Any]
         leftBarIconButton.setTitleTextAttributes(attributes, for: .normal)
         leftBarIconButton.title = String.fontAwesomeIcon(code: "fa-bars")
-        leftBarIconButton.tintColor = UIColor.white
         leftBarIconButton.target = self.revealViewController()
         leftBarIconButton.action = #selector(SWRevealViewController.revealToggle(_:))
         navItem.leftBarButtonItem = leftBarIconButton
         self.mapView.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        revealViewController().rearViewRevealWidth = view.frame.width - 80
+    }
+    
+    func initButton() {
+        createTripButton.SFURedDefault("Create a trip")
+        createTripButton.isEnabled = false
+        //createTripButton.addTarget(self, action: #selector(self.signUpTapped(_:)), for: .touchUpInside)
+        self.view.addSubview(createTripButton)
+        createTripButton.wideBottomConstraints(superview: self.view)
     }
     
     private func locationManager(manager: CLLocationManager,
@@ -194,7 +369,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     func setupMap(){
         mapView.delegate = self
         //MGLStyle.darkStyleURL(withVersion: 1)
-        mapView.styleURL = MGLStyle.darkStyleURL(withVersion: 8)
+        mapView.styleURL = MGLStyle.streetsStyleURL(withVersion: 9)
     }
     
     func setupLocationManager(){
@@ -267,5 +442,14 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         return mapView.tintColor
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showSearchAddress") {
+            let data = sender as! dataForSearchController
+            let search = segue.destination as! addressSearchViewController
+            search.status = data.status
+            search.triggerButton = data.button
+        }
+    }
     
+    @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }
 }
