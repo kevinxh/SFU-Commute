@@ -194,8 +194,17 @@ class MapView: UIViewController, CLLocationManagerDelegate {
         }
         let camera = GMSCameraPosition.camera(withLatitude: 49.253480, longitude: -122.918631, zoom: 12)
         let googlemap = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        if let styleURL = Bundle.main.url(forResource: "style-flat", withExtension: "json") {
-            googlemap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+        googlemap.settings.myLocationButton = true
+        // move my location button up
+        googlemap.padding = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
+        do {
+            if let styleURL = Bundle.main.url(forResource: "style-flat", withExtension: "json") {
+                googlemap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("The style definition could not be loaded: \(error)")
         }
         
         let marker = GMSMarker()
