@@ -135,6 +135,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     @IBOutlet weak var currentUnitsLabel: UILabel!
     @IBOutlet weak var currentSpeedLabel: UILabel!
     var locationBoxSearchButton: FlatButton! = FlatButton()
+    var createTripButton : FlatButton = FlatButton()
     let locationBoxIcon = UILabel()
     let locationBoxLabel = UILabel()
     let startLocation = UILabel()
@@ -147,6 +148,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         super.viewDidLoad()
         initNavBar()
         initLocationBox()
+        initButton()
         //  self.currentUnitsLabel.
         self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
@@ -223,6 +225,14 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         navItem.leftBarButtonItem = leftBarIconButton
         self.mapView.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         revealViewController().rearViewRevealWidth = view.frame.width - 80
+    }
+    
+    func initButton() {
+        createTripButton.SFURedDefault("Create a trip")
+        createTripButton.isEnabled = false
+        //createTripButton.addTarget(self, action: #selector(self.signUpTapped(_:)), for: .touchUpInside)
+        self.view.addSubview(createTripButton)
+        createTripButton.wideBottomConstraints(superview: self.view)
     }
     
     private func locationManager(manager: CLLocationManager,
