@@ -194,15 +194,16 @@ class MapView: UIViewController, CLLocationManagerDelegate {
         }
         let camera = GMSCameraPosition.camera(withLatitude: 49.253480, longitude: -122.918631, zoom: 12)
         let googlemap = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        do {
-            if let styleURL = Bundle.main.url(forResource: "style-flat", withExtension: "json") {
-                googlemap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-            } else {
-                NSLog("Unable to find style.json")
-            }
-        } catch {
-            NSLog("The style definition could not be loaded: \(error)")
+        if let styleURL = Bundle.main.url(forResource: "style-flat", withExtension: "json") {
+            googlemap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
         }
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(49.253480, -122.918631)
+        marker.appearAnimation = kGMSMarkerAnimationPop
+        marker.icon = UIImage(named: "map-marker-red-32")
+        marker.map = googlemap
+        
         mapView.addSubview(googlemap)
         googlemap.snp.makeConstraints{(make) -> Void in
             make.left.right.top.bottom.equalTo(mapView)
