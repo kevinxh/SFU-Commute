@@ -8,12 +8,11 @@
 
 import Foundation
 import UIKit
-import Mapbox
 import CoreLocation
-//import SideMenu
 import FontAwesome_swift
 import SwiftyButton
-
+import GoogleMaps
+/*
 var maximumSpeed:Double = 0.0
 
 
@@ -115,7 +114,7 @@ struct SpeedDisplay {
             return ""
         }
     }
-}
+}*/
 
 enum mapViewSteps {
     case toSetStartLocation
@@ -123,23 +122,26 @@ enum mapViewSteps {
     case toTapCreateButton
 }
 
-class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
-    
+class MapView: UIViewController, CLLocationManagerDelegate {
+    /*
     let manager = CLLocationManager()
     var firstPoint = true
     var lastCoordinate: CLLocation?
     var lastSpeed = SpeedDisplay(speedMetersPerSecond: 0)
     var currentUnits = speedUnit.metersPerSecond
+    @IBOutlet weak var header2View: UIView!
+    @IBOutlet weak var currentUnitsLabel: UILabel!
+    @IBOutlet weak var currentSpeedLabel: UILabel!
+    */
+ 
     
     var status : mapViewSteps = .toSetStartLocation
     
     // UI
     @IBOutlet var locationBox: UIView!
     @IBOutlet var navItem: UINavigationItem!
-    @IBOutlet weak var mapView: MGLMapView!
-    @IBOutlet weak var header2View: UIView!
-    @IBOutlet weak var currentUnitsLabel: UILabel!
-    @IBOutlet weak var currentSpeedLabel: UILabel!
+    @IBOutlet var mapView: UIView!
+    
     var createTripButton : FlatButton = FlatButton()
     var locationBoxSearchButton: FlatButton! = FlatButton()
     let locationBoxIcon = UILabel()
@@ -151,27 +153,21 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     let locationBoxLabel2 = UILabel()
     let destination = UILabel()
     
-    @IBAction func hiDidGetPressed(_ sender: UIButton) {
-        print("hi \(mapView)")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavBar()
         initLocationBox()
         initButton()
+        initMap()
+        
         //  self.currentUnitsLabel.
-        self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
-        _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
-        //     tripDetails.addGestureRecognizer(tap)
-        self.blurTitleViews()
-        self.setupMap()
-        self.setupLocationManager()
-        mapView.snp.makeConstraints{(make) -> Void in
-            make.top.equalTo(locationBox.snp.bottom)
-            make.left.right.bottom.equalTo(self.view)
-            make.right.equalTo(self.view)
-        }
+        /*self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
+         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
+         //     tripDetails.addGestureRecognizer(tap)
+         self.blurTitleViews()
+         self.setupMap()
+         self.setupLocationManager()
+         */
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -183,6 +179,33 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         } else if (status == .toTapCreateButton) {
             self.navigationItem.prompt = nil
             createTripButton.isEnabled = true
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func initMap() {
+        mapView.snp.makeConstraints{(make) -> Void in
+            make.top.equalTo(locationBox.snp.bottom)
+            make.left.right.bottom.equalTo(self.view)
+        }
+        let camera = GMSCameraPosition.camera(withLatitude: 49.253480, longitude: -122.918631, zoom: 12)
+        let googlemap = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        do {
+            if let styleURL = Bundle.main.url(forResource: "style-flat", withExtension: "json") {
+                googlemap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("The style definition could not be loaded: \(error)")
+        }
+        mapView.addSubview(googlemap)
+        googlemap.snp.makeConstraints{(make) -> Void in
+            make.left.right.top.bottom.equalTo(mapView)
         }
     }
     
@@ -334,6 +357,23 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         createTripButton.wideBottomConstraints(superview: self.view)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showSearchAddress") {
+            let data = sender as! dataForSearchController
+            let search = segue.destination as! addressSearchViewController
+            search.status = data.status
+            search.triggerButton = data.button
+        }
+    }
+    
+    @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }
+    
+    /*
+    @IBAction func hiDidGetPressed(_ sender: UIButton) {
+        print("hi \(mapView)")
+    }
+    
+    
     private func locationManager(manager: CLLocationManager,
                                  didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {
@@ -344,10 +384,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if firstPoint {
@@ -441,15 +478,5 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         // Fallback to the default tint color.
         return mapView.tintColor
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showSearchAddress") {
-            let data = sender as! dataForSearchController
-            let search = segue.destination as! addressSearchViewController
-            search.status = data.status
-            search.triggerButton = data.button
-        }
-    }
-    
-    @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }
+    */
 }

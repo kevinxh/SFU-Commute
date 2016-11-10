@@ -2,7 +2,13 @@ PODS:
   - Alamofire (4.0.1)
   - EasyTipView (1.0.2)
   - FontAwesome.swift (1.0.0)
-  - Mapbox-iOS-SDK (3.3.4)
+  - GoogleMaps (2.1.0):
+    - GoogleMaps/Maps (= 2.1.0)
+  - GoogleMaps/Base (2.1.0)
+  - GoogleMaps/Maps (2.1.0):
+    - GoogleMaps/Base (= 2.1.0)
+  - GooglePlaces (2.1.0):
+    - GoogleMaps/Base (= 2.1.0)
   - SnapKit (3.0.2)
   - SwiftyButton (0.6.0)
   - SwiftyJSON (3.1.1)
@@ -11,7 +17,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - EasyTipView (~> 1.0.2)
   - FontAwesome.swift (~> 1.0.0)
-  - Mapbox-iOS-SDK (~> 3.3.4)
+  - GoogleMaps
+  - GooglePlaces
   - SnapKit (~> 3.0.2)
   - SwiftyButton
   - SwiftyJSON
@@ -20,11 +27,12 @@ SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
-  Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
+  GoogleMaps: 06589b9a38097bce0cd6e90f0fd9b5e4b4a9344c
+  GooglePlaces: 16e96266483b8010e9f275399403647978523c86
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftyButton: 4c9b61c499f172971a1b8c2eebbbdc20a26d8a08
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: 060f6add5842b1cfe3d573b593431cea445b23c7
+PODFILE CHECKSUM: c6334b4f5f87dec1888e36fd1aee9ae79d5e2c72
 
 COCOAPODS: 1.2.0.beta.1
