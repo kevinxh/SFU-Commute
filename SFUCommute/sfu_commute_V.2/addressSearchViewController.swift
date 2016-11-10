@@ -48,7 +48,7 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
             for subsubView in subView.subviews  {
                 if let textField = subsubView as? UITextField {
                     textField.backgroundColor = Colors.SFUBlue.withAlphaComponent(0.5)
-                    textField.attributedPlaceholder = NSAttributedString(string: "Search addresses...", attributes: [NSForegroundColorAttributeName: UIColor.white])
+                    textField.attributedPlaceholder = NSAttributedString(string: "Search addresses...", attributes: [NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
                     textField.textColor = UIColor.white
                     textField.font = UIFont(name: "Futura", size: 16.0)!
                     let icon = textField.leftView as! UIImageView
@@ -114,6 +114,8 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressSearchResultCells", for: indexPath)
+        cell.textLabel?.font = UIFont(name: "Futura", size: 24.0)!
+        
         if shouldShowSearchResults {
             cell.textLabel?.text = filteredArray[indexPath.row]
         }
@@ -125,5 +127,17 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print((tableView.cellForRow(at: indexPath)?.textLabel?.text)! as String)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "unwindToMapViewFromSearch") {
+            let location = (sender as! UITableViewCell).textLabel?.text
+            let mapview = segue.destination as! MapView
+            mapview.startLocation.text = location
+        }
     }
 }

@@ -137,6 +137,7 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
     var locationBoxSearchButton: FlatButton! = FlatButton()
     let locationBoxIcon = UILabel()
     let locationBoxLabel = UILabel()
+    let startLocation = UILabel()
     
     @IBAction func hiDidGetPressed(_ sender: UIButton) {
         print("hi \(mapView)")
@@ -192,6 +193,19 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
             make.height.equalTo(30)
             make.left.equalTo(locationBoxIcon.snp.right)
             make.top.equalTo(locationBox)
+        }
+        
+        // initialize label
+        startLocation.text = ""
+        startLocation.textAlignment = .left
+        startLocation.font = UIFont(name: "Futura-Medium", size: 20)!
+        startLocation.textColor = UIColor.black
+        self.locationBox.addSubview(startLocation)
+        startLocation.snp.makeConstraints{(make) -> Void in
+            make.left.equalTo(locationBoxIcon.snp.right)
+            make.right.equalTo(locationBoxSearchButton.snp.left)
+            make.top.equalTo(locationBoxLabel.snp.bottom).offset(-10)
+            make.bottom.equalTo(locationBox)
         }
     }
     
@@ -319,5 +333,5 @@ class MapView: UIViewController, CLLocationManagerDelegate,MGLMapViewDelegate {
         return mapView.tintColor
     }
     
-    
+    @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }
 }
