@@ -123,7 +123,7 @@ enum mapViewSteps {
     case toTapCreateButton
 }
 
-class MapView: UIViewController, CLLocationManagerDelegate {
+class MapView: UIViewController, GMSMapViewDelegate {
     /*
     let manager = CLLocationManager()
     var firstPoint = true
@@ -175,15 +175,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if (status == .toSetStartLocation) {
-            self.navigationItem.prompt = "Please search for start location"
-        } else if (status == .toSetDestination) {
-            appendLocationBox()
-            self.navigationItem.prompt = "Please search for destination"
-        } else if (status == .toTapCreateButton) {
-            self.navigationItem.prompt = nil
-            createTripButton.isEnabled = true
-        }
+        updateStatus()
     }
     
     override func didReceiveMemoryWarning() {
@@ -196,8 +188,10 @@ class MapView: UIViewController, CLLocationManagerDelegate {
             make.top.equalTo(locationBox.snp.bottom)
             make.left.right.bottom.equalTo(self.view)
         }
+        mapView.clipsToBounds = true
         let camera = GMSCameraPosition.camera(withLatitude: 49.253480, longitude: -122.918631, zoom: 12)
         googlemap = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        googlemap.delegate = self
         googlemap.settings.myLocationButton = true
         googlemap.isMyLocationEnabled = true
         // move my location button up
@@ -215,6 +209,19 @@ class MapView: UIViewController, CLLocationManagerDelegate {
         mapView.addSubview(googlemap)
         googlemap.snp.makeConstraints{(make) -> Void in
             make.left.right.top.bottom.equalTo(mapView)
+        }
+    }
+    
+    func updateStatus() {
+        infoWindow.removeFromSuperview()
+        if (status == .toSetStartLocation) {
+            self.navigationItem.prompt = "Please search for start location"
+        } else if (status == .toSetDestination) {
+            appendLocationBox()
+            self.navigationItem.prompt = "Please search for destination"
+        } else if (status == .toTapCreateButton) {
+            self.navigationItem.prompt = nil
+            createTripButton.isEnabled = true
         }
     }
     
@@ -237,8 +244,8 @@ class MapView: UIViewController, CLLocationManagerDelegate {
                 marker.position = CLLocationCoordinate2DMake(location.lat, location.lon)
                 marker.appearAnimation = kGMSMarkerAnimationPop
                 marker.icon = UIImage(named: "map-marker-pre-location-16")
-                marker.title = location.name
-                marker.snippet = "Zone: " + location.zone.rawValue
+                marker.userData = location
+                marker.infoWindowAnchor = CGPoint(x: 0.5, y: -0.5)
                 marker.opacity = 0.8
                 marker.map = googlemap
             }
@@ -247,6 +254,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     
     func switchRole(_ sender: Any?){
         googlemap.clear()
+        infoWindow.removeFromSuperview()
         renderPreDeterminedLocations()
     }
     
@@ -309,6 +317,8 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     func appendLocationBox(){
         locationBox2 = UIView(frame: CGRect(x: 0, y: locationBox.frame.maxY, width: self.view.frame.width, height: locationBox.frame.height))
         locationBox2.backgroundColor = locationBox.backgroundColor
+        locationBox2.bottomBorder = 1.0
+        locationBox2.VborderColor = UIColor.darkGray
         self.view.addSubview(locationBox2)
         mapView.snp.remakeConstraints{(make) -> Void in
             make.top.equalTo(locationBox2.snp.bottom)
@@ -408,6 +418,84 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }
+    
+    // MARK: google map delegate
+    
+    // initialize and keep a marker
+    var tappedMarker = GMSMarker()
+    var infoWindow = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100), status: .toSetStartLocation)
+    
+    //empty the default infowindow
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        return UIView()
+    }
+    
+    // create custom infowindow whenever marker is tapped
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        let location = CLLocationCoordinate2D(latitude: (marker.userData as! location).lat, longitude: (marker.userData as! location).lon)
+        
+        tappedMarker = marker
+        infoWindow.removeFromSuperview()
+        infoWindow = mapMarkerInfoWindow(frame: CGRect(x: 0, y: 0, width: 200, height: 100), status: self.status)
+        infoWindow.Name.text = (marker.userData as! location).name
+        infoWindow.Price.text = (marker.userData as! location).price.description
+        infoWindow.Zone.text = (marker.userData as! location).zone.rawValue
+        infoWindow.center = mapView.projection.point(for: location)
+        if (status == .toSetStartLocation) {
+            infoWindow.center.y += 80
+            infoWindow.onlyButton.addTarget(self, action: #selector(setStartLocation(_:)), for: .touchUpInside)
+        } else {
+            if (status == .toSetDestination) {
+                infoWindow.center.y += 140
+            } else {
+                infoWindow.center.y += 110
+            }
+            
+            infoWindow.leftButton.addTarget(self, action: #selector(setStartLocation(_:)), for: .touchUpInside)
+            infoWindow.rightButton.addTarget(self, action: #selector(setDestination(_:)), for: .touchUpInside)
+        }
+        self.view.addSubview(infoWindow)
+        return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        if (tappedMarker.userData != nil){
+            let location = CLLocationCoordinate2D(latitude: (tappedMarker.userData as! location).lat, longitude: (tappedMarker.userData as! location).lon)
+            infoWindow.center = mapView.projection.point(for: location)
+            // weird offset
+            if (status == .toSetStartLocation) {
+                infoWindow.center.y += 80
+            } else if (status == .toSetDestination){
+                infoWindow.center.y += 140
+            } else {
+                infoWindow.center.y += 110
+            }
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        infoWindow.removeFromSuperview()
+    }
+    
+    func setStartLocation(_ sender: Any?) {
+        startLocation.text = (tappedMarker.userData as! location).name
+        if(status == .toSetStartLocation) {
+            status = .toSetDestination
+            updateStatus()
+        } else {
+            infoWindow.removeFromSuperview()
+        }
+    }
+    
+    func setDestination(_ sender: Any?) {
+        destination.text = (tappedMarker.userData as! location).name
+        if(status == .toSetDestination) {
+            status = .toTapCreateButton
+            updateStatus()
+        } else {
+            infoWindow.removeFromSuperview()
+        }
+    }
     
     /*
     @IBAction func hiDidGetPressed(_ sender: UIButton) {
