@@ -12,6 +12,7 @@ import CoreLocation
 import FontAwesome_swift
 import SwiftyButton
 import GoogleMaps
+import DGRunkeeperSwitch
 /*
 var maximumSpeed:Double = 0.0
 
@@ -141,6 +142,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var locationBox: UIView!
     @IBOutlet var navItem: UINavigationItem!
     @IBOutlet var mapView: UIView!
+    var googlemap : GMSMapView = GMSMapView()
     
     var createTripButton : FlatButton = FlatButton()
     var locationBoxSearchButton: FlatButton! = FlatButton()
@@ -152,6 +154,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
     let locationBoxIcon2 = UILabel()
     let locationBoxLabel2 = UILabel()
     let destination = UILabel()
+    let roleSwitch = DGRunkeeperSwitch(titles: ["Request a ride", "Offer a ride"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,6 +162,7 @@ class MapView: UIViewController, CLLocationManagerDelegate {
         initLocationBox()
         initButton()
         initMap()
+        initSwitch()
         
         //  self.currentUnitsLabel.
         /*self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
@@ -193,8 +197,9 @@ class MapView: UIViewController, CLLocationManagerDelegate {
             make.left.right.bottom.equalTo(self.view)
         }
         let camera = GMSCameraPosition.camera(withLatitude: 49.253480, longitude: -122.918631, zoom: 12)
-        let googlemap = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        googlemap = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         googlemap.settings.myLocationButton = true
+        googlemap.isMyLocationEnabled = true
         // move my location button up
         googlemap.padding = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
         do {
@@ -206,17 +211,43 @@ class MapView: UIViewController, CLLocationManagerDelegate {
         } catch {
             NSLog("The style definition could not be loaded: \(error)")
         }
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(49.253480, -122.918631)
-        marker.appearAnimation = kGMSMarkerAnimationPop
-        marker.icon = UIImage(named: "map-marker-red-32")
-        marker.map = googlemap
-        
+        renderPreDeterminedLocations()
         mapView.addSubview(googlemap)
         googlemap.snp.makeConstraints{(make) -> Void in
             make.left.right.top.bottom.equalTo(mapView)
         }
+    }
+    
+    func initSwitch(){
+        roleSwitch.backgroundColor = Colors.SFUBlue
+        roleSwitch.selectedBackgroundColor = .white
+        roleSwitch.titleColor = .white
+        roleSwitch.selectedTitleColor = Colors.SFUBlue
+        roleSwitch.titleFont = UIFont(name: "Futura-Medium", size: 13.0)
+        roleSwitch.frame = CGRect(x: 30.0, y: 40.0, width: 200.0, height: 30.0)
+        roleSwitch.addTarget(self, action: #selector(self.switchRole(_:)), for: .valueChanged)
+        navigationItem.titleView = roleSwitch
+    }
+    
+    func renderPreDeterminedLocations() {
+        googlemap.clear()
+        if (roleSwitch.selectedIndex == 0){
+            for location in preDeterminedLocations {
+                let marker = GMSMarker()
+                marker.position = CLLocationCoordinate2DMake(location.lat, location.lon)
+                marker.appearAnimation = kGMSMarkerAnimationPop
+                marker.icon = UIImage(named: "map-marker-pre-location-16")
+                marker.title = location.name
+                marker.snippet = "Zone: " + location.zone.rawValue
+                marker.opacity = 0.8
+                marker.map = googlemap
+            }
+        }
+    }
+    
+    func switchRole(_ sender: Any?){
+        googlemap.clear()
+        renderPreDeterminedLocations()
     }
     
     func initLocationBox() {

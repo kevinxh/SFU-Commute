@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
+  - DGRunkeeperSwitch (1.1.4)
   - EasyTipView (1.0.2)
   - FontAwesome.swift (1.0.0)
   - GoogleMaps (2.1.0):
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - DGRunkeeperSwitch (~> 1.1.4)
   - EasyTipView (~> 1.0.2)
   - FontAwesome.swift (~> 1.0.0)
   - GoogleMaps
@@ -25,6 +27,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  DGRunkeeperSwitch: cc237936f42237307f5e212e18136a27bf907bf1
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   GoogleMaps: 06589b9a38097bce0cd6e90f0fd9b5e4b4a9344c
@@ -33,6 +36,6 @@ SPEC CHECKSUMS:
   SwiftyButton: 4c9b61c499f172971a1b8c2eebbbdc20a26d8a08
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: c6334b4f5f87dec1888e36fd1aee9ae79d5e2c72
+PODFILE CHECKSUM: 8aba19142d3db5cdbe4ea80085dbba8c0513982d
 
 COCOAPODS: 1.2.0.beta.1

@@ -28,6 +28,7 @@
 		0A4EB7B21DCE6B5C004A6DE7 /* sideMenuItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */; };
 		0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */; };
 		0A4EB7B61DCE823F004A6DE7 /* sideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */; };
+		0A7893FE1DD556DD006C296A /* locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7893FD1DD556DD006C296A /* locations.swift */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
 		0A8B9BC91DD3EF7C00BD8192 /* customSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */; };
 		0A8B9BCB1DD3F08500BD8192 /* customSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */; };
@@ -109,6 +110,7 @@
 		0A4EB7B01DCE6B5C004A6DE7 /* sideMenuItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sideMenuItem.xib; sourceTree = "<group>"; };
 		0A4EB7B31DCE81F8004A6DE7 /* sideMenuNavTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuNavTable.swift; sourceTree = "<group>"; };
 		0A4EB7B51DCE823F004A6DE7 /* sideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuController.swift; sourceTree = "<group>"; };
+		0A7893FD1DD556DD006C296A /* locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locations.swift; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customSearchBar.swift; sourceTree = "<group>"; };
 		0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customSearchController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0933311DC4A331001EB52A /* Colors.swift */,
+				0A7893FD1DD556DD006C296A /* locations.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,
 				0A8B9BCB1DD3F08500BD8192 /* customSearchController.swift in Sources */,
 				0A14540A1DD29B14001A693B /* SWRevealViewController.m in Sources */,
+				0A7893FE1DD556DD006C296A /* locations.swift in Sources */,
 				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
 				0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */,
 			);
