@@ -156,7 +156,7 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressSearchResultCells", for: indexPath)
-        cell.textLabel?.font = UIFont(name: "Futura", size: 18.0)!
+        cell.textLabel?.font = UIFont(name: "Roboto-Regular", size: 18.0)!
         if (role == .request){
             if shouldShowSearchResults {
                 cell.textLabel?.text = filteredPre[indexPath.row].name
@@ -164,8 +164,6 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
             else {
                 cell.textLabel?.text = pre[indexPath.row].name
             }
-            
-            // for map
         } else {
             cell.textLabel?.text = googlePlaceSearchResult[indexPath.row].attributedFullText.string
         }
