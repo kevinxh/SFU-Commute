@@ -10,9 +10,13 @@ import UIKit
 
 class tripInfoViewController: UIViewController {
 
+
+    @IBOutlet var DriverInfoScrollView: [UIScrollView]!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        DriverInfoScroll.contentSize.height = 1000
+        
         // Do any additional setup after loading the view.
     }
 
