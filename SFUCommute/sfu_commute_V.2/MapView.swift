@@ -13,6 +13,8 @@ import FontAwesome_swift
 import SwiftyButton
 import GoogleMaps
 import DGRunkeeperSwitch
+import Alamofire
+import SwiftyJSON
 /*
 var maximumSpeed:Double = 0.0
 
@@ -123,6 +125,11 @@ enum mapViewSteps {
     case toTapCreateButton
 }
 
+enum role : String{
+    case request
+    case offer
+}
+
 class MapView: UIViewController, GMSMapViewDelegate {
     /*
     let manager = CLLocationManager()
@@ -135,7 +142,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var currentSpeedLabel: UILabel!
     */
  
-    
+    var role : role = .request
     var status : mapViewSteps = .toSetStartLocation
     
     // UI
@@ -154,7 +161,12 @@ class MapView: UIViewController, GMSMapViewDelegate {
     let locationBoxIcon2 = UILabel()
     let locationBoxLabel2 = UILabel()
     let destination = UILabel()
-    let roleSwitch = DGRunkeeperSwitch(titles: ["Request a ride", "Offer a ride"])
+    let roleSwitch = DGRunkeeperSwitch(titles: ["Request a ride" , "Offer a ride"])
+    
+    var offerStart = GMSMarker()
+    var offerDestination = GMSMarker()
+    var offerRoute = GMSPolyline()
+    var emptyMarker = GMSMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,19 +175,21 @@ class MapView: UIViewController, GMSMapViewDelegate {
         initButton()
         initMap()
         initSwitch()
-        
-        //  self.currentUnitsLabel.
-        /*self.currentUnitsLabel.text = lastSpeed.labelForUnit(units: self.currentUnits)
-         _ = UITapGestureRecognizer(target: self, action: Selector(("tapFunction:")))
-         //     tripDetails.addGestureRecognizer(tap)
-         self.blurTitleViews()
-         self.setupMap()
-         self.setupLocationManager()
-         */
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateStatus()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        if (offerStart.position.latitude != emptyMarker.position.latitude && offerDestination.position.latitude == emptyMarker.position.latitude){
+            animateStart()
+        }
+        if (offerStart.position.latitude != emptyMarker.position.latitude && offerDestination.position.latitude != emptyMarker.position.latitude){
+            drawRoute()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -225,6 +239,34 @@ class MapView: UIViewController, GMSMapViewDelegate {
         }
     }
     
+    func animateStart(){
+        googlemap.animate(with: GMSCameraUpdate.setTarget(offerStart.position, zoom: 13))
+    }
+    
+    func drawRoute() {
+        offerRoute.map = nil
+        let parameters : Parameters = [
+            "origin": "\(offerStart.position.latitude),\(offerStart.position.longitude)",
+            "destination": "\(offerDestination.position.latitude),\(offerDestination.position.longitude)",
+            "key": "AIzaSyAJF2MhJpuiPLRB9l_o7Zlp2v9Wj6Hv0rU"
+        ]
+        Alamofire.request("https://maps.googleapis.com/maps/api/directions/json", method: .get, parameters: parameters).responseJSON { response in
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                if (json["status"] == "OK") {
+                    self.offerRoute = GMSPolyline.init(path: GMSPath.init(fromEncodedPath: json["routes"][0]["overview_polyline"]["points"].stringValue))
+                    self.offerRoute.strokeColor = Colors.SFUBlue
+                    self.offerRoute.strokeWidth = 2.5
+                    self.offerRoute.map = self.googlemap
+                    self.googlemap.animate(with: GMSCameraUpdate.fit(GMSCoordinateBounds.init(path: GMSPath.init(fromEncodedPath: json["routes"][0]["overview_polyline"]["points"].stringValue)!), with: UIEdgeInsetsMake(120, 50, 120, 50)))
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func initSwitch(){
         roleSwitch.backgroundColor = Colors.SFUBlue
         roleSwitch.selectedBackgroundColor = .white
@@ -243,7 +285,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
                 let marker = GMSMarker()
                 marker.position = CLLocationCoordinate2DMake(location.lat, location.lon)
                 marker.appearAnimation = kGMSMarkerAnimationPop
-                marker.icon = UIImage(named: "map-marker-pre-location-16")
+                marker.icon = UIImage(named: "map-man-red-64")
                 marker.userData = location
                 marker.infoWindowAnchor = CGPoint(x: 0.5, y: -0.5)
                 marker.opacity = 0.8
@@ -253,9 +295,16 @@ class MapView: UIViewController, GMSMapViewDelegate {
     }
     
     func switchRole(_ sender: Any?){
+        startLocation.text = ""
+        destination.text = ""
         googlemap.clear()
         infoWindow.removeFromSuperview()
         renderPreDeterminedLocations()
+        if (role == .request) {
+            role = .offer
+        } else {
+            role = .request
+        }
     }
     
     func initLocationBox() {
@@ -301,7 +350,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
         // initialize label
         startLocation.text = ""
         startLocation.textAlignment = .left
-        startLocation.font = UIFont(name: "Futura-Medium", size: 20)!
+        startLocation.font = UIFont(name: "Futura-Medium", size: 18)!
         startLocation.textColor = UIColor.black
         self.locationBox.addSubview(startLocation)
         startLocation.snp.makeConstraints{(make) -> Void in
@@ -372,7 +421,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
         // initialize label
         destination.text = ""
         destination.textAlignment = .left
-        destination.font = UIFont(name: "Futura-Medium", size: 20)!
+        destination.font = UIFont(name: "Futura-Medium", size: 18)!
         destination.textColor = UIColor.black
         locationBox2.addSubview(destination)
         destination.snp.makeConstraints{(make) -> Void in
@@ -384,7 +433,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
     }
     
     func search(_ sender: Any?) {
-        let data = dataForSearchController(status: self.status, button: (sender as! FlatButton).tag)
+        let data = dataForSearchController(status: self.status, role: self.role, button: (sender as! FlatButton).tag)
         self.performSegue(withIdentifier: "showSearchAddress", sender: data)
     }
 
@@ -413,7 +462,11 @@ class MapView: UIViewController, GMSMapViewDelegate {
             let data = sender as! dataForSearchController
             let search = segue.destination as! addressSearchViewController
             search.status = data.status
+            search.role = data.role
             search.triggerButton = data.button
+            print(search.status)
+            print(search.role)
+            print(search.triggerButton)
         }
     }
     

@@ -37,7 +37,7 @@ struct location {
     var price : Decimal
 }
 
-let preDeterminedLocations : Set<location> = [
+let preDeterminedLocations : [location] = [
     location(id: 0, lat: 49.281019, lon: -123.0031033, name: "Hastings - Willingdon", zone: .A, price: 2.0),
     location(id: 1, lat: 49.2756237, lon: -123.0032437, name: "Parker - Willingdon", zone: .C, price: 2.0),
     location(id: 2, lat: 49.2664946, lon: -123.0031278, name: "Brentwood Skytrain Station", zone: .C, price: 2.0),

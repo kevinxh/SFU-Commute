@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 struct dataForSearchController{
     var status : mapViewSteps
+    var role : role
     var button : Int
 }
 
@@ -20,10 +23,14 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     var CustomSearchController: customSearchController!
     
     var status : mapViewSteps = .toSetStartLocation
-    var dataArray : [String] = ["Gaglardi - Broadway", "Hastings - Willingdon", "Production Skytrain Station"]
-    var filteredArray = [String]()
-    var shouldShowSearchResults = false
     
+    let pre = preDeterminedLocations
+    var filteredPre = [location]()
+    
+    var googlePlaceSearchResult = [GMSAutocompletePrediction!]()
+
+    var shouldShowSearchResults = false
+    var role : role = .request
     var triggerButton : Int = 1
 
     override func viewDidLoad() {
@@ -69,66 +76,98 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
         searchController.hidesNavigationBarDuringPresentation = false
     }
     
-    /*func configureCustomSearchController() {
-        CustomSearchController = customSearchController(searchResultsController: self, searchBarFrame: CGRect(x: 0.0, y: 0.0, width: searchResults.frame.size.width, height: 50.0), searchBarFont: UIFont(name: "Futura", size: 16.0)!, searchBarTextColor: Colors.SFURed, searchBarTintColor: Colors.SFUBlue)
-        CustomSearchController.hidesNavigationBarDuringPresentation = false
-        CustomSearchController.search.placeholder = "Search in this awesome bar..."
-        self.navigationItem.titleView = CustomSearchController.search
-    }*/
-    
     // MARK: UISearchBarDelegate functions
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        shouldShowSearchResults = true
-        searchResults.reloadData()
+        if(role == .request){
+            shouldShowSearchResults = true
+            searchResults.reloadData()
+        }
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(role == .offer) {
+            let placeClient = GMSPlacesClient()
+            let greatVancouver = GMSCoordinateBounds.init(coordinate: CLLocationCoordinate2DMake(49.411800, -122.210651), coordinate: CLLocationCoordinate2DMake(49.005486, -123.324340))
+            
+            placeClient.autocompleteQuery(searchText, bounds: greatVancouver, filter: nil, callback: { (places, err) -> Void in
+                self.googlePlaceSearchResult.removeAll()
+                guard err == nil else {
+                    print("Autocomplete error: \(err)")
+                    return
+                }
+                
+                for place in places! {
+                    self.googlePlaceSearchResult.append(place)
+                    self.searchResults.reloadData()
+                }
+            })
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        shouldShowSearchResults = false
-        searchResults.reloadData()
+        if(role == .request){
+            shouldShowSearchResults = false
+            searchResults.reloadData()
+        }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    /*func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
             searchResults.reloadData()
         }
         searchController.searchBar.resignFirstResponder()
-    }
+    }*/
     
     // MARK: UISearchResultsUpdating functions
     
     func updateSearchResults(for: UISearchController) {
+        if(role == .request){
         let searchString = searchController.searchBar.text!
         
-        // Filter the data array and get only those countries that match the search text.
-        filteredArray = dataArray.filter({ (address) -> Bool in
-            let addressText : NSString = address as NSString
+        // Filter the data array and get only those items that match the search text.
+        filteredPre = pre.filter({ (location) -> Bool in
+            let addressText : NSString = location.name as NSString
             return (addressText.range(of: searchString, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
         })
         
         // Reload the tableview.
         searchResults.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if shouldShowSearchResults {
-            return filteredArray.count
+        var rows = 0
+        if(role == .request) {
+            if shouldShowSearchResults {
+                rows = filteredPre.count
+            }
+            else {
+                rows = pre.count
+            }
+            //for map!
+        } else {
+            rows = googlePlaceSearchResult.count
         }
-        else {
-            return dataArray.count
-        }
+        return rows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressSearchResultCells", for: indexPath)
-        cell.textLabel?.font = UIFont(name: "Futura", size: 24.0)!
-        
-        if shouldShowSearchResults {
-            cell.textLabel?.text = filteredArray[indexPath.row]
-        }
-        else {
-            cell.textLabel?.text = dataArray[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Futura", size: 18.0)!
+        if (role == .request){
+            if shouldShowSearchResults {
+                cell.textLabel?.text = filteredPre[indexPath.row].name
+            }
+            else {
+                cell.textLabel?.text = pre[indexPath.row].name
+            }
+            
+            // for map
+        } else {
+            cell.textLabel?.text = googlePlaceSearchResult[indexPath.row].attributedFullText.string
         }
         return cell
     }
@@ -138,24 +177,67 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print((tableView.cellForRow(at: indexPath)?.textLabel?.text)! as String)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let index = searchResults.indexPathForSelectedRow?.row
         if (segue.identifier == "unwindToMapViewFromSearch") {
             let location = (sender as! UITableViewCell).textLabel?.text
             let mapview = segue.destination as! MapView
             
             if (triggerButton == 1) {
                 mapview.startLocation.text = location
+                if (status == .toSetStartLocation) {
+                    mapview.status = .toSetDestination
+                }
             } else if (triggerButton == 2) {
                 mapview.destination.text = location
-            }
-            
-            if (status == .toSetStartLocation) {
-                mapview.status = .toSetDestination
-            } else if (status == .toSetDestination) {
                 mapview.status = .toTapCreateButton
+            }
+            if(role == .offer){
+                if (triggerButton == 1 ) {
+                    let placeClient = GMSPlacesClient()
+                    let placeID = googlePlaceSearchResult[index!].placeID!
+                    placeClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
+                        if let error = error {
+                            print("lookup place id query error: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        if let place = place {
+                            mapview.offerStart.position = place.coordinate
+                            mapview.offerStart.appearAnimation = kGMSMarkerAnimationPop
+                            mapview.offerStart.icon = UIImage(named: "map-marker-red-128")
+                            mapview.offerStart.infoWindowAnchor = CGPoint(x: 0.5, y: -0.5)
+                            mapview.offerStart.opacity = 0.95
+                            mapview.offerStart.map = mapview.googlemap
+                        } else {
+                            print("No place details for \(placeID)")
+                        }
+                    })
+                } else if (triggerButton == 2){
+                    let placeClient = GMSPlacesClient()
+                    let placeID = googlePlaceSearchResult[index!].placeID!
+                    placeClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
+                        if let error = error {
+                            print("lookup place id query error: \(error.localizedDescription)")
+                            return
+                        }
+                        
+                        if let place = place {
+                            mapview.offerDestination.position = place.coordinate
+                            print("set offer destin!")
+                            mapview.offerDestination.appearAnimation = kGMSMarkerAnimationPop
+                            mapview.offerDestination.icon = UIImage(named: "map-marker-blue-128")
+                            mapview.offerDestination.infoWindowAnchor = CGPoint(x: 0.5, y: -0.5)
+                            mapview.offerDestination.opacity = 0.95
+                            mapview.offerDestination.map = mapview.googlemap
+                        } else {
+                            print("No place details for \(placeID)")
+                        }
+                    })
+                }
             }
         }
     }
