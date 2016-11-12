@@ -79,10 +79,7 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: UISearchBarDelegate functions
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        if(role == .request){
-            shouldShowSearchResults = true
-            searchResults.reloadData()
-        }
+        
         
     }
     
@@ -103,6 +100,15 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
                     self.searchResults.reloadData()
                 }
             })
+        }
+        if(role == .request){
+            if(searchBar.text?.characters.count != 0){
+                shouldShowSearchResults = true
+                searchResults.reloadData()
+            } else {
+                shouldShowSearchResults = false
+                searchResults.reloadData()
+            }
         }
     }
     
