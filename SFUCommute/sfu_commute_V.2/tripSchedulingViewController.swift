@@ -31,5 +31,8 @@ class tripSchedulingViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBOutlet weak var dateAndTime: UIDatePicker!
+    //Need date picker to only show current date + 7 days ahead. no past dates.
 
 }
