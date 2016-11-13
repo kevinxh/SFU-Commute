@@ -485,6 +485,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
     
     // create custom infowindow whenever marker is tapped
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        if (role == .request){
         let location = CLLocationCoordinate2D(latitude: (marker.userData as! location).lat, longitude: (marker.userData as! location).lon)
         
         tappedMarker = marker
@@ -508,6 +509,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
             infoWindow.rightButton.addTarget(self, action: #selector(setDestination(_:)), for: .touchUpInside)
         }
         self.view.addSubview(infoWindow)
+        }
         return false
     }
     
