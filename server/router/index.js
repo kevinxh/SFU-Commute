@@ -1,6 +1,7 @@
 import express from 'express'
 import passport from 'passport'
 import authenticationRouter from './authenticationRouter'
+import rideRouter from './rideRouter'
 
 const router = express.Router()
 
@@ -9,5 +10,6 @@ router.get('/', function (req, res) {
 })
 
 router.use('/', authenticationRouter)
+router.use('/', rideRouter)
 
 export default router
