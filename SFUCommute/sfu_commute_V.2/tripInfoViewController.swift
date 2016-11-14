@@ -15,7 +15,7 @@ class tripInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DriverInfoScroll.contentSize.height = 1000
+        //DriverInfoScroll.contentSize.height = 1000
         
         // Do any additional setup after loading the view.
     }
