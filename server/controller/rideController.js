@@ -6,7 +6,7 @@ import path from 'path'
 import config from '../config/secret'
 
 export function OfferRide(req, res) {
-  let { startlocation, destination, seats } = req.body
+  let { startlocation, destination, seats, ride_time, ride_date } = req.body
   if (!startlocation) {
     return res.status(400).json({
       success: false,
@@ -22,13 +22,24 @@ export function OfferRide(req, res) {
       success: false,
       error: 'Please enter the number of seats available.',
     })
+  } else if (!ride_time) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter the time.',
+    })
+  } else if (!ride_date) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter the date you want to schedule the ride at.',
+    })
   }
   const ride = new Ride({
     startlocation,
     destination,
-    seats
+    seats,
+    ride_time,
+    ride_date
   })
-  console.log("")
   ride.save((error) => {
     if (error) {
       return  res.status(403).json({
