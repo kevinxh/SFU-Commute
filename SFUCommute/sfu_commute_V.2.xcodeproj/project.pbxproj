@@ -16,7 +16,7 @@
 		0A14540A1DD29B14001A693B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454091DD29B14001A693B /* SWRevealViewController.m */; };
 		0A14540D1DD2B2E3001A693B /* browseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14540C1DD2B2E3001A693B /* browseViewController.swift */; };
 		0A14540F1DD2B3DA001A693B /* tripInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14540E1DD2B3DA001A693B /* tripInfoViewController.swift */; };
-		0A1454111DD2B4A8001A693B /* tripSchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454101DD2B4A8001A693B /* tripSchedulingViewController.swift */; };
+		0A1454111DD2B4A8001A693B /* tripSchedulingDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454101DD2B4A8001A693B /* tripSchedulingDriverViewController.swift */; };
 		0A1454131DD2B598001A693B /* upcomingTripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454121DD2B598001A693B /* upcomingTripsViewController.swift */; };
 		0A1454151DD2C0E4001A693B /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454141DD2C0E4001A693B /* UIViewController.swift */; };
 		0A1454171DD2C705001A693B /* historyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1454161DD2C705001A693B /* historyViewController.swift */; };
@@ -35,7 +35,6 @@
 		0AF2CC901DCC9B8C00F87B35 /* buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8F1DCC9B8C00F87B35 /* buttons.swift */; };
 		620364561DC6B01000074F59 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620364551DC6B01000074F59 /* MapView.swift */; };
 		621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813BA1DBC2B4F00C744BD /* AppDelegate.swift */; };
-		621813C01DBC2B4F00C744BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621813BE1DBC2B4F00C744BD /* Main.storyboard */; };
 		621813C21DBC2B4F00C744BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621813C11DBC2B4F00C744BD /* Assets.xcassets */; };
 		621813C51DBC2B4F00C744BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621813C31DBC2B4F00C744BD /* LaunchScreen.storyboard */; };
 		621813D01DBC2B5000C744BD /* sfu_commute_V_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813CF1DBC2B5000C744BD /* sfu_commute_V_2Tests.swift */; };
@@ -44,6 +43,7 @@
 		621813EB1DBC386D00C744BD /* RequestProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621813EA1DBC386D00C744BD /* RequestProtocols.swift */; };
 		62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FB22A71DC26BF10036D02E /* verificationController.swift */; };
 		6C4110DFCF82670DE54DDFCB /* Pods_sfu_commute_V_2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5542A1E49050BF1F3765CE62 /* Pods_sfu_commute_V_2Tests.framework */; };
+		AEE1D1F21DDCFDD8003A2893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEE1D1F11DDCFDD8003A2893 /* Main.storyboard */; };
 		C1B8FDD7DAF68B2A2C388B06 /* Pods_sfu_commute_V_2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD973C9591A8A75D291DED0 /* Pods_sfu_commute_V_2.framework */; };
 		D4D16A35B8844BE9284E98FD /* Pods_sfu_commute_V_2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E51E8603567FF3E7CEE21F5 /* Pods_sfu_commute_V_2UITests.framework */; };
 /* End PBXBuildFile section */
@@ -90,7 +90,7 @@
 		0A1454091DD29B14001A693B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		0A14540C1DD2B2E3001A693B /* browseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = browseViewController.swift; sourceTree = "<group>"; };
 		0A14540E1DD2B3DA001A693B /* tripInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripInfoViewController.swift; sourceTree = "<group>"; };
-		0A1454101DD2B4A8001A693B /* tripSchedulingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripSchedulingViewController.swift; sourceTree = "<group>"; };
+		0A1454101DD2B4A8001A693B /* tripSchedulingDriverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripSchedulingDriverViewController.swift; sourceTree = "<group>"; };
 		0A1454121DD2B598001A693B /* upcomingTripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = upcomingTripsViewController.swift; sourceTree = "<group>"; };
 		0A1454141DD2C0E4001A693B /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		0A1454161DD2C705001A693B /* historyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = historyViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +113,6 @@
 		620364551DC6B01000074F59 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		621813B71DBC2B4F00C744BD /* sfu_commute_V.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sfu_commute_V.2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		621813BA1DBC2B4F00C744BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		621813BF1DBC2B4F00C744BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		621813C11DBC2B4F00C744BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621813C41DBC2B4F00C744BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		621813C61DBC2B4F00C744BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		621813EA1DBC386D00C744BD /* RequestProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocols.swift; sourceTree = "<group>"; };
 		62FB22A71DC26BF10036D02E /* verificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = verificationController.swift; sourceTree = "<group>"; };
 		9E51E8603567FF3E7CEE21F5 /* Pods_sfu_commute_V_2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sfu_commute_V_2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEE1D1F11DDCFDD8003A2893 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BFBDBD095563127DE78C1EDF /* Pods-sfu_commute_V.2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2Tests/Pods-sfu_commute_V.2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BFDDFD43DFA9AA46708D250A /* Pods-sfu_commute_V.2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2/Pods-sfu_commute_V.2.debug.xcconfig"; sourceTree = "<group>"; };
 		C760B6A4301D475E95CF68C2 /* Pods-sfu_commute_V.2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sfu_commute_V.2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sfu_commute_V.2Tests/Pods-sfu_commute_V.2Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				621813BA1DBC2B4F00C744BD /* AppDelegate.swift */,
-				621813BE1DBC2B4F00C744BD /* Main.storyboard */,
+				AEE1D1F11DDCFDD8003A2893 /* Main.storyboard */,
 				0AF2CC8C1DCC88D000F87B35 /* Extensions */,
 				0A0933331DC4A402001EB52A /* Constants */,
 				0A09332F1DC4A240001EB52A /* Components */,
@@ -246,7 +246,7 @@
 				0A14540C1DD2B2E3001A693B /* browseViewController.swift */,
 				0A0D4C0B1DCB0D4200C4A3F6 /* welcomeController.swift */,
 				0A14540E1DD2B3DA001A693B /* tripInfoViewController.swift */,
-				0A1454101DD2B4A8001A693B /* tripSchedulingViewController.swift */,
+				0A1454101DD2B4A8001A693B /* tripSchedulingDriverViewController.swift */,
 				0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */,
 				0AF2CC881DCC6C2B00F87B35 /* signInController.swift */,
 				621813E81DBC327F00C744BD /* SignupPage.swift */,
@@ -433,7 +433,7 @@
 				621813C51DBC2B4F00C744BD /* LaunchScreen.storyboard in Resources */,
 				621813C21DBC2B4F00C744BD /* Assets.xcassets in Resources */,
 				0A4EB7B21DCE6B5C004A6DE7 /* sideMenuItem.xib in Resources */,
-				621813C01DBC2B4F00C744BD /* Main.storyboard in Resources */,
+				AEE1D1F21DDCFDD8003A2893 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +602,7 @@
 				0A1454151DD2C0E4001A693B /* UIViewController.swift in Sources */,
 				0A1454171DD2C705001A693B /* historyViewController.swift in Sources */,
 				0A14541B1DD2C92B001A693B /* settingsViewController.swift in Sources */,
-				0A1454111DD2B4A8001A693B /* tripSchedulingViewController.swift in Sources */,
+				0A1454111DD2B4A8001A693B /* tripSchedulingDriverViewController.swift in Sources */,
 				0A1454131DD2B598001A693B /* upcomingTripsViewController.swift in Sources */,
 				62FB22A81DC26BF10036D02E /* verificationController.swift in Sources */,
 				620364561DC6B01000074F59 /* MapView.swift in Sources */,
@@ -661,14 +661,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		621813BE1DBC2B4F00C744BD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				621813BF1DBC2B4F00C744BD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		621813C31DBC2B4F00C744BD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

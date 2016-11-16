@@ -12,6 +12,8 @@ class tripSchedulingViewController: UIViewController {
     
 
     @IBOutlet weak var seatsAvailable: UILabel!
+    @IBOutlet weak var seatsOfferOrRequest: UILabel!
+    @IBOutlet weak var tipDriver: UILabel!
     
     @IBOutlet weak var driverView: UIView!
     @IBOutlet weak var riderView: UIView!
@@ -24,11 +26,12 @@ class tripSchedulingViewController: UIViewController {
         
         switch segmentControl.selectedSegmentIndex{
             case 0:
-                driverView?.isHidden = false
-                riderView?.isHidden = true
+                seatsOfferOrRequest.text! = "Seats Offering"
+                tipDriver.text! = ""
             case 1:
-                driverView?.isHidden = true
-                riderView?.isHidden = false
+                seatsOfferOrRequest.text! = "Seats Requesting"
+                tipDriver.text! = "You are welcome to tip the driver"
+            
             default:
                 break;
         }
