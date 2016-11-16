@@ -37,15 +37,18 @@ class tripSchedulingViewController: UIViewController {
     @IBAction func seatsAdd(_ sender: UIButton) {
         let addSeat = 1
         let maxSeats = 6
-        let seatsCurrentlyAvailable = Int(seatsAvailable!.text!)!
-        if seatsCurrentlyAvailable < maxSeats {
-            let newSeats = seatsCurrentlyAvailable + addSeat
+        let seatsCurrentlyAvailable = seatsAvailable.text!
+        //seatsAvailable.text! = "Hello"
+        
+        if Int(seatsCurrentlyAvailable)! < maxSeats{
+            let newSeats = Int(seatsCurrentlyAvailable)! + addSeat
             seatsAvailable!.text = String(newSeats)
-        }
             
+        }
         else{
             seatsAvailable!.text = String(maxSeats)
         }
+         
         
         
     }
