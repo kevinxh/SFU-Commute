@@ -38,7 +38,7 @@ class tripSchedulingViewController: UIViewController {
         let addSeat = 1
         let maxSeats = 6
         let seatsCurrentlyAvailable = seatsAvailable.text!
-        //seatsAvailable.text! = "Hello"
+        
         
         if Int(seatsCurrentlyAvailable)! < maxSeats{
             let newSeats = Int(seatsCurrentlyAvailable)! + addSeat
@@ -48,12 +48,25 @@ class tripSchedulingViewController: UIViewController {
         else{
             seatsAvailable!.text = String(maxSeats)
         }
-         
+        
         
         
     }
     
     @IBAction func seatsSubtract(_ sender: UIButton) {
+        let subSeat = 1
+        let minSeats = 1
+        let seatsCurrentlyAvailable = seatsAvailable.text!
+        
+        
+        if Int(seatsCurrentlyAvailable)! > minSeats{
+            let newSeats = Int(seatsCurrentlyAvailable)! - subSeat
+            seatsAvailable!.text = String(newSeats)
+            
+        }
+        else{
+            seatsAvailable!.text = String(minSeats)
+        }
     }
     
     override func viewDidLoad() {
