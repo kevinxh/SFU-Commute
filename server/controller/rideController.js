@@ -53,3 +53,20 @@ export function OfferRide(req, res) {
     })
   })
 }
+
+
+export function allRide(req, res){
+    Ride.find({}, (error, ride) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      } 
+      else
+        return res.status(201).json({ride})
+      console.log(ride)
+      // if no such user
+    })
+  }

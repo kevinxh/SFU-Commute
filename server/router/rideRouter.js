@@ -6,5 +6,6 @@ const rideRouter = express.Router()
 
 rideRouter
   .post('/offer/ride', controller.OfferRide)
+  .get('/all/ride', controller.allRide)
 
 export default rideRouter
