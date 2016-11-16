@@ -9,7 +9,10 @@
 import UIKit
 
 class tripSchedulingViewController: UIViewController {
+    
 
+    @IBOutlet weak var seatsAvailable: UILabel!
+    
     @IBOutlet weak var driverView: UIView!
     @IBOutlet weak var riderView: UIView!
     
@@ -31,6 +34,25 @@ class tripSchedulingViewController: UIViewController {
         }
         
     }
+    @IBAction func seatsAdd(_ sender: UIButton) {
+        let addSeat = 1
+        let maxSeats = 6
+        let seatsCurrentlyAvailable = Int(seatsAvailable!.text!)!
+        if seatsCurrentlyAvailable < maxSeats {
+            let newSeats = seatsCurrentlyAvailable + addSeat
+            seatsAvailable!.text = String(newSeats)
+        }
+            
+        else{
+            seatsAvailable!.text = String(maxSeats)
+        }
+        
+        
+    }
+    
+    @IBAction func seatsSubtract(_ sender: UIButton) {
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
