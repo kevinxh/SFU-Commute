@@ -21,11 +21,11 @@ class tripSchedulingViewController: UIViewController {
         
         switch segmentControl.selectedSegmentIndex{
             case 0:
-                driverView.isHidden = false
-                riderView.isHidden = true
+                driverView?.isHidden = false
+                riderView?.isHidden = true
             case 1:
-                driverView.isHidden = true
-                riderView.isHidden = false
+                driverView?.isHidden = true
+                riderView?.isHidden = false
             default:
                 break;
         }
@@ -38,8 +38,8 @@ class tripSchedulingViewController: UIViewController {
         var dayComponent = DateComponents.init()
         dayComponent.day = 7
         let currentDate = Date.init()
-        DateTimePicker.maximumDate = Calendar.current.date(byAdding: dayComponent, to: currentDate)
-        DateTimePicker.minimumDate = currentDate
+        DateTimePicker.maximumDate = Calendar.current.date(byAdding: dayComponent, to: currentDate) //setting max date to be 7 days in advance
+        DateTimePicker.minimumDate = currentDate //setting minimumDate so users can't choose a time before current time
         
         // Do any additional setup after loading the view.
     }

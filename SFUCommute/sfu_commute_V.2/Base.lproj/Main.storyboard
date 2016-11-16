@@ -417,7 +417,6 @@
                                 </segments>
                                 <connections>
                                     <action selector="indexChanged:" destination="3Yc-qt-UUJ" eventType="valueChanged" id="Ptj-89-Ybr"/>
-                                    <segue destination="lXv-xT-3BG" kind="show" id="OaR-Ji-eGK"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggest Minimum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeH-FO-7MO">
@@ -975,7 +974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vJ-ma-Zxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9194" y="300"/>
+            <point key="canvasLocation" x="8951" y="300"/>
         </scene>
     </scenes>
     <resources>
