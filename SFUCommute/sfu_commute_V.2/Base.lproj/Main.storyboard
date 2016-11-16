@@ -162,7 +162,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <segue destination="DQ9-ly-VbZ" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="WmZ-Ha-5jF"/>
-                        <segue destination="Q32-iC-3hp" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="8rf-ZN-laO"/>
+                        <segue destination="3Yc-qt-UUJ" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="9pn-E4-xtf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHB-j1-kZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -394,7 +394,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="5452" y="34"/>
+            <point key="canvasLocation" x="5449" y="-49"/>
         </scene>
         <!--Trip Scheduling Driver-->
         <scene sceneID="eFB-VU-8Je">
@@ -416,6 +416,7 @@
                                     <segment title="Riding"/>
                                 </segments>
                                 <connections>
+                                    <action selector="indexChanged:" destination="3Yc-qt-UUJ" eventType="valueChanged" id="Ptj-89-Ybr"/>
                                     <segue destination="lXv-xT-3BG" kind="show" id="OaR-Ji-eGK"/>
                                 </connections>
                             </segmentedControl>
@@ -490,7 +491,10 @@
                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="DateTimePicker" destination="GbQ-rZ-0qH" id="Vef-RB-lcU"/>
                         <outlet property="dateAndTime" destination="GbQ-rZ-0qH" id="U58-hc-gJJ"/>
+                        <outlet property="driverView" destination="eeV-jF-F4e" id="HaY-0G-I8s"/>
+                        <outlet property="segmentControl" destination="JSM-aG-SP2" id="JST-Yy-aDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqL-qA-m2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -966,6 +970,7 @@
                     </view>
                     <connections>
                         <outlet property="dateAndTime" destination="OQR-8U-Sui" id="eEX-tg-WKo"/>
+                        <outlet property="riderView" destination="d49-tT-O2y" id="5v7-Sq-Niu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vJ-ma-Zxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -978,6 +983,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jrQ-71-KP4"/>
-        <segue reference="8rf-ZN-laO"/>
     </inferredMetricsTieBreakers>
 </document>
