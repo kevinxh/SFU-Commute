@@ -9,28 +9,33 @@
 import UIKit
 
 class tripSchedulingViewController: UIViewController {
-    
     @IBOutlet weak var dateAndTime: UIDatePicker!
     @IBOutlet weak var seatsAvailable: UILabel!
     @IBOutlet weak var seatsOfferOrRequest: UILabel!
-    @IBOutlet weak var tipDriver: UILabel!
     @IBOutlet weak var driverView: UIView!
     @IBOutlet weak var riderView: UIView!
     @IBOutlet weak var DateTimePicker: UIDatePicker!
+    @IBOutlet var startLocationLabel: UILabel!
+    @IBOutlet var destinationLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
     
     var role : role = .request
-    var s = location()
-    var d = location()
+    
+    var startLocation : location = location()
+    var destination : location = location()
     
     override func viewDidAppear(_ animated: Bool) {
         switch role{
         case .offer:
             seatsOfferOrRequest.text! = "Seats Offering"
-            tipDriver.text! = ""
+            priceLabel.text = "$1 - $2"
         case .request:
             seatsOfferOrRequest.text! = "Seats Requesting"
-            tipDriver.text! = "You are welcome to tip the driver"
+            priceLabel.text = "$" + startLocation.price.description
         }
+        
+        startLocationLabel.text = startLocation.name
+        destinationLabel.text = destination.name
     }
     
     @IBAction func seatsAdd(_ sender: UIButton) {

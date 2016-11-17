@@ -29,6 +29,7 @@ enum zones : String{
     case none = ""
 }
 
+// id = -1 means that location is not one of the preDetermined locations
 struct location {
     var id : Int = -1
     var lat : CLLocationDegrees = 180.00

@@ -187,22 +187,28 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let index = searchResults.indexPathForSelectedRow?.row
         if (segue.identifier == "unwindToMapViewFromSearch") {
-            let location = (sender as! UITableViewCell).textLabel?.text
+            var locationData = location()
+            let locationText = (sender as! UITableViewCell).textLabel?.text!
             let mapview = segue.destination as! MapView
             
             if (triggerButton == 1) {
-                mapview.startLocationLabel.text = location
                 if (status == .toSetStartLocation) {
                     mapview.status = .toSetDestination
                 }
             } else if (triggerButton == 2) {
-                mapview.destinationLabel.text = location
                 mapview.status = .toTapCreateButton
             }
-            if(role == .offer){
+            if (role == .request){
+                locationData = preDeterminedLocations.first(where: {$0.name == locationText})!
+                if (triggerButton == 1) {
+                    mapview.startLocation = locationData
+                } else if (triggerButton == 2) {
+                    mapview.destination = locationData
+                }
+            } else if(role == .offer){
+                let placeClient = GMSPlacesClient()
+                let placeID = googlePlaceSearchResult[index!].placeID!
                 if (triggerButton == 1 ) {
-                    let placeClient = GMSPlacesClient()
-                    let placeID = googlePlaceSearchResult[index!].placeID!
                     placeClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
                         if let error = error {
                             print("lookup place id query error: \(error.localizedDescription)")
@@ -210,6 +216,10 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
                         }
                         
                         if let place = place {
+                            locationData.name = locationText!
+                            locationData.lat = place.coordinate.latitude
+                            locationData.lon = place.coordinate.longitude
+                            mapview.startLocation = locationData
                             mapview.offerStart.position = place.coordinate
                             mapview.offerStart.appearAnimation = kGMSMarkerAnimationPop
                             mapview.offerStart.icon = UIImage(named: "map-marker-red-128")
@@ -221,8 +231,6 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
                         }
                     })
                 } else if (triggerButton == 2){
-                    let placeClient = GMSPlacesClient()
-                    let placeID = googlePlaceSearchResult[index!].placeID!
                     placeClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
                         if let error = error {
                             print("lookup place id query error: \(error.localizedDescription)")
@@ -230,6 +238,11 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
                         }
                         
                         if let place = place {
+                            locationData.name = locationText!
+                            locationData.lat = place.coordinate.latitude
+                            locationData.lon = place.coordinate.longitude
+                            mapview.destination = locationData
+                            
                             mapview.offerDestination.position = place.coordinate
                             print("set offer destin!")
                             mapview.offerDestination.appearAnimation = kGMSMarkerAnimationPop
