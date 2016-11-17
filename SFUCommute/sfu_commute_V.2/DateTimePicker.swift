@@ -49,7 +49,7 @@ import UIKit
         }
     }
     
-    public var dateFormat = "HH:mm dd/MM/YYYY" {
+    public var dateFormat = "YYYY-MM-dd HH:mm" {
         didSet {
             resetDateTitle()
         }
@@ -188,8 +188,8 @@ import UIKit
         doneButton.frame = CGRect(x: 10, y: contentView.frame.height - 10 - 44, width: contentView.frame.width - 20, height: 44)
         doneButton.setTitle(doneButtonTitle, for: .normal)
         doneButton.setTitleColor(.white, for: .normal)
-        doneButton.backgroundColor = darkColor.withAlphaComponent(0.5)
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        doneButton.backgroundColor = Colors.SFUBlue
+        doneButton.titleLabel?.font = UIFont(name: "Futura-Medium", size: 18)
         doneButton.layer.cornerRadius = 3
         doneButton.layer.masksToBounds = true
         doneButton.addTarget(self, action: #selector(DateTimePicker.dismissView), for: .touchUpInside)
@@ -247,7 +247,7 @@ import UIKit
         updateCollectionView(to: selectedDate)
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/YYYY"
+        formatter.dateFormat = "YYYY-MM-dd"
         for i in 0..<dates.count {
             let date = dates[i]
             if formatter.string(from: date) == formatter.string(from: selectedDate) {
@@ -312,7 +312,7 @@ import UIKit
     
     func updateCollectionView(to currentDate: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/YYYY"
+        formatter.dateFormat = "YYYY-MM-dd"
         for i in 0..<dates.count {
             let date = dates[i]
             if formatter.string(from: date) == formatter.string(from: currentDate) {

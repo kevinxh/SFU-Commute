@@ -19,10 +19,11 @@ class tripSchedulingViewController: UIViewController {
     @IBOutlet weak var seatsOfferOrRequest: UILabel!
     @IBOutlet weak var driverView: UIView!
     @IBOutlet weak var riderView: UIView!
-    //@IBOutlet weak var DateTimePicker: UIDatePicker!
     @IBOutlet var startLocationLabel: UILabel!
     @IBOutlet var destinationLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
+    var confirmButton : FlatButton = FlatButton()
+    
     var role : role = .request
     var startLocation : location = location()
     var destination : location = location()
@@ -73,7 +74,7 @@ class tripSchedulingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTimeText(Date())
-        
+        initButton()
         let tap = UITapGestureRecognizer(target: self, action: #selector(timeLabelTapped))
         timeLabel.isUserInteractionEnabled = true
         timeLabel.addGestureRecognizer(tap)
@@ -87,6 +88,13 @@ class tripSchedulingViewController: UIViewController {
         locationDetailView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
         locationDetailView.layer.shadowOpacity = 0.3
         locationDetailView.layer.shadowPath = shadowPath.cgPath
+    }
+    
+    func initButton() {
+        confirmButton.SFURedDefault("Confirm")
+        //confirmButton.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
+        self.view.addSubview(confirmButton)
+        confirmButton.wideBottomConstraints(superview: self.view)
     }
     
     func setTimeText(_ time : Date) {
@@ -106,7 +114,7 @@ class tripSchedulingViewController: UIViewController {
         picker.completionHandler = { date in
             self.tips.dismiss()
             if (date.compare(Date()).rawValue == -1){
-                self.tips = EasyTipView(text:"Please select a time in future.")
+                self.tips = EasyTipView(text:"Please select a time in the future.")
                 self.tips.show(forView: picker.contentView)
             } else {
                 UIView.animate(withDuration: 0.3, animations: {
