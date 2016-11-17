@@ -74,7 +74,7 @@ import UIKit
     internal var minuteTableView: UITableView!
     internal var dayCollectionView: UICollectionView!
     
-    private var contentView: UIView!
+    var contentView: UIView!
     private var dateTitleLabel: UILabel!
     private var todayButton: UIButton!
     private var doneButton: UIButton!
@@ -323,7 +323,7 @@ import UIKit
     }
     
     func dismissView() {
-        UIView.animate(withDuration: 0.3, animations: {
+        /*UIView.animate(withDuration: 0.3, animations: {
             // animate to show contentView
             self.contentView.frame = CGRect(x: 0,
                                             y: self.frame.height,
@@ -332,7 +332,8 @@ import UIKit
         }) { (completed) in
             self.completionHandler?(self.selectedDate)
             self.removeFromSuperview()
-        }
+        }*/
+        self.completionHandler?(self.selectedDate)
     }
 }
 

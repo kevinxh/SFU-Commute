@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import EasyTipView
+import SwiftyButton
 
 class tripSchedulingViewController: UIViewController {
+    
+    
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var setTimeButton: FlatButton!
     @IBOutlet weak var dateAndTime: UIDatePicker!
     @IBOutlet weak var seatsAvailable: UILabel!
     @IBOutlet weak var seatsOfferOrRequest: UILabel!
@@ -21,6 +27,8 @@ class tripSchedulingViewController: UIViewController {
     var role : role = .request
     var startLocation : location = location()
     var destination : location = location()
+    var time : Date = Date()
+    var tips : EasyTipView = EasyTipView(text:"Unknown error occurs.")
     
     override func viewDidAppear(_ animated: Bool) {
         switch role{
@@ -33,7 +41,6 @@ class tripSchedulingViewController: UIViewController {
             // need to work on this later.
             priceLabel.text = "$" + startLocation.price.description
         }
-        
         startLocationLabel.text = startLocation.name
         destinationLabel.text = destination.name
     }
@@ -66,27 +73,39 @@ class tripSchedulingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initDateTimePicker()
-        //var dayComponent = DateComponents.init()
-        //dayComponent.day = 7
-        //let currentDate = Date.init()
-        //DateTimePicker.maximumDate = Calendar.current.date(byAdding: dayComponent, to: currentDate) //setting max date to be 7 days in advance
-        //DateTimePicker.minimumDate = currentDate //setting minimumDate so users can't choose a time before current time
+        setTimeText(Date())
+        
     }
     
-    func initDateTimePicker() {
+    func setTimeText(_ time : Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm dd/MM/YYYY"
+        timeLabel.text = formatter.string(from: time)
+    }
+    
+    @IBAction func setTimeBtnTapped(_ sender: AnyObject) {
         let min = Date()
         let max = Date().addingTimeInterval(60 * 60 * 24 * 7)
-        var current = Date()
+        let current = Date()
         let picker = DateTimePicker.show(selected: current, minimumDate: min, maximumDate: max)
         picker.highlightColor = Colors.SFUBlueHighlight
         picker.doneButtonTitle = "Set"
         picker.todayButtonTitle = "Now"
         picker.completionHandler = { date in
-            current = date
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm dd/MM/YYYY"
-            print(formatter.string(from: date))
+            self.tips.dismiss()
+            if (date.compare(Date()).rawValue == -1){
+                self.tips = EasyTipView(text:"Please select a time in future.")
+                self.tips.show(forView: picker.contentView)
+            } else {
+                UIView.animate(withDuration: 0.3, animations: {
+                    // animate to show contentView
+                    picker.contentView.frame = CGRect(x: 0,
+                                                    y: picker.frame.height,
+                                                    width: picker.frame.width,
+                                                    height: picker.contentHeight)
+                })
+            }
+            self.setTimeText(date)
         }
     }
 

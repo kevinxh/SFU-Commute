@@ -34,14 +34,11 @@ class MapView: UIViewController, GMSMapViewDelegate {
     var startLocation : location = location(){
         didSet{
             startLocationLabel.text = startLocation.name
-            updateStatus()
         }
     }
     var destination : location = location(){
         didSet{
             destinationLabel.text = destination.name
-            updateStatus()
-            print(destination)
         }
     }
     

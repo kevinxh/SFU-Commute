@@ -482,7 +482,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uk3-rw-XcG" userLabel="price">
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aCq-EB-UVb">
@@ -529,15 +529,69 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUy-pP-afo">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bH2-qx-1q6" userLabel="datetime label">
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERU-UO-DhX">
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqZ-i8-ekl" customClass="FlatButton" customModule="SwiftyButton">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Bpj-UQ-PCC"/>
+                                            <constraint firstAttribute="width" constant="160" id="xVm-kw-k5p"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <state key="normal" title="Set Time"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                <color key="value" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="disabledColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="setTimeBtnTapped:" destination="3Yc-qt-UUJ" eventType="touchUpInside" id="Iap-5v-kdo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="bH2-qx-1q6" firstAttribute="leading" secondItem="HUy-pP-afo" secondAttribute="leading" id="EAM-Cb-u0J"/>
+                                    <constraint firstAttribute="trailing" secondItem="ERU-UO-DhX" secondAttribute="trailing" constant="30" id="IF2-oT-ih3"/>
+                                    <constraint firstItem="ERU-UO-DhX" firstAttribute="top" secondItem="bH2-qx-1q6" secondAttribute="bottom" constant="12" id="acC-SH-RCU"/>
+                                    <constraint firstItem="ERU-UO-DhX" firstAttribute="leading" secondItem="HUy-pP-afo" secondAttribute="leading" constant="30" id="bxM-oX-Zof"/>
+                                    <constraint firstItem="bH2-qx-1q6" firstAttribute="top" secondItem="HUy-pP-afo" secondAttribute="top" id="ewn-CN-t5Q"/>
+                                    <constraint firstAttribute="height" constant="128" id="fpw-24-Nsd"/>
+                                    <constraint firstItem="SqZ-i8-ekl" firstAttribute="centerX" secondItem="HUy-pP-afo" secondAttribute="centerX" id="guJ-IH-Em3"/>
+                                    <constraint firstItem="SqZ-i8-ekl" firstAttribute="top" secondItem="ERU-UO-DhX" secondAttribute="bottom" constant="15" id="mtJ-jl-2me"/>
+                                    <constraint firstAttribute="trailing" secondItem="bH2-qx-1q6" secondAttribute="trailing" id="q0y-DD-sqE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="HUy-pP-afo" secondAttribute="trailing" constant="20" id="0di-U8-59f"/>
                             <constraint firstItem="33f-HB-wT7" firstAttribute="leading" secondItem="eeV-jF-F4e" secondAttribute="leadingMargin" id="2ls-Ai-zeo"/>
                             <constraint firstItem="uk3-rw-XcG" firstAttribute="leading" secondItem="eeV-jF-F4e" secondAttribute="leadingMargin" constant="20" id="791-ey-vrA"/>
                             <constraint firstItem="AeH-FO-7MO" firstAttribute="top" secondItem="33f-HB-wT7" secondAttribute="bottom" constant="15" id="IxP-rF-GpZ"/>
+                            <constraint firstItem="HUy-pP-afo" firstAttribute="leading" secondItem="eeV-jF-F4e" secondAttribute="leadingMargin" constant="20" id="J2i-5C-BBR"/>
                             <constraint firstItem="AeH-FO-7MO" firstAttribute="leading" secondItem="eeV-jF-F4e" secondAttribute="leadingMargin" constant="20" id="Nuf-i1-N9S"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AeH-FO-7MO" secondAttribute="trailing" constant="20" id="QLM-WT-ENX"/>
                             <constraint firstItem="uk3-rw-XcG" firstAttribute="top" secondItem="AeH-FO-7MO" secondAttribute="bottom" constant="5" id="Wfw-HB-kZ6"/>
+                            <constraint firstItem="HUy-pP-afo" firstAttribute="top" secondItem="uk3-rw-XcG" secondAttribute="bottom" constant="8" id="plj-4R-oq4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uk3-rw-XcG" secondAttribute="trailing" constant="20" id="qsH-d5-U9L"/>
                             <constraint firstAttribute="trailingMargin" secondItem="33f-HB-wT7" secondAttribute="trailing" id="tjQ-eD-dcX"/>
                             <constraint firstItem="33f-HB-wT7" firstAttribute="top" secondItem="kbA-BY-WtR" secondAttribute="bottom" constant="25" id="wI4-WU-ksb"/>
@@ -549,7 +603,9 @@
                         <outlet property="priceLabel" destination="uk3-rw-XcG" id="mzw-Mq-PIZ"/>
                         <outlet property="seatsAvailable" destination="xC5-FO-HS6" id="mPW-eU-gae"/>
                         <outlet property="seatsOfferOrRequest" destination="jXK-Zi-Wdn" id="bcT-V6-YOA"/>
+                        <outlet property="setTimeButton" destination="SqZ-i8-ekl" id="sdZ-j6-sYC"/>
                         <outlet property="startLocationLabel" destination="x4N-4u-t3E" id="dWM-8A-ibl"/>
+                        <outlet property="timeLabel" destination="ERU-UO-DhX" id="6BA-Vz-ymn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sqL-qA-m2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
