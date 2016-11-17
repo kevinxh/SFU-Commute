@@ -182,8 +182,6 @@ class MapView: UIViewController, GMSMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        
         if (offerStart.position.latitude != emptyMarker.position.latitude && offerDestination.position.latitude == emptyMarker.position.latitude){
             animateStart()
         }
@@ -452,9 +450,13 @@ class MapView: UIViewController, GMSMapViewDelegate {
     func initButton() {
         createTripButton.SFURedDefault("Create a trip")
         createTripButton.isEnabled = false
-        //createTripButton.addTarget(self, action: #selector(self.signUpTapped(_:)), for: .touchUpInside)
+        createTripButton.addTarget(self, action: #selector(self.createBtnTapped(_:)), for: .touchUpInside)
         self.view.addSubview(createTripButton)
         createTripButton.wideBottomConstraints(superview: self.view)
+    }
+    
+    func createBtnTapped(_ sender: Any?) {
+        self.performSegue(withIdentifier: "showTripScheduling", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -467,6 +469,9 @@ class MapView: UIViewController, GMSMapViewDelegate {
             print(search.status)
             print(search.role)
             print(search.triggerButton)
+        } else if (segue.identifier == "showTripScheduling") {
+            let tripSchedlue = segue.destination as! tripSchedulingViewController
+            tripSchedlue.role = role
         }
     }
     
