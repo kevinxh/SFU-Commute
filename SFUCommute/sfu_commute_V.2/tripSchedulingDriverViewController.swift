@@ -14,7 +14,6 @@ class tripSchedulingViewController: UIViewController {
     
     @IBOutlet var locationDetailView: UIView!
     @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var setTimeButton: FlatButton!
     @IBOutlet weak var dateAndTime: UIDatePicker!
     @IBOutlet weak var seatsAvailable: UILabel!
     @IBOutlet weak var seatsOfferOrRequest: UILabel!
@@ -75,7 +74,9 @@ class tripSchedulingViewController: UIViewController {
         super.viewDidLoad()
         setTimeText(Date())
         
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(timeLabelTapped))
+        timeLabel.isUserInteractionEnabled = true
+        timeLabel.addGestureRecognizer(tap)
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,11 +91,11 @@ class tripSchedulingViewController: UIViewController {
     
     func setTimeText(_ time : Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm dd/MM/YYYY"
+        formatter.dateFormat = "YYYY-MM-dd HH:mm"
         timeLabel.text = formatter.string(from: time)
     }
     
-    @IBAction func setTimeBtnTapped(_ sender: AnyObject) {
+    func timeLabelTapped(_ sender: AnyObject) {
         let min = Date()
         let max = Date().addingTimeInterval(60 * 60 * 24 * 7)
         let current = Date()
@@ -115,6 +116,7 @@ class tripSchedulingViewController: UIViewController {
                                                     width: picker.frame.width,
                                                     height: picker.contentHeight)
                 })
+                picker.removeFromSuperview()
             }
             self.setTimeText(date)
         }

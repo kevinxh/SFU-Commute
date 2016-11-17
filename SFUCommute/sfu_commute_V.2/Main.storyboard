@@ -171,7 +171,7 @@
             <objects>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" id="Q32-iC-3hp" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="jY1-10-w8j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="jY1-10-w8j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -568,38 +568,13 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERU-UO-DhX">
+                                                                        <color key="backgroundColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqZ-i8-ekl" customClass="FlatButton" customModule="SwiftyButton">
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="60" id="dDK-dM-tSK"/>
-                                                                            <constraint firstAttribute="height" constant="36" id="lvz-Uv-k2v"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
-                                                                        <state key="normal" title="Change"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                                                <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                                                                <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="0.8992726293103448" colorSpace="calibratedRGB"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="disabledColor">
-                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                <real key="value" value="18"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="setTimeBtnTapped:" destination="3Yc-qt-UUJ" eventType="touchUpInside" id="Iap-5v-kdo"/>
-                                                                        </connections>
-                                                                    </button>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="SqZ-i8-ekl" firstAttribute="trailing" secondItem="zZL-S8-apm" secondAttribute="trailing" constant="-20" id="5pW-lZ-daU"/>
                                                                     <constraint firstItem="bH2-qx-1q6" firstAttribute="top" secondItem="zZL-S8-apm" secondAttribute="top" constant="5" id="M7H-DX-PQv"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ERU-UO-DhX" secondAttribute="trailing" id="Mia-z2-h8a"/>
                                                                     <constraint firstItem="bH2-qx-1q6" firstAttribute="leading" secondItem="zZL-S8-apm" secondAttribute="leading" id="PBJ-xe-4sL"/>
@@ -607,11 +582,18 @@
                                                                     <constraint firstItem="ERU-UO-DhX" firstAttribute="height" secondItem="bH2-qx-1q6" secondAttribute="height" id="mQO-8u-BCX"/>
                                                                     <constraint firstItem="ERU-UO-DhX" firstAttribute="top" secondItem="bH2-qx-1q6" secondAttribute="bottom" id="o8L-pZ-qIh"/>
                                                                     <constraint firstAttribute="bottom" secondItem="ERU-UO-DhX" secondAttribute="bottom" constant="5" id="otR-8t-oHr"/>
-                                                                    <constraint firstItem="SqZ-i8-ekl" firstAttribute="centerY" secondItem="zZL-S8-apm" secondAttribute="centerY" id="q5b-Qd-5tl"/>
                                                                     <constraint firstAttribute="trailing" secondItem="bH2-qx-1q6" secondAttribute="trailing" id="syO-OL-7GA"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="VborderColor">
+                                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomBorder">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLJ-jb-Kz8">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLJ-jb-Kz8" userLabel="Seats View">
                                                                 <color key="backgroundColor" red="0.57647058819999997" green="0.027450980390000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             </view>
                                                         </subviews>
@@ -673,7 +655,6 @@
                         <outlet property="priceLabel" destination="uk3-rw-XcG" id="mzw-Mq-PIZ"/>
                         <outlet property="seatsAvailable" destination="xC5-FO-HS6" id="mPW-eU-gae"/>
                         <outlet property="seatsOfferOrRequest" destination="jXK-Zi-Wdn" id="bcT-V6-YOA"/>
-                        <outlet property="setTimeButton" destination="SqZ-i8-ekl" id="sdZ-j6-sYC"/>
                         <outlet property="startLocationLabel" destination="x4N-4u-t3E" id="dWM-8A-ibl"/>
                         <outlet property="timeLabel" destination="ERU-UO-DhX" id="6BA-Vz-ymn"/>
                     </connections>
@@ -937,7 +918,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ijM-ff-Hso" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="fsH-Ku-vcs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="fsH-Ku-vcs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.4392156862745098" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
@@ -960,7 +941,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dsc-qL-a8Q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="idx-CL-xHg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="idx-CL-xHg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -982,7 +963,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFI-Wc-gTS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="PhS-1w-fnD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="PhS-1w-fnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1004,7 +985,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKd-cE-YxD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yGr-2t-n0b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yGr-2t-n0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1054,7 +1035,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4BD-US-5ef" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="OB1-9Z-bYN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="OB1-9Z-bYN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
