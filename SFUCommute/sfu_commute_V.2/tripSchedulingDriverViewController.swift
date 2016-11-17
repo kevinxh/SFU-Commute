@@ -14,13 +14,11 @@ class tripSchedulingViewController: UIViewController {
     @IBOutlet weak var seatsOfferOrRequest: UILabel!
     @IBOutlet weak var driverView: UIView!
     @IBOutlet weak var riderView: UIView!
-    @IBOutlet weak var DateTimePicker: UIDatePicker!
+    //@IBOutlet weak var DateTimePicker: UIDatePicker!
     @IBOutlet var startLocationLabel: UILabel!
     @IBOutlet var destinationLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
-    
     var role : role = .request
-    
     var startLocation : location = location()
     var destination : location = location()
     
@@ -31,6 +29,8 @@ class tripSchedulingViewController: UIViewController {
             priceLabel.text = "$1 - $2"
         case .request:
             seatsOfferOrRequest.text! = "Seats Requesting"
+            
+            // need to work on this later.
             priceLabel.text = "$" + startLocation.price.description
         }
         
@@ -66,11 +66,28 @@ class tripSchedulingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var dayComponent = DateComponents.init()
-        dayComponent.day = 7
-        let currentDate = Date.init()
-        DateTimePicker.maximumDate = Calendar.current.date(byAdding: dayComponent, to: currentDate) //setting max date to be 7 days in advance
-        DateTimePicker.minimumDate = currentDate //setting minimumDate so users can't choose a time before current time
+        initDateTimePicker()
+        //var dayComponent = DateComponents.init()
+        //dayComponent.day = 7
+        //let currentDate = Date.init()
+        //DateTimePicker.maximumDate = Calendar.current.date(byAdding: dayComponent, to: currentDate) //setting max date to be 7 days in advance
+        //DateTimePicker.minimumDate = currentDate //setting minimumDate so users can't choose a time before current time
+    }
+    
+    func initDateTimePicker() {
+        let min = Date()
+        let max = Date().addingTimeInterval(60 * 60 * 24 * 7)
+        var current = Date()
+        let picker = DateTimePicker.show(selected: current, minimumDate: min, maximumDate: max)
+        picker.highlightColor = Colors.SFUBlueHighlight
+        picker.doneButtonTitle = "Set"
+        picker.todayButtonTitle = "Now"
+        picker.completionHandler = { date in
+            current = date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm dd/MM/YYYY"
+            print(formatter.string(from: date))
+        }
     }
 
     override func didReceiveMemoryWarning() {

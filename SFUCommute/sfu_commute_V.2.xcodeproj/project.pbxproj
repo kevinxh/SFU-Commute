@@ -43,6 +43,9 @@
 		0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8A1DCC889D00F87B35 /* string.swift */; };
 		0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8D1DCC8FC800F87B35 /* CONFIG.swift */; };
 		0AF2CC901DCC9B8C00F87B35 /* buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF2CC8F1DCC9B8C00F87B35 /* buttons.swift */; };
+		0AF8CC291DDD6F7700698735 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8CC261DDD6F7700698735 /* DateCollectionViewCell.swift */; };
+		0AF8CC2A1DDD6F7700698735 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8CC271DDD6F7700698735 /* DateTimePicker.swift */; };
+		0AF8CC2B1DDD6F7700698735 /* StepCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF8CC281DDD6F7700698735 /* StepCollectionViewFlowLayout.swift */; };
 		0AF958DD1DD51CC900E984EC /* style-mapbox.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AF958DC1DD51CC900E984EC /* style-mapbox.json */; };
 		0AF958E01DD51DC100E984EC /* style-blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AF958DF1DD51DC100E984EC /* style-blue.json */; };
 		0AF958E21DD51E9200E984EC /* style-flat.json in Resources */ = {isa = PBXBuildFile; fileRef = 0AF958E11DD51E9200E984EC /* style-flat.json */; };
@@ -129,6 +132,9 @@
 		0AF2CC8A1DCC889D00F87B35 /* string.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = string.swift; sourceTree = "<group>"; };
 		0AF2CC8D1DCC8FC800F87B35 /* CONFIG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONFIG.swift; sourceTree = "<group>"; };
 		0AF2CC8F1DCC9B8C00F87B35 /* buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buttons.swift; sourceTree = "<group>"; };
+		0AF8CC261DDD6F7700698735 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		0AF8CC271DDD6F7700698735 /* DateTimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
+		0AF8CC281DDD6F7700698735 /* StepCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0AF958DC1DD51CC900E984EC /* style-mapbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "style-mapbox.json"; sourceTree = "<group>"; };
 		0AF958DF1DD51DC100E984EC /* style-blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "style-blue.json"; sourceTree = "<group>"; };
 		0AF958E11DD51E9200E984EC /* style-flat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "style-flat.json"; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 		0A09332F1DC4A240001EB52A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0AF8CC2C1DDD6F7B00698735 /* DateTimePicker */,
 				0A5092141DD71CE300081A50 /* Font */,
 				0A14540B1DD29B3D001A693B /* SWRealViewController */,
 				0A09332D1DC47516001EB52A /* pageTitle.swift */,
@@ -244,6 +251,16 @@
 				0AD3F0911DD3202100CC6C36 /* UIView.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		0AF8CC2C1DDD6F7B00698735 /* DateTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0AF8CC271DDD6F7700698735 /* DateTimePicker.swift */,
+				0AF8CC281DDD6F7700698735 /* StepCollectionViewFlowLayout.swift */,
+				0AF8CC261DDD6F7700698735 /* DateCollectionViewCell.swift */,
+			);
+			name = DateTimePicker;
 			sourceTree = "<group>";
 		};
 		0AF958DE1DD51DA100E984EC /* MapStyle */ = {
@@ -684,12 +701,15 @@
 				0A4EB7A41DCD787A004A6DE7 /* goBackButton.swift in Sources */,
 				0A0D4C0A1DCAAD7700C4A3F6 /* API.swift in Sources */,
 				0A0D4C0C1DCB0D4200C4A3F6 /* welcomeController.swift in Sources */,
+				0AF8CC291DDD6F7700698735 /* DateCollectionViewCell.swift in Sources */,
 				0AF2CC8B1DCC889D00F87B35 /* string.swift in Sources */,
+				0AF8CC2A1DDD6F7700698735 /* DateTimePicker.swift in Sources */,
 				0A8B9BCB1DD3F08500BD8192 /* customSearchController.swift in Sources */,
 				0A14540A1DD29B14001A693B /* SWRevealViewController.m in Sources */,
 				0A7893FE1DD556DD006C296A /* locations.swift in Sources */,
 				621813BB1DBC2B4F00C744BD /* AppDelegate.swift in Sources */,
 				0A4EB7B41DCE81F8004A6DE7 /* sideMenuNavTable.swift in Sources */,
+				0AF8CC2B1DDD6F7700698735 /* StepCollectionViewFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

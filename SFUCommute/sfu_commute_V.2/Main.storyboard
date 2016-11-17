@@ -485,16 +485,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="GbQ-rZ-0qH">
-                                <frame key="frameInset" minX="1" minY="550" height="216" maxX="-1"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <date key="date" timeIntervalSinceReferenceDate="500663582.48320401">
-                                    <!--2016-11-12 17:13:02 +0000-->
-                                </date>
-                                <locale key="locale" localeIdentifier="en_CA"/>
-                            </datePicker>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aCq-EB-UVb">
-                                <frame key="frameInset" minX="162" minY="484" width="50" height="80"/>
+                                <frame key="frameInset" minX="16" minY="550" width="50" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFP-8q-dXL">
@@ -531,14 +523,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seats Offering" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXK-Zi-Wdn">
-                                <frame key="frameInset" minX="85" minY="455" width="204" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date and Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-FQ-q0P">
-                                <frame key="frameInset" minX="104" minY="398" width="128" height="28"/>
+                                <frame key="frameInset" minX="86" minY="543" width="204" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -559,8 +544,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="DateTimePicker" destination="GbQ-rZ-0qH" id="Vef-RB-lcU"/>
-                        <outlet property="dateAndTime" destination="GbQ-rZ-0qH" id="U58-hc-gJJ"/>
                         <outlet property="destinationLabel" destination="5Z2-Ld-aLr" id="wmj-bw-a8R"/>
                         <outlet property="driverView" destination="eeV-jF-F4e" id="HaY-0G-I8s"/>
                         <outlet property="priceLabel" destination="uk3-rw-XcG" id="mzw-Mq-PIZ"/>
