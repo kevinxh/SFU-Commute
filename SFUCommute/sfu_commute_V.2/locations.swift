@@ -26,15 +26,25 @@ enum zones : String{
     case E = "E"
     case F = "F"
     case G = "G"
+    case none = ""
 }
 
 struct location {
-    var id : Int
-    var lat : CLLocationDegrees
-    var lon : CLLocationDegrees
-    var name : String
-    var zone : zones
-    var price : Decimal
+    var id : Int = -1
+    var lat : CLLocationDegrees = 180.00
+    var lon : CLLocationDegrees = 180.00
+    var name : String = ""
+    var zone : zones = .none
+    var price : Decimal = 0
+    
+    /*init(id : Int, lat: CLLocationDegrees, lon: CLLocationDegrees, name : String, zone: zones, price: Decimal) {
+        self.id = id
+        self.lat = lat
+        self.lon = lon
+        self.name = name
+        self.zone = zone
+        self.price = price
+    }*/
 }
 
 let preDeterminedLocations : [location] = [

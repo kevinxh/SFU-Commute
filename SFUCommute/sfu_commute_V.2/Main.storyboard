@@ -396,17 +396,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JSM-aG-SP2">
-                                <frame key="frameInset" minX="54" minY="28" width="266" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Driving"/>
-                                    <segment title="Riding"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="3Yc-qt-UUJ" eventType="valueChanged" id="Ptj-89-Ybr"/>
-                                </connections>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggest Minimum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeH-FO-7MO">
                                 <frame key="frameInset" minX="54" minY="97" width="266" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -496,7 +485,6 @@
                         <outlet property="driverView" destination="eeV-jF-F4e" id="HaY-0G-I8s"/>
                         <outlet property="seatsAvailable" destination="xC5-FO-HS6" id="mPW-eU-gae"/>
                         <outlet property="seatsOfferOrRequest" destination="jXK-Zi-Wdn" id="bcT-V6-YOA"/>
-                        <outlet property="segmentControl" destination="JSM-aG-SP2" id="JST-Yy-aDF"/>
                         <outlet property="tipDriver" destination="ipl-BT-IrZ" id="zml-Hg-0zl"/>
                     </connections>
                 </viewController>

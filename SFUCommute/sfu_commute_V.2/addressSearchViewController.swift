@@ -191,12 +191,12 @@ class addressSearchViewController: UIViewController, UITableViewDelegate, UITabl
             let mapview = segue.destination as! MapView
             
             if (triggerButton == 1) {
-                mapview.startLocation.text = location
+                mapview.startLocationLabel.text = location
                 if (status == .toSetStartLocation) {
                     mapview.status = .toSetDestination
                 }
             } else if (triggerButton == 2) {
-                mapview.destination.text = location
+                mapview.destinationLabel.text = location
                 mapview.status = .toTapCreateButton
             }
             if(role == .offer){

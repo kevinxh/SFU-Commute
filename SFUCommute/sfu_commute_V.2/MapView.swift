@@ -144,6 +144,16 @@ class MapView: UIViewController, GMSMapViewDelegate {
  
     var role : role = .request
     var status : mapViewSteps = .toSetStartLocation
+    var s : location = location(){
+        didSet{
+            print("start location set!")
+        }
+    }
+    var d : location = location(){
+        didSet{
+            print("destination set!")
+        }
+    }
     
     // UI
     @IBOutlet var locationBox: UIView!
@@ -155,12 +165,12 @@ class MapView: UIViewController, GMSMapViewDelegate {
     var locationBoxSearchButton: FlatButton! = FlatButton()
     let locationBoxIcon = UILabel()
     let locationBoxLabel = UILabel()
-    let startLocation = UILabel()
+    let startLocationLabel = UILabel()
     var locationBox2 = UIView()
     var locationBox2SearchButton: FlatButton! = FlatButton()
     let locationBoxIcon2 = UILabel()
     let locationBoxLabel2 = UILabel()
-    let destination = UILabel()
+    let destinationLabel = UILabel()
     let roleSwitch = DGRunkeeperSwitch(titles: ["Request a ride" , "Offer a ride"])
     
     var offerStart = GMSMarker()
@@ -293,8 +303,8 @@ class MapView: UIViewController, GMSMapViewDelegate {
     }
     
     func switchRole(_ sender: Any?){
-        startLocation.text = ""
-        destination.text = ""
+        startLocationLabel.text = ""
+        destinationLabel.text = ""
         googlemap.clear()
         infoWindow.removeFromSuperview()
         renderPreDeterminedLocations()
@@ -346,12 +356,12 @@ class MapView: UIViewController, GMSMapViewDelegate {
         }
         
         // initialize label
-        startLocation.text = ""
-        startLocation.textAlignment = .left
-        startLocation.font = UIFont(name: "Futura-Medium", size: 18)!
-        startLocation.textColor = UIColor.black
-        self.locationBox.addSubview(startLocation)
-        startLocation.snp.makeConstraints{(make) -> Void in
+        startLocationLabel.text = ""
+        startLocationLabel.textAlignment = .left
+        startLocationLabel.font = UIFont(name: "Futura-Medium", size: 18)!
+        startLocationLabel.textColor = UIColor.black
+        self.locationBox.addSubview(startLocationLabel)
+        startLocationLabel.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(locationBoxIcon.snp.right)
             make.right.equalTo(locationBoxSearchButton.snp.left)
             make.top.equalTo(locationBoxLabel.snp.bottom).offset(-10)
@@ -417,12 +427,12 @@ class MapView: UIViewController, GMSMapViewDelegate {
         }
         
         // initialize label
-        destination.text = ""
-        destination.textAlignment = .left
-        destination.font = UIFont(name: "Futura-Medium", size: 18)!
-        destination.textColor = UIColor.black
-        locationBox2.addSubview(destination)
-        destination.snp.makeConstraints{(make) -> Void in
+        destinationLabel.text = ""
+        destinationLabel.textAlignment = .left
+        destinationLabel.font = UIFont(name: "Futura-Medium", size: 18)!
+        destinationLabel.textColor = UIColor.black
+        locationBox2.addSubview(destinationLabel)
+        destinationLabel.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(locationBoxIcon2.snp.right)
             make.right.equalTo(locationBox2SearchButton.snp.left)
             make.top.equalTo(locationBoxLabel2.snp.bottom).offset(-10)
@@ -466,9 +476,6 @@ class MapView: UIViewController, GMSMapViewDelegate {
             search.status = data.status
             search.role = data.role
             search.triggerButton = data.button
-            print(search.status)
-            print(search.role)
-            print(search.triggerButton)
         } else if (segue.identifier == "showTripScheduling") {
             let tripSchedlue = segue.destination as! tripSchedulingViewController
             tripSchedlue.role = role
@@ -538,7 +545,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
     }
     
     func setStartLocation(_ sender: Any?) {
-        startLocation.text = (tappedMarker.userData as! location).name
+        startLocationLabel.text = (tappedMarker.userData as! location).name
         if(status == .toSetStartLocation) {
             status = .toSetDestination
             updateStatus()
@@ -548,7 +555,7 @@ class MapView: UIViewController, GMSMapViewDelegate {
     }
     
     func setDestination(_ sender: Any?) {
-        destination.text = (tappedMarker.userData as! location).name
+        destinationLabel.text = (tappedMarker.userData as! location).name
         if(status == .toSetDestination) {
             status = .toTapCreateButton
             updateStatus()
