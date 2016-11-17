@@ -12,7 +12,7 @@ import SwiftyButton
 
 class tripSchedulingViewController: UIViewController {
     
-    
+    @IBOutlet var locationDetailView: UIView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var setTimeButton: FlatButton!
     @IBOutlet weak var dateAndTime: UIDatePicker!
@@ -75,6 +75,17 @@ class tripSchedulingViewController: UIViewController {
         super.viewDidLoad()
         setTimeText(Date())
         
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let shadowPath = UIBezierPath(rect: locationDetailView.bounds)
+        locationDetailView.layer.masksToBounds = false
+        locationDetailView.layer.shadowColor = UIColor.black.cgColor
+        locationDetailView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        locationDetailView.layer.shadowOpacity = 0.3
+        locationDetailView.layer.shadowPath = shadowPath.cgPath
     }
     
     func setTimeText(_ time : Date) {
