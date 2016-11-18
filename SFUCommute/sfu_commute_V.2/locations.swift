@@ -93,6 +93,7 @@ let preDeterminedLocations : [location] = [
     location(id: 50, lat: 49.276775, lon: -122.905371, name: "University High - University Crescent", zone: .SFU, price: 1.0),
     location(id: 51, lat: 49.275999, lon: -122.914685, name: "South Campus - Science", zone: .SFU, price: 1.0),
     location(id: 52, lat: 49.273984, lon: -122.912049, name: "Entrance to FIC", zone: .SFU, price: 1.0),
+    
     location(id: 53, lat: 49.249682, lon: -122.948763, name: "Winston - Phillips", zone: .C, price: 1.0),
 ]
 
