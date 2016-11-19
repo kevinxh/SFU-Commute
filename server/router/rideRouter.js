@@ -5,8 +5,9 @@ import * as controller from '../controller/rideController'
 const rideRouter = express.Router()
 
 rideRouter
-  .post('/offer/ride', controller.OfferRide)
-  .get('/all/ride', controller.allRide)
-  .get('/ride/id', controller.allRideId)
+  .post('/ride', controller.OfferRide)
+  .get('/ride', controller.allRide)
+  .get('/ride/:rideid', controller.allRideId)
+  .put('/ride/:rideid/:userid', controller.rideUpdate)
 
 export default rideRouter

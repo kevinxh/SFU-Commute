@@ -26,10 +26,14 @@ const UserSchema = new Schema({
     required: 'the ride start time',
   },
   ride_date: {
-    type: String,
+    type: Date,
     trim: true,
     match: [/^\d\d\d\d-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])$/, 'Please fill a valid date'],
     required: 'the date of the scheduled ride',
+  },
+  rider: {
+    type: String,
+    trim: true
   },
   created: {
     type: Date,

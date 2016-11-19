@@ -6,7 +6,7 @@ import path from 'path'
 import config from '../config/secret'
 
 export function OfferRide(req, res) {
-  let { startlocation, destination, seats, ride_time, ride_date } = req.body
+  let { startlocation, destination, seats, ride_time, ride_date, rider } = req.body
   if (!startlocation) {
     return res.status(400).json({
       success: false,
@@ -33,12 +33,15 @@ export function OfferRide(req, res) {
       error: 'Please enter the date you want to schedule the ride at.',
     })
   }
+
+  rider = ""
   const ride = new Ride({
     startlocation,
     destination,
     seats,
     ride_time,
-    ride_date
+    ride_date,
+    rider
   })
   ride.save((error) => {
     if (error) {
@@ -80,7 +83,32 @@ export function allRide(req, res){
 
   export function allRideId(req, res){
     let {id} = req.body
-    Ride.findOne({"ride._id": id}, (error, ride) => {
+    if (!(req.params.rideid)) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter specific ride ID.',
+    })
+  }
+  if(req.params.rideid){
+    Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      } 
+      else{
+        return res.status(201).json({ride})
+    }
+      // if no such user
+    })
+  }
+}
+
+export function rideUpdate(req, res){
+    let { ridersid, rideid } = req.body
+    Ride.findOne({rideid: "ride._id"}, (error, ride) => {
       // if error finding an user
       if (error) {
         return res.status(403).json({
@@ -89,8 +117,8 @@ export function allRide(req, res){
         })
       } 
       else
+        ride.rider = ridersid
         return res.status(201).json({ride})
-      console.log(ride)
       // if no such user
     })
 }
