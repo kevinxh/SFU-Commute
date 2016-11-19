@@ -56,6 +56,13 @@ export function OfferRide(req, res) {
 
 
 export function allRide(req, res){
+  var moment = require('moment')
+  var now = Date.now
+  var startDate = moment('2013-5-11 8:73:18', 'YYYY-M-DD HH:mm:ss')
+  var endDate = moment('2013-5-11 10:73:18', 'YYYY-M-DD HH:mm:ss')
+  var secondsDiff = endDate.diff(startDate, 'seconds')
+  console.log(secondsDiff)
+
     Ride.find({}, (error, ride) => {
       // if error finding an user
       if (error) {
@@ -70,3 +77,20 @@ export function allRide(req, res){
       // if no such user
     })
   }
+
+  export function allRideId(req, res){
+    let {id} = req.body
+    Ride.findOne({"ride._id": id}, (error, ride) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      } 
+      else
+        return res.status(201).json({ride})
+      console.log(ride)
+      // if no such user
+    })
+}
