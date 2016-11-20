@@ -108,17 +108,27 @@ export function allRide(req, res){
 
 export function rideUpdate(req, res){
     let { ridersid, rideid } = req.body
-    Ride.findOne({rideid: "ride._id"}, (error, ride) => {
-      // if error finding an user
-      if (error) {
-        return res.status(403).json({
+    if(req.params.rideid && req.params.userid){
+      Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
+        // if error finding an user
+        if (error) {
+          return res.status(403).json({
           success: false,
           error,
-        })
-      } 
-      else
-        ride.rider = ridersid
-        return res.status(201).json({ride})
-      // if no such user
-    })
+          })
+        } 
+        else{
+          ride.rider = req.params.userid
+          ride.save(function(err) {
+          if (err)
+            console.log('error')
+          else
+            console.log('success')
+          });
+          return res.status(201).json({ride})
+          console.log(ride)
+        }
+          // if no such user
+      })
+    }
 }
