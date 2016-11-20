@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //Global configuration initialization
+        globalConfig.initApplication()
+        
         GMSServices.provideAPIKey("AIzaSyCsSmIJuNe6Xj1zRBZ65sC6rQIUCYpMK5A")
         GMSPlacesClient.provideAPIKey("AIzaSyCsSmIJuNe6Xj1zRBZ65sC6rQIUCYpMK5A")
         let cl = CLLocationManager()
