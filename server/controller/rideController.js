@@ -6,11 +6,16 @@ import path from 'path'
 import config from '../config/secret'
 
 export function OfferRide(req, res) {
-  let { userid, startlocation, destination, seats, ride_time, ride_date, rider_request_pending, rider_request_approved } = req.body
+  let { userid, schedulers_profile, startlocation, destination, seats, ride_time, ride_date, rider_request_pending, rider_request_approved } = req.body
   if (!userid) {
     return res.status(400).json({
       success: false,
       error: 'Please enter the user ID token.',
+    })
+  } else if (!schedulers_profile){
+    return res.status(400).json({
+      success: false,
+      error: 'Are you a rider or driver?.',
     })
   } else if (!startlocation){
     return res.status(400).json({
@@ -43,6 +48,7 @@ export function OfferRide(req, res) {
   rider_request_approved= ""
   const ride = new Ride({
     userid,
+    schedulers_profile,
     startlocation,
     destination,
     seats,

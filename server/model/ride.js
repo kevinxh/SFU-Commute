@@ -7,6 +7,11 @@ const UserSchema = new Schema({
     lowercase: true,
     required: 'start location is required',
   },
+  schedulers_profile: {
+    type: String,
+    lowercase: true,
+    required: 'Are you a driver or a rider?',
+  },
   startlocation: {
     type: String,
     lowercase: true,
