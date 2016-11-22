@@ -9,5 +9,6 @@ rideRouter
   .get('/ride', controller.allRide)
   .get('/ride/:rideid', controller.allRideId)
   .put('/ride/:rideid/:userid', controller.rideUpdate)
+  .delete('/ride/:rideid', controller.rideDelete)
 
 export default rideRouter

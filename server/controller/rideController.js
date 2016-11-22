@@ -134,3 +134,26 @@ export function rideUpdate(req, res){
       })
     }
 }
+
+export function rideDelete(req, res){
+    if(req.params.rideid){
+      Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
+        if (error) {
+          return res.status(403).json({
+          success: false,
+          error,
+          })
+        } 
+        else{
+          ride.remove(function(err) {
+            if (err) throw err;
+            console.log('User successfully deleted!');
+          })
+          return res.status(201).json({
+            success: true,
+          })
+          console.log(ride)
+        }
+      })
+    }
+}
