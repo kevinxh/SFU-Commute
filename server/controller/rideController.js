@@ -6,13 +6,18 @@ import path from 'path'
 import config from '../config/secret'
 
 export function OfferRide(req, res) {
-  let { startlocation, destination, seats, ride_time, ride_date, rider } = req.body
-  if (!startlocation) {
+  let { userid, startlocation, destination, seats, ride_time, ride_date, rider_request_pending, rider_request_approved } = req.body
+  if (!userid) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter the user ID token.',
+    })
+  } else if (!startlocation){
     return res.status(400).json({
       success: false,
       error: 'Please enter your start location.',
     })
-  } else if (!destination){
+  }else if (!destination){
     return res.status(400).json({
       success: false,
       error: 'Please enter your destination.',
@@ -34,14 +39,17 @@ export function OfferRide(req, res) {
     })
   }
 
-  rider = ""
+  rider_request_pending = ""
+  rider_request_approved= ""
   const ride = new Ride({
+    userid,
     startlocation,
     destination,
     seats,
     ride_time,
     ride_date,
-    rider
+    rider_request_pending,
+    rider_request_approved
   })
   ride.save((error) => {
     if (error) {
@@ -81,8 +89,7 @@ export function allRide(req, res){
     })
   }
 
-  export function allRideId(req, res){
-    let {id} = req.body
+export function allRideId(req, res){
     if (!(req.params.rideid)) {
     return res.status(400).json({
       success: false,
@@ -91,7 +98,6 @@ export function allRide(req, res){
   }
   if(req.params.rideid){
     Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
-      // if error finding an user
       if (error) {
         return res.status(403).json({
           success: false,
@@ -100,17 +106,14 @@ export function allRide(req, res){
       } 
       else{
         return res.status(201).json({ride})
-    }
-      // if no such user
+      }
     })
   }
 }
 
 export function rideUpdate(req, res){
-    let { ridersid, rideid } = req.body
     if(req.params.rideid && req.params.userid){
       Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
-        // if error finding an user
         if (error) {
           return res.status(403).json({
           success: false,
@@ -118,7 +121,7 @@ export function rideUpdate(req, res){
           })
         } 
         else{
-          ride.rider = req.params.userid
+          ride.rider_request_pending = req.params.userid
           ride.save(function(err) {
           if (err)
             console.log('error')
@@ -128,7 +131,6 @@ export function rideUpdate(req, res){
           return res.status(201).json({ride})
           console.log(ride)
         }
-          // if no such user
       })
     }
 }

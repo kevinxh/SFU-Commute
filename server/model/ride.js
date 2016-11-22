@@ -2,11 +2,14 @@ import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const UserSchema = new Schema({
+  userid: {
+    type: String,
+    lowercase: true,
+    required: 'start location is required',
+  },
   startlocation: {
     type: String,
     lowercase: true,
-    unique: true,
-    index: true,
     required: 'start location is required',
   },
   destination: {
@@ -31,7 +34,11 @@ const UserSchema = new Schema({
     match: [/^\d\d\d\d-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])$/, 'Please fill a valid date'],
     required: 'the date of the scheduled ride',
   },
-  rider: {
+  rider_request_pending: {
+    type: String,
+    trim: true
+  },
+  rider_request_approved:{
     type: String,
     trim: true
   },
@@ -46,12 +53,11 @@ UserSchema.pre('save', function (next) {
   const ride = this
   if (ride.isModified('startlocation') || ride.isNew) {
     ride.startlocation = ride.startlocation.toLowerCase()
-    return next()
   }
   if (ride.isModified('destination') || ride.isNew) {
     ride.destination = ride.destination.toLowerCase()
-    return next()
   }
+  return next()
 })
 
 export default mongoose.model('Ride', UserSchema)
