@@ -6,7 +6,7 @@ import path from 'path'
 import config from '../config/secret'
 
 export function OfferRide(req, res) {
-  let { userid, schedulers_profile, startlocation, destination, seats, ride_time, ride_date, rider_request_pending, rider_request_approved } = req.body
+  let { userid, schedulers_profile, startlocation, destination, seats, ride_date, rider_request_pending, rider_request_approved } = req.body
   if (!userid) {
     return res.status(400).json({
       success: false,
@@ -32,11 +32,6 @@ export function OfferRide(req, res) {
       success: false,
       error: 'Please enter the number of seats available.',
     })
-  } else if (!ride_time) {
-    return res.status(400).json({
-      success: false,
-      error: 'Please enter the time.',
-    })
   } else if (!ride_date) {
     return res.status(400).json({
       success: false,
@@ -52,7 +47,6 @@ export function OfferRide(req, res) {
     startlocation,
     destination,
     seats,
-    ride_time,
     ride_date,
     rider_request_pending,
     rider_request_approved

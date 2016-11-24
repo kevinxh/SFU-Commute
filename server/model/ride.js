@@ -27,12 +27,6 @@ const UserSchema = new Schema({
     trim: true,
     required: 'number of seats available are required',
   },
-  ride_time: {
-    type: String,
-    trim: true,
-    match: [/^(((([0-1][0-9])|(2[0-3])):?[0-5][0-9])|(24:?00))/, 'Please fill a valid time '],
-    required: 'the ride start time',
-  },
   ride_date: {
     type: Date,
     trim: true,
