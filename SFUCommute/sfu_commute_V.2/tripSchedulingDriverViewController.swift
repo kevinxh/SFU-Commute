@@ -193,16 +193,16 @@ class tripSchedulingViewController: UIViewController {
                 } else {
                     
                     // to do: error handling!
-                    self.signUpButton.isEnabled = true
+                    self.confirmButton.isEnabled = true
                     self.tips = EasyTipView(text:"Error occurs, please try again later")
-                    self.tips.show(forView: self.emailTextField)
+                    self.tips.show(forView: self.confirmButton)
                 }
                 
             case .failure(let error):
                 print(error)
-                self.signUpButton.isEnabled = true
+                self.confirmButton.isEnabled = true
                 self.tips = EasyTipView(text:error.localizedDescription)
-                self.tips.show(forView: self.emailTextField)
+                self.tips.show(forView: self.confirmButton)
                 
             }
         }
