@@ -18,6 +18,7 @@ enum API : URLRequestConvertible {
     case sendCodeMessage(parameters: Parameters)
     case verifyCodeMessage(code: String)
     case forgotPassword(parameters: Parameters)
+    case ride(parameters: Parameters)
     
     var method : HTTPMethod {
         switch self{
@@ -28,6 +29,8 @@ enum API : URLRequestConvertible {
         case .verifyCodeMessage:
             return .get
         case .forgotPassword:
+            return .post
+        case .ride:
             return .post
         }
     }
@@ -44,6 +47,8 @@ enum API : URLRequestConvertible {
             return "/verify/text"
         case .forgotPassword:
             return "/forgot"
+        case .ride:
+            return "/ride"
         }
     }
     
