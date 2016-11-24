@@ -162,24 +162,20 @@ class tripSchedulingViewController: UIViewController {
         let destinationLocation = destinationLabel.text!
         let seatsOfferedOrRequested = seatsAvailable.text!
         
-        let dateFormatter = DateFormatter()
-        let timeFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd" //following ISO 8601
-        timeFormatter.dateFormat = "HH:mm:ss"
-        
-        let rideDate = dateFormatter.string(from: time)
-        let rideTime = timeFormatter.string(from: time)
+        let dateTimeFormatter = DateFormatter()
+        dateTimeFormatter.dateFormat = "YYYY-MM-dd HH:mm" //following ISO 8601
+        let rideDateTime = dateTimeFormatter.string(from: time)
+ 
      
         
         let parameters : Parameters = [
                             "startlocation": startLocation,
                             "destination": destinationLocation,
                             "seats": seatsOfferedOrRequested,
-                            "ride_time": rideTime,
-                            "ride_date": rideDate,
+                            "ride_date": rideDateTime,
                             "userid": SOMEID,
                             "schedulers_profile": riderOrDriver //will need to know where to get info for userid and profile
-        ]
+                        ]
         
         Alamofire.request(API.ride(parameters: parameters)).responseJSON{ response in
             switch response.result{
@@ -206,25 +202,6 @@ class tripSchedulingViewController: UIViewController {
                 
             }
         }
- 
- 
-        
-        
-        
-        
-       /*
-        @IBOutlet var locationDetailView: UIView!
-        @IBOutlet var timeLabel: UILabel!
-        @IBOutlet weak var dateAndTime: UIDatePicker!
-        @IBOutlet weak var seatsAvailable: UILabel!
-        @IBOutlet weak var seatsOfferOrRequest: UILabel!
-        @IBOutlet weak var driverView: UIView!
-        @IBOutlet weak var riderView: UIView!
-        @IBOutlet var startLocationLabel: UILabel!
-        @IBOutlet var destinationLabel: UILabel!
-        @IBOutlet var priceLabel: UILabel!
-        var confirmButton : FlatButton = FlatButton()
- */
         
     }
 
