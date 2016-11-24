@@ -92,7 +92,7 @@ class tripSchedulingViewController: UIViewController {
     
     func initButton() {
         confirmButton.SFURedDefault("Confirm")
-        //confirmButton.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(confirmButton)
         confirmButton.wideBottomConstraints(superview: self.view)
     }
@@ -104,8 +104,8 @@ class tripSchedulingViewController: UIViewController {
     }
     
     func timeLabelTapped(_ sender: AnyObject) {
-        let min = Date()
-        let max = Date().addingTimeInterval(60 * 60 * 24 * 7)
+        let min = Date().addingTimeInterval(60 * 10) //10 minutes from now
+        let max = Date().addingTimeInterval(60 * 60 * 24 * 7) // 7 days from now
         let current = Date()
         let picker = DateTimePicker.show(selected: current, minimumDate: min, maximumDate: max)
         picker.highlightColor = Colors.SFUBlueHighlight
@@ -127,7 +127,62 @@ class tripSchedulingViewController: UIViewController {
                 picker.removeFromSuperview()
             }
             self.setTimeText(date)
+            
         }
+    }
+    
+    func verifyTapped(_ sender: FlatButton){
+        //do some checks
+        //sendRequest()
+        let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        timeFormatter.dateFormat = "HH:mm:ss"
+        //let rideDate = dateFormatter.string(from: Date())
+        //let rideTime = timeFormatter.string(from: Date())
+        
+        
+        let rideDate = dateFormatter.string(from: )
+        let rideTime = timeFormatter.string(from:)
+
+        print(rideDate)
+        print(rideTime)
+    }
+    
+    func sendRequest(){
+        /*
+        let startLocation = startLocationLabel.text!
+        let destinationLocattion = destinationLabel.text!
+        let seatsOfferedOrRequested = seatsAvailable.text!
+        
+
+        let rideDateAndTime = dateAndTime.date!//.date sends date and exact time
+        //let rideTime = dateAndTime.
+        
+        let parameters : Parameters = [
+                            "startlocation": startLocation,
+                            "destination": destinationLocation,
+                            "seats": seatsOfferedOrRequested,
+                            "ride"]
+ 
+        
+        */
+        
+        
+       /*
+        @IBOutlet var locationDetailView: UIView!
+        @IBOutlet var timeLabel: UILabel!
+        @IBOutlet weak var dateAndTime: UIDatePicker!
+        @IBOutlet weak var seatsAvailable: UILabel!
+        @IBOutlet weak var seatsOfferOrRequest: UILabel!
+        @IBOutlet weak var driverView: UIView!
+        @IBOutlet weak var riderView: UIView!
+        @IBOutlet var startLocationLabel: UILabel!
+        @IBOutlet var destinationLabel: UILabel!
+        @IBOutlet var priceLabel: UILabel!
+        var confirmButton : FlatButton = FlatButton()
+ */
+        
     }
 
     override func didReceiveMemoryWarning() {
