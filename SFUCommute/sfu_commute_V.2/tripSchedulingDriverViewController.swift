@@ -6,9 +6,12 @@
 //  Copyright © 2016 Lightspeed-Tech. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import EasyTipView
+import Alamofire
 import SwiftyButton
+import SwiftyJSON
 
 class tripSchedulingViewController: UIViewController {
     
@@ -104,10 +107,10 @@ class tripSchedulingViewController: UIViewController {
     }
     
     func timeLabelTapped(_ sender: AnyObject) {
-        let min = Date().addingTimeInterval(60 * 10) //10 minutes from now
-        let max = Date().addingTimeInterval(60 * 60 * 24 * 7) // 7 days from now
-        let current = Date()
-        let picker = DateTimePicker.show(selected: current, minimumDate: min, maximumDate: max)
+        let min = Date().addingTimeInterval(60 * 15) //shows 15 minutes from now so you can't schedule right away
+        let max = Date().addingTimeInterval(60 * 60 * 24 * 7) //max 7 days from now
+        //let current = Date()
+        let picker = DateTimePicker.show(selected: min, minimumDate: min, maximumDate: max)
         picker.highlightColor = Colors.SFUBlueHighlight
         picker.doneButtonTitle = "Set"
         picker.todayButtonTitle = "Now"
@@ -126,6 +129,7 @@ class tripSchedulingViewController: UIViewController {
                 })
                 picker.removeFromSuperview()
             }
+            self.time = date
             self.setTimeText(date)
             
         }
@@ -134,39 +138,78 @@ class tripSchedulingViewController: UIViewController {
     func verifyTapped(_ sender: FlatButton){
         //do some checks
         //sendRequest()
+        
+        printDateAndTime()
+       
+    }
+    
+    func printDateAndTime(){
         let dateFormatter = DateFormatter()
         let timeFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
+        dateFormatter.dateFormat = "MM-dd-YYYY"
         timeFormatter.dateFormat = "HH:mm:ss"
-        //let rideDate = dateFormatter.string(from: Date())
-        //let rideTime = timeFormatter.string(from: Date())
         
+        let rideDate = dateFormatter.string(from: time)
+        let rideTime = timeFormatter.string(from: time)
         
-        let rideDate = dateFormatter.string(from: )
-        let rideTime = timeFormatter.string(from:)
-
         print(rideDate)
         print(rideTime)
     }
     
     func sendRequest(){
-        /*
+        
         let startLocation = startLocationLabel.text!
-        let destinationLocattion = destinationLabel.text!
+        let destinationLocation = destinationLabel.text!
         let seatsOfferedOrRequested = seatsAvailable.text!
         
-
-        let rideDateAndTime = dateAndTime.date!//.date sends date and exact time
-        //let rideTime = dateAndTime.
+        let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-YYYY"
+        timeFormatter.dateFormat = "HH:mm:ss"
+        
+        let rideDate = dateFormatter.string(from: time)
+        let rideTime = timeFormatter.string(from: time)
+     
         
         let parameters : Parameters = [
                             "startlocation": startLocation,
                             "destination": destinationLocation,
                             "seats": seatsOfferedOrRequested,
-                            "ride"]
+                            "ride_time": rideTime,
+                            "ride_date": rideDate,
+                            "userid": SOMEID,
+                            "schedulers_profile": riderOrDriver //will need to know where to get info for userid and profile
+        ]
+        
+        Alamofire.request(API.ride(parameters: parameters)).responseJSON{ response in
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                if (json["success"] == true) {
+                    print("success")
+                    AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
+                    self.performSegue(withIdentifier: "toVerification", sender: self)
+                } else {
+                    
+                    // to do: error handling!
+                    self.signUpButton.isEnabled = true
+                    self.tips = EasyTipView(text:"Error occurs, please try again later")
+                    self.tips.show(forView: self.emailTextField)
+                }
+                
+            case .failure(let error):
+                print(error)
+                self.signUpButton.isEnabled = true
+                self.tips = EasyTipView(text:error.localizedDescription)
+                self.tips.show(forView: self.emailTextField)
+                
+            }
+        }
+ 
  
         
-        */
+        
         
         
        /*
