@@ -172,7 +172,7 @@
             <objects>
                 <navigationController extendedLayoutIncludesOpaqueBars="YES" id="Q32-iC-3hp" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="jY1-10-w8j">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="jY1-10-w8j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -846,38 +846,6 @@
             </objects>
             <point key="canvasLocation" x="7713" y="1657"/>
         </scene>
-        <!--Browse-->
-        <scene sceneID="Uq6-AS-qbW">
-            <objects>
-                <viewController id="x5s-Ys-bkM" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ftb-uZ-l6H"/>
-                        <viewControllerLayoutGuide type="bottom" id="VwO-Tw-UUd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="G8C-7L-wnJ">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Browse Page Connor" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-sr-J00">
-                                <frame key="frameInset" minX="114" minY="289" width="147" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.90343348859999995" blue="0.59056320149999997" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Browse" id="1hJ-Q2-jeh"/>
-                    <connections>
-                        <outlet property="navItem" destination="1hJ-Q2-jeh" id="v1O-hB-Qo6"/>
-                        <segue destination="tkS-Vx-WRU" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="o8O-3y-uHd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eoF-jF-SDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7714" y="-1019"/>
-        </scene>
         <!--Upcoming Trips-->
         <scene sceneID="AjK-mj-Jik">
             <objects>
@@ -931,7 +899,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="viK-gV-Mkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8535" y="-1019"/>
+            <point key="canvasLocation" x="10343" y="-1019"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eGj-1d-FVS">
@@ -939,7 +907,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ijM-ff-Hso" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="fsH-Ku-vcs">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="fsH-Ku-vcs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.4392156862745098" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
@@ -949,7 +917,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="x5s-Ys-bkM" kind="relationship" relationship="rootViewController" id="tLD-RZ-tvR"/>
+                        <segue destination="BtB-Vk-W8G" kind="relationship" relationship="rootViewController" id="tLD-RZ-tvR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="biV-2T-9j6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -962,7 +930,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dsc-qL-a8Q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="idx-CL-xHg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="idx-CL-xHg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -984,7 +952,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NFI-Wc-gTS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="PhS-1w-fnD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="PhS-1w-fnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1006,7 +974,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKd-cE-YxD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yGr-2t-n0b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yGr-2t-n0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1056,7 +1024,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4BD-US-5ef" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="OB1-9Z-bYN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="OB1-9Z-bYN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1072,6 +1040,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm0-dj-j1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6950" y="2334"/>
+        </scene>
+        <!--Browse Tab Bar Controller-->
+        <scene sceneID="cwI-uM-44n">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="BtB-Vk-W8G" customClass="browseTabBarController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="akz-CV-aJE"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mLa-wE-SgX">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tjy-u9-cpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7712.8000000000002" y="-1019.640179910045"/>
         </scene>
     </scenes>
     <resources>

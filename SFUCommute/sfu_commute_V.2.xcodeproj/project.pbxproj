@@ -33,6 +33,7 @@
 		0A5092131DD71CDF00081A50 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A5092101DD71CDF00081A50 /* Roboto-Thin.ttf */; };
 		0A748D131DDD257800ECFBCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A748D121DDD257800ECFBCE /* Main.storyboard */; };
 		0A7893FE1DD556DD006C296A /* locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7893FD1DD556DD006C296A /* locations.swift */; };
+		0A790DB71DEA6B8C005F2425 /* browseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A790DB61DEA6B8C005F2425 /* browseTabBarController.swift */; };
 		0A7B757F1DC9444E001AF8AF /* codeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */; };
 		0A8B9BC91DD3EF7C00BD8192 /* customSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */; };
 		0A8B9BCB1DD3F08500BD8192 /* customSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */; };
@@ -122,6 +123,7 @@
 		0A5092101DD71CDF00081A50 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		0A748D121DDD257800ECFBCE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A7893FD1DD556DD006C296A /* locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locations.swift; sourceTree = "<group>"; };
+		0A790DB61DEA6B8C005F2425 /* browseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = browseTabBarController.swift; sourceTree = "<group>"; };
 		0A7B757D1DC9444E001AF8AF /* codeVerificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = codeVerificationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0A8B9BC81DD3EF7C00BD8192 /* customSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customSearchBar.swift; sourceTree = "<group>"; };
 		0A8B9BCA1DD3F08500BD8192 /* customSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customSearchController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				621813BA1DBC2B4F00C744BD /* AppDelegate.swift */,
 				0A748D121DDD257800ECFBCE /* Main.storyboard */,
+				0A790DB61DEA6B8C005F2425 /* browseTabBarController.swift */,
 				0AF958DE1DD51DA100E984EC /* MapStyle */,
 				0AF2CC8C1DCC88D000F87B35 /* Extensions */,
 				0A0933331DC4A402001EB52A /* Constants */,
@@ -688,6 +691,7 @@
 				0A0933351DC57CE7001EB52A /* textField.swift in Sources */,
 				0A4EB7B61DCE823F004A6DE7 /* sideMenuController.swift in Sources */,
 				0A4EB7B11DCE6B5C004A6DE7 /* sideMenuItem.swift in Sources */,
+				0A790DB71DEA6B8C005F2425 /* browseTabBarController.swift in Sources */,
 				0AF2CC891DCC6C2B00F87B35 /* signInController.swift in Sources */,
 				0A14540F1DD2B3DA001A693B /* tripInfoViewController.swift in Sources */,
 				0AF2CC8E1DCC8FC800F87B35 /* CONFIG.swift in Sources */,

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class browseViewController: UIViewController {
+class browseViewController: UICollectionViewController {
 
     @IBOutlet var navItem: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSideMenuNavButton()
+        
         
     }
 
