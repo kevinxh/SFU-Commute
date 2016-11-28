@@ -15,7 +15,7 @@ class browseTabBarController: UITabBarController {
         setupSideMenuNavButton()
         // Do any additional setup after loading the view.
         
-        let layout = UICollectionViewFlowLayout()
+        /*let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         let offer = browseViewController(collectionViewLayout: layout)
         let request = browseViewController(collectionViewLayout: layout)
@@ -26,7 +26,7 @@ class browseTabBarController: UITabBarController {
         
         offer.tabBarItem = offerTabBarItem
         request.tabBarItem = requestTabBarItem
-        viewControllers = [offer, request]
+        viewControllers = [offer, request]*/
     }
 
     override func didReceiveMemoryWarning() {

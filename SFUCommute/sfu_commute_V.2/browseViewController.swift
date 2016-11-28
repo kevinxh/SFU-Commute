@@ -10,10 +10,9 @@ import UIKit
 
 class browseViewController: UICollectionViewController {
 
-    @IBOutlet var navItem: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor.white
         
     }
 
