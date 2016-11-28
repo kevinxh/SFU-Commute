@@ -1064,11 +1064,11 @@
         <!--Request-->
         <scene sceneID="nKZ-zh-SM7">
             <objects>
-                <collectionViewController id="W2v-Ac-Z9L" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Request" id="W2v-Ac-Z9L" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="FA1-Th-7Ye">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KZ8-m1-rXU">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1099,11 +1099,11 @@
         <!--Offer-->
         <scene sceneID="OER-5d-juv">
             <objects>
-                <collectionViewController id="8JB-5h-nGd" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Offer" id="8JB-5h-nGd" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="i5f-Q0-af1">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.57647058819999997" green="0.027450980390000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T3b-ZM-SnF">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
