@@ -11,16 +11,31 @@ import UIKit
 let browseCell = "browseCell"
 
 class browseViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    var content:role = .request
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.alwaysBounceVertical = true
         collectionView?.register(browseCollectionViewCell.self, forCellWithReuseIdentifier: browseCell)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        switchContent()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    func switchContent(){
+        if((self.tabBarController?.selectedIndex) == 1){
+            content = .offer
+        } else {
+            content = .request
+        }
+        print(content.rawValue)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,7 +129,7 @@ class browseCollectionViewCell : UICollectionViewCell {
         addSubview(nameText)
         addSubview(userImage)
         startLabel.snp.makeConstraints{(make) -> Void in
-            make.left.top.equalTo(self).offset(15)
+            make.left.equalTo(self).offset(15)
             make.top.equalTo(self).offset(20)
             make.width.equalTo(150)
         }

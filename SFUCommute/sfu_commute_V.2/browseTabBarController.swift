@@ -8,11 +8,12 @@
 
 import UIKit
 
-class browseTabBarController: UITabBarController {
+class browseTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSideMenuNavButton()
+        self.delegate = self
         // Do any additional setup after loading the view.
         
         /*let layout = UICollectionViewFlowLayout()
@@ -28,6 +29,16 @@ class browseTabBarController: UITabBarController {
         request.tabBarItem = requestTabBarItem
         viewControllers = [offer, request]*/
     }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if(tabBarController.selectedIndex == 0){
+            navigationItem.title = "Browse offers"
+        }else {
+            navigationItem.title = "Browse requests"
+        }
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
