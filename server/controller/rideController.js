@@ -93,19 +93,52 @@ export function createRide(req, res) {
 }
 
 export function getRide(req, res){
-  var now = moment()
+  if (!req.query.scheduleType){
+    return res.status(400).json({
+      success: false,
+      error: 'Missing parameter: scheduleType.',
+    })
+  }
+  var scheduleType
+  if (req.query.scheduleType == 'Rider'){
+    scheduleType = 'Rider'
+  } else if (req.query.scheduleType == 'Driver'){
+    scheduleType = 'Driver'
+  } else if (req.query.scheduleType == 'Both'){
+    scheduleType = 'Both'
+  } else {
+    return res.status(400).json({
+      success: false,
+      error: 'Invalid parameter: scheduleType.',
+    })
+  }
 
-  Ride.find({date:{$gte:now}}, (error, ride) => {
-    // if error finding an user
-    if (error) {
-      return res.status(403).json({
-        success: false,
-        error,
-      })
-    } else {
-      return res.status(201).json({ride})
-    }
-  })
+  var now = moment()
+  if(scheduleType == 'Both'){
+    Ride.find({date:{$gte:now}}, (error, ride) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      } else {
+        return res.status(201).json({ride})
+      }
+    })
+  } else {
+    Ride.find({date:{$gte:now}, 'scheduler.schedulerType': scheduleType}, (error, ride) => {
+      // if error finding an user
+      if (error) {
+        return res.status(403).json({
+          success: false,
+          error,
+        })
+      } else {
+        return res.status(201).json({ride})
+      }
+    })
+  }
 }
 
 export function getRideByID(req, res){
