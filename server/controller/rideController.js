@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import path from 'path'
 import config from '../config/secret'
 
-export function OfferRide(req, res) {
+export function createRide(req, res) {
   let { userid, schedulers_profile, startlocation, destination, seats, ride_date, rider_request_pending, rider_request_approved } = req.body
   if (!userid) {
     return res.status(400).json({
@@ -65,8 +65,7 @@ export function OfferRide(req, res) {
   })
 }
 
-
-export function allRide(req, res){
+export function getRide(req, res){
   var moment = require('moment')
   var now = Date.now
   var startDate = moment('2013-5-11 8:73:18', 'YYYY-M-DD HH:mm:ss')
@@ -81,7 +80,7 @@ export function allRide(req, res){
           success: false,
           error,
         })
-      } 
+      }
       else
         return res.status(201).json({ride})
       console.log(ride)
@@ -89,7 +88,7 @@ export function allRide(req, res){
     })
   }
 
-export function allRideId(req, res){
+export function getRideByID(req, res){
     if (!(req.params.rideid)) {
     return res.status(400).json({
       success: false,
@@ -103,7 +102,7 @@ export function allRideId(req, res){
           success: false,
           error,
         })
-      } 
+      }
       else{
         return res.status(201).json({ride})
       }
@@ -111,7 +110,7 @@ export function allRideId(req, res){
   }
 }
 
-export function rideUpdate(req, res){
+export function updateRideByID(req, res){
     if(req.params.rideid && req.params.userid){
       Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
         if (error) {
@@ -119,7 +118,7 @@ export function rideUpdate(req, res){
           success: false,
           error,
           })
-        } 
+        }
         else{
           ride.rider_request_pending = req.params.userid
           ride.save(function(err) {
@@ -135,7 +134,7 @@ export function rideUpdate(req, res){
     }
 }
 
-export function rideDelete(req, res){
+export function deleteRideByID(req, res){
     if(req.params.rideid){
       Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
         if (error) {
@@ -143,7 +142,7 @@ export function rideDelete(req, res){
           success: false,
           error,
           })
-        } 
+        }
         else{
           ride.remove(function(err) {
             if (err) throw err;

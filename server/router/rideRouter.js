@@ -5,10 +5,10 @@ import * as controller from '../controller/rideController'
 const rideRouter = express.Router()
 
 rideRouter
-  .post('/', controller.OfferRide)
-  .get('/', controller.allRide)
-  .get('/:rideid', controller.allRideId)
-  .put('/:rideid/:userid', controller.rideUpdate)
-  .delete('/:rideid', controller.rideDelete)
+  .post('/', controller.createRide)
+  .get('/', controller.getRide)
+  .get('/:rideid', controller.getRideByID)
+  .put('/:rideid/:userid', controller.updateRideByID)
+  .delete('/:rideid', controller.deleteRideByID)
 
 export default rideRouter
