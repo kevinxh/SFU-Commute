@@ -10,6 +10,6 @@ router.get('/', function (req, res) {
 })
 
 router.use('/', authenticationRouter)
-router.use('/', rideRouter)
+router.use('/ride', rideRouter)
 
 export default router
