@@ -177,43 +177,61 @@ export function requestRideByID(req, res){
         error,
       })
     } else {
-      ride.pendingRequests.push(req.user._id)
-      ride.save(function(err) {
-        if (err) {
-          return res.status(403).json({
-            success: false,
-            error,
-          })
-        } else {
-          return res.status(201).json({
-            success: true,
-            ride,
-          })
-        }
-      })
+      if(ride.pendingRequests.include(req.user._id)){
+        return res.status(400).json({
+          success: false,
+          error: "You already requested this ride.",
+        })
+      } else {
+        ride.pendingRequests.push(req.user._id)
+        ride.save(function(err) {
+          if (err) {
+            return res.status(403).json({
+              success: false,
+              error,
+            })
+          } else {
+            return res.status(201).json({
+              success: true,
+              ride,
+            })
+          }
+        })
+      }
     }
   })
 }
 
 export function deleteRideByID(req, res){
-    if(req.params.rideid){
-      Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
-        if (error) {
-          return res.status(403).json({
+  if (!(req.params.rideid)) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter specific ride ID.',
+    })
+  }
+  if(req.params.rideid){
+    Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
+      if (error) {
+        return res.status(403).json({
           success: false,
           error,
-          })
-        }
-        else{
+        })
+      } else {
+        // without toString, they are not equal even if values are the same, weird.
+        if(ride.scheduler.user.toString() == req.user._id.toString()){
           ride.remove(function(err) {
             if (err) throw err;
-            console.log('User successfully deleted!');
+            return res.status(201).json({
+              success: true,
+            })
           })
-          return res.status(201).json({
-            success: true,
+        } else {
+          return res.status(400).json({
+            success: false,
+            error: "You are not the scheduler."
           })
-          console.log(ride)
         }
-      })
-    }
+      }
+    })
+  }
 }
