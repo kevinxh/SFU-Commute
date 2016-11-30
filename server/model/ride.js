@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt'
 
-const UserSchema = new Schema({
+const RideSchema = new Schema({
   userid: {
     type: String,
     lowercase: true,
@@ -48,7 +48,7 @@ const UserSchema = new Schema({
 }, { collection: 'ride' })
 
 
-UserSchema.pre('save', function (next) {
+RideSchema.pre('save', function (next) {
   const ride = this
   if (ride.isModified('startlocation') || ride.isNew) {
     ride.startlocation = ride.startlocation.toLowerCase()
@@ -59,4 +59,4 @@ UserSchema.pre('save', function (next) {
   return next()
 })
 
-export default mongoose.model('Ride', UserSchema)
+export default mongoose.model('Ride', RideSchema)
