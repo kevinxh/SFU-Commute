@@ -10,8 +10,16 @@ import UIKit
 
 let browseCell = "browseCell"
 
+struct cellInfo{
+    var startLocation : String
+    var destination : String
+    var date : String
+    var scheduler : String
+}
+
 class browseViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var cells = [cellInfo]()
     var content:role = .request
 
     override func viewDidLoad() {
@@ -35,15 +43,16 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
         } else {
             content = .request
         }
-        print(content.rawValue)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return cells.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: browseCell, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: browseCell, for: indexPath)
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
