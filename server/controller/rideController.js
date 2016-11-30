@@ -177,7 +177,8 @@ export function requestRideByID(req, res){
         error,
       })
     } else {
-      if(ride.pendingRequests.include(req.user._id)){
+    	// this line is a bug, it returns false even if they are equal, to be fixed
+      if(ride.pendingRequests.includes(req.user._id)){
         return res.status(400).json({
           success: false,
           error: "You already requested this ride.",
