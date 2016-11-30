@@ -33,21 +33,21 @@ const RideSchema = new Schema({
       required: 'Scheduler type is required.',
     },
   },
-  startlocation: LocationSchema,
+  startLocation: LocationSchema,
   destination: LocationSchema,
   seats: {
     type: Number,
     required: 'Available seats is required.',
   },
-  ride_date: {
+  date: {
     type: Date,
     required: 'The date of the scheduled ride is required.',
   },
-  rider_request_pending: [{
+  pendingRequests: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
   }],
-  rider_request_approved:[{
+  approvedRequests:[{
     type: Schema.Types.ObjectId,
     ref: 'User',
   }],

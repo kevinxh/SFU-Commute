@@ -6,45 +6,52 @@ import path from 'path'
 import config from '../config/secret'
 
 export function createRide(req, res) {
-  let {  scheduler, startlocation, destination, seats, ride_date, rider_request_pending, rider_request_approved } = req.body
-  if (!scheduler){
+  let { schedulerType,
+        startLocationLat,
+        startLocationLon,
+        destinationLat,
+        destinationLon,
+        seats,
+        date,} = req.body
+  if (!schedulerType){
     return res.status(400).json({
       success: false,
-      error: 'Are you a rider or driver?.',
+      error: 'Are you a rider or driver?',
     })
-  } else if (!startlocation){
+  } else if (!startLocationLat || !startLocationLon || !destinationLat || !destinationLon){
     return res.status(400).json({
       success: false,
-      error: 'Please enter your start location.',
-    })
-  }else if (!destination){
-    return res.status(400).json({
-      success: false,
-      error: 'Please enter your destination.',
+      error: 'Please enter correct locations.',
     })
   } else if (!seats) {
     return res.status(400).json({
       success: false,
       error: 'Please enter the number of seats available.',
     })
-  } else if (!ride_date) {
+  } else if (!date) {
     return res.status(400).json({
       success: false,
       error: 'Please enter the date you want to schedule the ride at.',
     })
   }
 
-  rider_request_pending = ""
-  rider_request_approved= ""
   const ride = new Ride({
-    scheduler,
-    startlocation,
-    destination,
+    scheduler: {
+      schedulerType : schedulerType,
+      user : req.user._id,
+    },
+    startLocation : {
+      lat: startLocationLat,
+      lon: startLocationLon,
+    },
+    destination : {
+      lat: destinationLat,
+      lon: destinationLon,
+    },
     seats,
-    ride_date,
-    rider_request_pending,
-    rider_request_approved
+    date,
   })
+
   ride.save((error) => {
     if (error) {
       return  res.status(403).json({
