@@ -19,6 +19,9 @@ enum API : URLRequestConvertible {
     case verifyCodeMessage(code: String)
     case forgotPassword(parameters: Parameters)
     case ride(parameters: Parameters)
+    case getRide(parameters: Parameters)
+    case readRide(rideID: Int)
+    case requestRide(rideID: Int)
     
     var method : HTTPMethod {
         switch self{
@@ -32,6 +35,12 @@ enum API : URLRequestConvertible {
             return .post
         case .ride:
             return .post
+        case .getRide:
+            return .get
+        case .readRide:
+            return .get
+        case .requestRide:
+            return .put
         }
     }
     
@@ -49,9 +58,16 @@ enum API : URLRequestConvertible {
             return "/forgot"
         case .ride:
             return "/ride"
+        case .getRide:
+            return "/ride"
+        case .readRide(let rideID):
+            return "/ride/\(rideID)"
+        case .requestRide(let rideID):
+            return "/ride/\(rideID)"   //I'm not too sure about this one
+    
         }
     }
-    
+
     func asURLRequest() throws -> URLRequest {
         let url = try API.baseURL.asURL()
         
@@ -93,3 +109,5 @@ class AccessTokenAdapter: RequestAdapter {
 }
 
 let AuthorizedRequest = SessionManager()
+
+
