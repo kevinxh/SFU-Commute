@@ -93,27 +93,20 @@ export function createRide(req, res) {
 }
 
 export function getRide(req, res){
-  var moment = require('moment')
-  var now = Date.now
-  var startDate = moment('2013-5-11 8:73:18', 'YYYY-M-DD HH:mm:ss')
-  var endDate = moment('2013-5-11 10:73:18', 'YYYY-M-DD HH:mm:ss')
-  var secondsDiff = endDate.diff(startDate, 'seconds')
-  console.log(secondsDiff)
+  var now = moment()
 
-    Ride.find({}, (error, ride) => {
-      // if error finding an user
-      if (error) {
-        return res.status(403).json({
-          success: false,
-          error,
-        })
-      }
-      else
-        return res.status(201).json({ride})
-      console.log(ride)
-      // if no such user
-    })
-  }
+  Ride.find({date:{$gte:now}}, (error, ride) => {
+    // if error finding an user
+    if (error) {
+      return res.status(403).json({
+        success: false,
+        error,
+      })
+    } else {
+      return res.status(201).json({ride})
+    }
+  })
+}
 
 export function getRideByID(req, res){
     if (!(req.params.rideid)) {
