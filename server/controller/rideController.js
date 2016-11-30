@@ -142,7 +142,7 @@ export function getRide(req, res){
 }
 
 export function getRideByID(req, res){
-    if (!(req.params.rideid)) {
+  if (!(req.params.rideid)) {
     return res.status(400).json({
       success: false,
       error: 'Please enter specific ride ID.',
@@ -164,27 +164,35 @@ export function getRideByID(req, res){
 }
 
 export function requestRideByID(req, res){
-    if(req.params.rideid){
-      Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
-        if (error) {
+  if (!(req.params.rideid)) {
+    return res.status(400).json({
+      success: false,
+      error: 'Please enter specific ride ID.',
+    })
+  }
+  Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
+    if (error) {
+      return res.status(403).json({
+        success: false,
+        error,
+      })
+    } else {
+      ride.pendingRequests.push(req.user._id)
+      ride.save(function(err) {
+        if (err) {
           return res.status(403).json({
-          success: false,
-          error,
+            success: false,
+            error,
           })
-        }
-        else{
-          //ride.rider_request_pending = req.params.userid
-          ride.save(function(err) {
-          if (err)
-            console.log('error')
-          else
-            console.log('success')
-          });
-          return res.status(201).json({ride})
-          console.log(ride)
+        } else {
+          return res.status(201).json({
+            success: true,
+            ride,
+          })
         }
       })
     }
+  })
 }
 
 export function deleteRideByID(req, res){
