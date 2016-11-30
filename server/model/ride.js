@@ -1,54 +1,63 @@
 import mongoose, { Schema } from 'mongoose'
+import UserSchema from './user'
 import bcrypt from 'bcrypt'
 
+const LocationSchema = new Schema({
+  id: Number,
+  lat: {
+    type: String,
+    required: 'Latitude is required.',
+  },
+  lon: {
+    type: String,
+    required: 'Longtitude is required.',
+  },
+  name: String,
+  zone: {
+    type: String,
+    enum: ['A','B','C','D','E','F','G',''],
+  },
+  price: Number,
+})
+
 const RideSchema = new Schema({
-  userid: {
-    type: String,
-    lowercase: true,
-    required: 'start location is required',
+  scheduler: {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: 'Scheduler information is required.',
+    },
+    schedulerType: {
+      type: String,
+      enum: ['Rider', 'Driver'],
+      required: 'Scheduler type is required.',
+    },
   },
-  schedulers_profile: {
-    type: String,
-    lowercase: true,
-    required: 'Are you a driver or a rider?',
-  },
-  startlocation: {
-    type: String,
-    lowercase: true,
-    required: 'start location is required',
-  },
-  destination: {
-    type: String,
-    trim: true,
-    required: 'destination is required',
-  },
+  startlocation: LocationSchema,
+  destination: LocationSchema,
   seats: {
-    type: String,
-    trim: true,
-    required: 'number of seats available are required',
+    type: Number,
+    required: 'Available seats is required.',
   },
   ride_date: {
     type: Date,
-    trim: true,
-    match: [/^\d\d\d\d-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])$/, 'Please fill a valid date'],
-    required: 'the date of the scheduled ride',
+    required: 'The date of the scheduled ride is required.',
   },
-  rider_request_pending: {
-    type: String,
-    trim: true
-  },
-  rider_request_approved:{
-    type: String,
-    trim: true
-  },
+  rider_request_pending: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  }],
+  rider_request_approved:[{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  }],
   created: {
     type: Date,
     default: Date.now,
   },
-}, { collection: 'ride' })
+}, { collection: 'Ride' })
 
-
-RideSchema.pre('save', function (next) {
+/*RideSchema.pre('save', function (next) {
   const ride = this
   if (ride.isModified('startlocation') || ride.isNew) {
     ride.startlocation = ride.startlocation.toLowerCase()
@@ -57,6 +66,6 @@ RideSchema.pre('save', function (next) {
     ride.destination = ride.destination.toLowerCase()
   }
   return next()
-})
+})*/
 
 export default mongoose.model('Ride', RideSchema)

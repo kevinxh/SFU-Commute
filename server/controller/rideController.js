@@ -6,13 +6,8 @@ import path from 'path'
 import config from '../config/secret'
 
 export function createRide(req, res) {
-  let { userid, schedulers_profile, startlocation, destination, seats, ride_date, rider_request_pending, rider_request_approved } = req.body
-  if (!userid) {
-    return res.status(400).json({
-      success: false,
-      error: 'Please enter the user ID token.',
-    })
-  } else if (!schedulers_profile){
+  let {  scheduler, startlocation, destination, seats, ride_date, rider_request_pending, rider_request_approved } = req.body
+  if (!scheduler){
     return res.status(400).json({
       success: false,
       error: 'Are you a rider or driver?.',
@@ -42,8 +37,7 @@ export function createRide(req, res) {
   rider_request_pending = ""
   rider_request_approved= ""
   const ride = new Ride({
-    userid,
-    schedulers_profile,
+    scheduler,
     startlocation,
     destination,
     seats,
@@ -111,7 +105,7 @@ export function getRideByID(req, res){
 }
 
 export function updateRideByID(req, res){
-    if(req.params.rideid && req.params.userid){
+    if(req.params.rideid){
       Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
         if (error) {
           return res.status(403).json({
@@ -120,7 +114,7 @@ export function updateRideByID(req, res){
           })
         }
         else{
-          ride.rider_request_pending = req.params.userid
+          //ride.rider_request_pending = req.params.userid
           ride.save(function(err) {
           if (err)
             console.log('error')
