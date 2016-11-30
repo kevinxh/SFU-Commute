@@ -104,7 +104,7 @@ export function getRideByID(req, res){
   }
 }
 
-export function updateRideByID(req, res){
+export function requestRideByID(req, res){
     if(req.params.rideid){
       Ride.findOne({"_id": req.params.rideid}, (error, ride) => {
         if (error) {
