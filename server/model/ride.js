@@ -15,7 +15,7 @@ const LocationSchema = new Schema({
   name: String,
   zone: {
     type: String,
-    enum: ['A','B','C','D','E','F','G',''],
+    enum: ['A','B','C','D','E','F','G'],
   },
   price: Number,
 })
@@ -26,6 +26,7 @@ const RideSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: 'Scheduler information is required.',
+      index: true,
     },
     schedulerType: {
       type: String,

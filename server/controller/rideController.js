@@ -52,6 +52,32 @@ export function createRide(req, res) {
     date,
   })
 
+  // Optional fields
+  if(req.body.startLocationID){
+    Object.assign(ride.startLocation, { id: req.body.startLocationID })
+  }
+  if(req.body.startLocationName){
+    Object.assign(ride.startLocation, { name: req.body.startLocationName })
+  }
+  if(req.body.startLocationZone){
+    Object.assign(ride.startLocation, { zone: req.body.startLocationZone })
+  }
+  if(req.body.startLocationPrice){
+    Object.assign(ride.startLocation, { price: req.body.startLocationPrice })
+  }
+  if(req.body.destinationID){
+    Object.assign(ride.destination, { id: req.body.destinationID })
+  }
+  if(req.body.destinationName){
+    Object.assign(ride.destination, { name: req.body.destinationName })
+  }
+  if(req.body.destinationZone){
+    Object.assign(ride.destination, { zone: req.body.destinationZone })
+  }
+  if(req.body.destinationPrice){
+    Object.assign(ride.destination, { price: req.body.destinationPrice })
+  }
+
   ride.save((error) => {
     if (error) {
       return  res.status(403).json({
