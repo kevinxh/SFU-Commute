@@ -21,7 +21,7 @@ enum API : URLRequestConvertible {
     case ride(parameters: Parameters)
     case getRide(parameters: Parameters)
     case readRide(rideID: Int)
-    case requestRide(rideID: Int)
+    //case requestRide(rideID: Int)
     
     var method : HTTPMethod {
         switch self{
@@ -39,8 +39,8 @@ enum API : URLRequestConvertible {
             return .get
         case .readRide:
             return .get
-        case .requestRide:
-            return .put
+        //case .requestRide:
+          //  return .put
         }
     }
     
@@ -62,8 +62,8 @@ enum API : URLRequestConvertible {
             return "/ride"
         case .readRide(let rideID):
             return "/ride/\(rideID)"
-        case .requestRide(let rideID):
-            return "/ride/\(rideID)"   //I'm not too sure about this one
+        //case .requestRide(let rideID):
+          //  return "/ride/\(rideID)"   //I'm not too sure about this one
     
         }
     }

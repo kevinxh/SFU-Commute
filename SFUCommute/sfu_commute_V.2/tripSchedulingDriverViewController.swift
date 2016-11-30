@@ -179,10 +179,10 @@ class tripSchedulingViewController: UIViewController {
                             "seats": seatsOfferedOrRequested,
                             "ride_date": rideDateTime,
                             //"userid": SOMEID,
-                            //"schedulers_profile": riderOrDriver //will need to know where to get info for userid and profile
+                            "schedulers_profile": role
                         ]
         
-        Alamofire.request(API.ride(parameters: parameters)).responseJSON{ response in
+        AuthorizedRequest.request(API.ride(parameters: parameters)).responseJSON{ response in
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
