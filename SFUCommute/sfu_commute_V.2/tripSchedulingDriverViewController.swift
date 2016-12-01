@@ -146,7 +146,7 @@ class tripSchedulingViewController: UIViewController {
     func printDateAndTime(){
         let dateFormatter = DateFormatter()
         //let timeFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm" //following ISO 8601
+        dateFormatter.dateFormat = "y-MM-dd H:m:ss.SSSZZZZZ" //following ISO 8601
         //timeFormatter.dateFormat = "HH:mm"
         
         let rideDate = dateFormatter.string(from: time)
@@ -177,7 +177,7 @@ class tripSchedulingViewController: UIViewController {
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "y-MM-dd H:m:ss.SSSSZZZZZ" //following ISO 8601
+        dateFormatter.dateFormat = "y-MM-dd HH:mm:ss.SSSZZZZZ" //following ISO 8601
         let rideDate = dateFormatter.string(from: time)
  
         var scheduler:String = ""
