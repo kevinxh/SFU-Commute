@@ -207,7 +207,6 @@ class tripSchedulingViewController: UIViewController {
                             "destinationName": destination.name
             
                         ]
-        print("sendRequest: " + scheduler)
         
         AuthorizedRequest.request(API.ride(parameters: parameters)).responseJSON{ response in
             switch response.result{
@@ -216,7 +215,6 @@ class tripSchedulingViewController: UIViewController {
                 print(json)
                 if (json["success"] == true) {
                     print("success")
-                    AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
                 } else {
                     
                     // to do: error handling!
