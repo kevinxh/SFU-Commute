@@ -7,8 +7,10 @@ import config from '../config/secret'
 
 export function createRide(req, res) {
   let { schedulerType,
+  		startLocationName,
         startLocationLat,
         startLocationLon,
+        destinationName,
         destinationLat,
         destinationLon,
         seats,
@@ -18,7 +20,7 @@ export function createRide(req, res) {
       success: false,
       error: 'Are you a rider or driver?',
     })
-  } else if (!startLocationLat || !startLocationLon || !destinationLat || !destinationLon){
+  } else if (!startLocationLat || !startLocationLon || !destinationLat || !destinationLon || !startLocationName || !destinationName){
     return res.status(400).json({
       success: false,
       error: 'Please enter correct locations.',
@@ -37,16 +39,18 @@ export function createRide(req, res) {
 
   const ride = new Ride({
     scheduler: {
-      schedulerType : schedulerType,
-      user : req.user._id,
+      	schedulerType : schedulerType,
+      	user : req.user._id,
     },
     startLocation : {
-      lat: startLocationLat,
-      lon: startLocationLon,
+    	name: startLocationName,
+      	lat: startLocationLat,
+      	lon: startLocationLon,
     },
     destination : {
-      lat: destinationLat,
-      lon: destinationLon,
+    	name: destinationName,
+      	lat: destinationLat,
+      	lon: destinationLon,
     },
     seats,
     date,
@@ -56,9 +60,6 @@ export function createRide(req, res) {
   if(req.body.startLocationID){
     Object.assign(ride.startLocation, { id: req.body.startLocationID })
   }
-  if(req.body.startLocationName){
-    Object.assign(ride.startLocation, { name: req.body.startLocationName })
-  }
   if(req.body.startLocationZone){
     Object.assign(ride.startLocation, { zone: req.body.startLocationZone })
   }
@@ -67,9 +68,6 @@ export function createRide(req, res) {
   }
   if(req.body.destinationID){
     Object.assign(ride.destination, { id: req.body.destinationID })
-  }
-  if(req.body.destinationName){
-    Object.assign(ride.destination, { name: req.body.destinationName })
   }
   if(req.body.destinationZone){
     Object.assign(ride.destination, { zone: req.body.destinationZone })
