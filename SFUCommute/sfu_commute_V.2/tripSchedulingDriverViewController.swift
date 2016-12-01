@@ -198,7 +198,13 @@ class tripSchedulingViewController: UIViewController {
                             "destinationLat": destination.lat,
                             "destinationLon": destination.lon,
                             "seats": seatsAvailable.text!,
-                            "date": rideDate
+                            "date": rideDate,
+                            
+                            //optional fields
+                            "startLocationID": startLocation.id,
+                            "startLocationName": startLocation.name,
+                            "destinationID": destination.id,
+                            "destinationName": destination.name
             
                         ]
         print("sendRequest: " + scheduler)
