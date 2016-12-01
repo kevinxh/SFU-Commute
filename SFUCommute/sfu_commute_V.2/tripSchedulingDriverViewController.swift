@@ -177,7 +177,7 @@ class tripSchedulingViewController: UIViewController {
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ssZZZZ" //following ISO 8601
+        dateFormatter.dateFormat = "y-MM-dd H:m:ss.SSSSZZZZZ" //following ISO 8601
         let rideDate = dateFormatter.string(from: time)
  
         var scheduler:String = ""
