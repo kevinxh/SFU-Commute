@@ -27,4 +27,10 @@ extension String {
         let letters = NSCharacterSet.letters
         return self.rangeOfCharacter(from: letters.inverted) == nil
     }
+    
+    func isoDateToNSDate() -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        return formatter.date(from: self)!
+    }
 }

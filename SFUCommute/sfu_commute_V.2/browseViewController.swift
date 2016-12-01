@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 let browseCell = "browseCell"
 
 struct cellInfo{
-    var startLocation : String
-    var destination : String
-    var date : String
-    var scheduler : String
+    var startLocation : String = ""
+    var destination : String = ""
+    var date : String = ""
+    var scheduler : String = ""
 }
 
 class browseViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -27,9 +29,11 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
         collectionView?.alwaysBounceVertical = true
         collectionView?.register(browseCollectionViewCell.self, forCellWithReuseIdentifier: browseCell)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
+        cells.removeAll()
         switchContent()
+        loadList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,11 +42,45 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     func switchContent(){
-        if((self.tabBarController?.selectedIndex) == 1){
+        if((self.tabBarController?.selectedIndex) == 0){
             content = .offer
         } else {
             content = .request
         }
+    }
+    
+    func loadList(){
+        var type = "Both"
+        if(content == .offer){
+            type = "Driver"
+        } else if (content == .request){
+            type = "Rider"
+        }
+        let parameters : Parameters = ["scheduleType": type]
+        Alamofire.request("http://54.69.64.180/ride", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                if(json["ride"].count > 0) {
+                    var cell = cellInfo()
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "E, d MMM yyyy HH:mm"
+                    for (index,subJson):(String, JSON) in json["ride"] {
+                        cell.startLocation = subJson["startLocation"]["name"].stringValue
+                        cell.destination = subJson["destination"]["name"].stringValue
+                        let d = subJson["date"].stringValue.isoDateToNSDate()
+                        cell.date = formatter.string(from: d)
+                        cell.scheduler = subJson["scheduler"]["user"]["firstname"].stringValue
+                        self.cells.append(cell)
+                    }
+                    self.collectionView?.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+                //to do: error handling
+            }
+        }
+
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,8 +88,13 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: browseCell, for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: browseCell, for: indexPath) as! browseCollectionViewCell
+        if(cells.count > 0){
+            cell.startLocation = cells[indexPath.row].startLocation
+            cell.destination = cells[indexPath.row].destination
+            cell.date = cells[indexPath.row].date
+            cell.name = cells[indexPath.row].scheduler
+        }
         return cell
     }
     
@@ -61,6 +104,26 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
 }
 
 class browseCollectionViewCell : UICollectionViewCell {
+    var startLocation : String = ""{
+        didSet{
+            startText.text = startLocation
+        }
+    }
+    var destination : String = ""{
+        didSet{
+            destinationText.text = destination
+        }
+    }
+    var date : String = ""{
+        didSet{
+            timeText.text = date
+        }
+    }
+    var name : String = ""{
+        didSet{
+            nameText.text = name
+        }
+    }
     
     let startLabel: UILabel = {
         let label = UILabel()
@@ -72,7 +135,6 @@ class browseCollectionViewCell : UICollectionViewCell {
     
     let startText: UILabel = {
         let label = UILabel()
-        label.text = "8888 University Drive. Burnaby BC"
         label.font = UIFont(name: "Futura-Medium", size: 16)!
         return label
     }()
@@ -87,14 +149,12 @@ class browseCollectionViewCell : UICollectionViewCell {
     
     let destinationText: UILabel = {
         let label = UILabel()
-        label.text = "8888 University Drive. Burnaby BC"
         label.font = UIFont(name: "Futura-Medium", size: 16)!
         return label
     }()
     
     let timeText: UILabel = {
         let label = UILabel()
-        label.text = "Tue, Nov 29, 08:00 AM"
         label.font = UIFont(name: "Futura-Bold", size: 12)!
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
@@ -104,7 +164,6 @@ class browseCollectionViewCell : UICollectionViewCell {
     
     let nameText: UILabel = {
         let label = UILabel()
-        label.text = "Kevin Abcd"
         label.font = UIFont(name: "Roboto-Regular", size: 12)!
         label.lineBreakMode = .byCharWrapping
         label.textAlignment = .center
@@ -144,7 +203,7 @@ class browseCollectionViewCell : UICollectionViewCell {
         }
         startText.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(startLabel)
-            make.width.equalTo(self.frame.width - 100)
+            make.width.equalTo(self.frame.width - 200)
             make.top.equalTo(startLabel.snp.bottom)
         }
         destinationLabel.snp.makeConstraints{(make) -> Void in
@@ -154,12 +213,12 @@ class browseCollectionViewCell : UICollectionViewCell {
         }
         destinationText.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(startLabel)
-            make.width.equalTo(self.frame.width - 100)
+            make.width.equalTo(self.frame.width - 200)
             make.top.equalTo(destinationLabel.snp.bottom)
         }
         timeText.snp.makeConstraints{(make) -> Void in
             make.right.equalTo(self).offset(-20)
-            make.width.equalTo(100)
+            make.width.equalTo(120)
             make.top.equalTo(startLabel)
             make.height.equalTo(36)
         }
