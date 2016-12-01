@@ -145,41 +145,59 @@ class tripSchedulingViewController: UIViewController {
     
     func printDateAndTime(){
         let dateFormatter = DateFormatter()
-        let timeFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd" //following ISO 8601
-        timeFormatter.dateFormat = "HH:mm"
+        //let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm" //following ISO 8601
+        //timeFormatter.dateFormat = "HH:mm"
         
         let rideDate = dateFormatter.string(from: time)
-        let rideTime = timeFormatter.string(from: time)
+        //let rideTime = timeFormatter.string(from: time)
         
-        print(rideDate + "T" + rideTime)
+        var scheduler:String = ""
+        if role == .request{
+            scheduler = "Rider"
+        }
+        else if role == .offer{
+            scheduler = "Driver"
+        }
+        
+        print(scheduler)
+        print(startLocation.lat)
+        print(startLocation.lon)
+        print(destination.lat)
+        print(destination.lon)
+        print(seatsAvailable.text!)
+        print(rideDate)
     }
     
     func sendRequest(){
         
-        let startLocation = startLocationLabel.text!
-        let destinationLocation = destinationLabel.text!
-        let seatsOfferedOrRequested = seatsAvailable.text!
+        //let startLocation = startLocationLabel.text!
+        //let destinationLocation = destinationLabel.text!
+        //let seatsOfferedOrRequested = seatsAvailable.text!
         
         let dateFormatter = DateFormatter()
-        let timeFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd" //following ISO 8601
-        timeFormatter.dateFormat = "HH:mm"
         
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ssZZZZ" //following ISO 8601
         let rideDate = dateFormatter.string(from: time)
-        let rideTime = timeFormatter.string(from: time)
-        let rideDateTime: String = rideDate + "T" + rideTime
-        print(rideDateTime) //printing according to how mongo will handle the string
  
+        var scheduler:String = ""
+        if role == .request{
+            scheduler = "Rider"
+        }
+        else if role == .offer{
+            scheduler = "Driver"
+        }
      
         
         let parameters : Parameters = [
-                            "startlocation": startLocation,
-                            "destination": destinationLocation,
-                            "seats": seatsOfferedOrRequested,
-                            "ride_date": rideDateTime,
-                            //"userid": SOMEID,
-                            "schedulers_profile": role
+                            "schedulerType": scheduler,
+                            "startlocationLat": startLocation.lat,
+                            "startlocationLon": startLocation.lon,
+                            "destinationLat": destination.lat,
+                            "destinationLon": destination.lon,
+                            "seats": seatsAvailable.text!,
+                            "date": rideDate
+            
                         ]
         
         AuthorizedRequest.request(API.ride(parameters: parameters)).responseJSON{ response in
