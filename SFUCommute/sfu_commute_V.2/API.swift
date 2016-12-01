@@ -83,6 +83,8 @@ enum API : URLRequestConvertible {
             urlRequest = try URLEncoding.default.encode(urlRequest, with: ["code": code])
         case .forgotPassword(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .ride(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         default:
             break
         }

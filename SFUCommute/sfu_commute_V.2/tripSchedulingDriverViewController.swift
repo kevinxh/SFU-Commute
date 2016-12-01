@@ -152,6 +152,7 @@ class tripSchedulingViewController: UIViewController {
         let rideDate = dateFormatter.string(from: time)
         //let rideTime = timeFormatter.string(from: time)
         
+        /*
         var scheduler:String = ""
         if role == .request{
             scheduler = "Rider"
@@ -159,8 +160,9 @@ class tripSchedulingViewController: UIViewController {
         else if role == .offer{
             scheduler = "Driver"
         }
-        
+ 
         print(scheduler)
+         */
         print(startLocation.lat)
         print(startLocation.lon)
         print(destination.lat)
@@ -180,7 +182,7 @@ class tripSchedulingViewController: UIViewController {
         dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss.SSSZZZZZ" //following ISO 8601
         let rideDate = dateFormatter.string(from: time)
  
-        var scheduler:String = ""
+        var scheduler = String()
         if role == .request{
             scheduler = "Rider"
         }
@@ -191,14 +193,15 @@ class tripSchedulingViewController: UIViewController {
         
         let parameters : Parameters = [
                             "schedulerType": scheduler,
-                            "startlocationLat": startLocation.lat,
-                            "startlocationLon": startLocation.lon,
+                            "startLocationLat": startLocation.lat,
+                            "startLocationLon": startLocation.lon,
                             "destinationLat": destination.lat,
                             "destinationLon": destination.lon,
                             "seats": seatsAvailable.text!,
                             "date": rideDate
             
                         ]
+        print("sendRequest: " + scheduler)
         
         AuthorizedRequest.request(API.ride(parameters: parameters)).responseJSON{ response in
             switch response.result{
@@ -208,7 +211,6 @@ class tripSchedulingViewController: UIViewController {
                 if (json["success"] == true) {
                     print("success")
                     AuthorizedRequest.adapter = AccessTokenAdapter(accessToken: json["access_token"].stringValue)
-                    self.performSegue(withIdentifier: "toVerification", sender: self)
                 } else {
                     
                     // to do: error handling!
