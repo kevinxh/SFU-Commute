@@ -203,9 +203,12 @@ class tripSchedulingViewController: UIViewController {
                             //optional fields
                             "startLocationID": startLocation.id,
                             "startLocationName": startLocation.name,
+                            "startLocationZone": startLocation.zone,
+                            "startLocationPrice": startLocation.price,
                             "destinationID": destination.id,
-                            "destinationName": destination.name
-            
+                            "destinationName": destination.name,
+                            "destinationZone": destination.zone,
+                            "destinationPrice": destination.price
                         ]
         
         AuthorizedRequest.request(API.ride(parameters: parameters)).responseJSON{ response in
