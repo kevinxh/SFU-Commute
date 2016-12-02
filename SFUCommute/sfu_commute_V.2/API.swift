@@ -85,6 +85,10 @@ enum API : URLRequestConvertible {
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         case .ride(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getRide(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .readRide(let rideID):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["rideid": rideID]) // not sure about this one
         default:
             break
         }
