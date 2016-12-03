@@ -193,18 +193,23 @@ class tripSchedulingViewController: UIViewController {
         
         let parameters : Parameters = [
                             "schedulerType": scheduler,
+                            //start
                             "startLocationLat": startLocation.lat,
                             "startLocationLon": startLocation.lon,
+                            //destination
                             "destinationLat": destination.lat,
                             "destinationLon": destination.lon,
+                            //seats and date
                             "seats": seatsAvailable.text!,
                             "date": rideDate,
                             
                             //optional fields
+                            //start
                             "startLocationID": startLocation.id,
                             "startLocationName": startLocation.name,
                             "startLocationZone": startLocation.zone,
                             "startLocationPrice": startLocation.price,
+                            //destination
                             "destinationID": destination.id,
                             "destinationName": destination.name,
                             "destinationZone": destination.zone,
