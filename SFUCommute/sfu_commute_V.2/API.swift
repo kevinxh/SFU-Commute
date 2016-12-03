@@ -21,7 +21,8 @@ enum API : URLRequestConvertible {
     case ride(parameters: Parameters)
     case getRide(parameters: Parameters)
     case readRide(rideID: Int)
-    //case requestRide(rideID: Int)
+    case requestRide(rideID: Int)
+    case deleteRide(rideID :Int)
     
     var method : HTTPMethod {
         switch self{
@@ -39,8 +40,10 @@ enum API : URLRequestConvertible {
             return .get
         case .readRide:
             return .get
-        //case .requestRide:
-          //  return .put
+        case .requestRide:
+            return .put
+        case .deleteRide:
+            return .delete
         }
     }
     
@@ -60,10 +63,12 @@ enum API : URLRequestConvertible {
             return "/ride"
         case .getRide:
             return "/ride"
-        case .readRide(let rideID):
+        case .readRide:
+            return "/ride/"
+        case .requestRide(let rideID):
+            return "/ride/request/\(rideID)"   //I'm not too sure about this one
+        case .deleteRide(let rideID):
             return "/ride/\(rideID)"
-        //case .requestRide(let rideID):
-          //  return "/ride/\(rideID)"   //I'm not too sure about this one
     
         }
     }
@@ -87,8 +92,12 @@ enum API : URLRequestConvertible {
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         case .getRide(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-        case .readRide(let rideID):
-            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["rideid": rideID]) // not sure about this one
+        case .readRide(let variable):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["variable": variable]) // not sure about this one
+        case .requestRide(let rideID):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["rideid": rideID])
+        case .deleteRide(let rideID):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["rideid": rideID])
         default:
             break
         }
