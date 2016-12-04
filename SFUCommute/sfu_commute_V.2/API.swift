@@ -66,7 +66,7 @@ enum API : URLRequestConvertible {
         case .readRide:
             return "/ride/"
         case .requestRide(let rideID):
-            return "/ride/request/\(rideID)"   //I'm not too sure about this one
+            return "/ride/request/\(rideID)"   //I'm not too sure about these one
         case .deleteRide(let rideID):
             return "/ride/\(rideID)"
     

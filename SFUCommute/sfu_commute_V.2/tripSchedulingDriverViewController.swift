@@ -223,12 +223,14 @@ class tripSchedulingViewController: UIViewController {
                 print(json)
                 if (json["success"] == true) {
                     print("success")
+                    self.performSegue(withIdentifier: "unwindToMapViewFromSchedule", sender: self)
                 } else {
                     
                     // to do: error handling!
                     self.confirmButton.isEnabled = true
                     self.tips = EasyTipView(text:"Error occurs, please try again later")
                     self.tips.show(forView: self.confirmButton)
+                    
                 }
                 
             case .failure(let error):
