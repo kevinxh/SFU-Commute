@@ -25,10 +25,11 @@ class sideMenuNavTable: UITableViewController {
         navTable.backgroundColor = UIColor.clear
         arrayOfNav = [sideMenuItemData(cell: 1, segueIdentifier:"showHomeFromSideMenu", itemName: "Home", iconName: "fa-home" ),
                       sideMenuItemData(cell: 2, segueIdentifier:"showBrowseFromSideMenu",itemName: "Browse Trips", iconName: "fa-search" ),
-                      sideMenuItemData(cell: 3, segueIdentifier:"showUpcomingFromSideMenu",itemName: "Upcoming Trips", iconName: "fa-car" ),
+                      /*sideMenuItemData(cell: 3, segueIdentifier:"showUpcomingFromSideMenu",itemName: "Upcoming Trips", iconName: "fa-car" ),
                       sideMenuItemData(cell: 4, segueIdentifier:"showHistoryFromSideMenu",itemName: "History", iconName: "fa-history" ),
                       sideMenuItemData(cell: 5, segueIdentifier:"showMessagesFromSideMenu",itemName: "Messages", iconName: "fa-commenting" ),
-                      sideMenuItemData(cell: 6, segueIdentifier:"showSettingsFromSideMenu",itemName: "Settings", iconName: "fa-cog" )
+                        */
+                      sideMenuItemData(cell: 3, segueIdentifier:"showSettingsFromSideMenu",itemName: "Settings", iconName: "fa-cog" )
         ]
     }
     
