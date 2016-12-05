@@ -101,6 +101,14 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(content == .offer){
+            self.performSegue(withIdentifier: "offerToTripInfo", sender: self)
+        } else if (content == .request){
+            self.performSegue(withIdentifier: "requestToTripInfo", sender: self)
+        }
+    }
 }
 
 class browseCollectionViewCell : UICollectionViewCell {
