@@ -885,8 +885,6 @@
             </objects>
             <point key="canvasLocation" x="7713" y="1657"/>
         </scene>
-<<<<<<< HEAD
-=======
         <!--Browse-->
         <scene sceneID="Uq6-AS-qbW">
             <objects>
@@ -919,7 +917,6 @@
             </objects>
             <point key="canvasLocation" x="7714" y="-1019"/>
         </scene>
->>>>>>> tripSchedAPI
         <!--Upcoming Trips-->
         <scene sceneID="AjK-mj-Jik">
             <objects>
