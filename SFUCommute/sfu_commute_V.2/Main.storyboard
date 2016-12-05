@@ -558,19 +558,15 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ek-Jm-qUZ" userLabel="seats options">
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xC5-FO-HS6">
-<<<<<<< HEAD
-=======
-                                                                                <rect key="frame" x="133" y="0.0" width="50" height="50"/>
->>>>>>> sideMenuPatch
+                                                                       <rect key="frame" x="133" y="0.0" width="50" height="50"/>
+
                                                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDk-B5-BHl">
-<<<<<<< HEAD
-=======
-                                                                                <rect key="frame" x="94" y="13" width="24" height="24"/>
->>>>>>> sideMenuPatch
+                                                                        <rect key="frame" x="94" y="13" width="24" height="24"/>
+
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="24" id="BWZ-qy-hLd"/>
@@ -1334,12 +1330,12 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acd-7V-pZJ" userLabel="Seats View">
                                                                 <rect key="frame" x="0.0" y="200" width="315" height="100"/>
                                                                 <subviews>
-<<<<<<< HEAD
+
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-CP-Vmz" userLabel="seats">
-=======
+
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seats Offering" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-CP-Vmz">
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
->>>>>>> sideMenuPatch
+
                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
