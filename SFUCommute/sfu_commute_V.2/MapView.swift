@@ -377,7 +377,8 @@ class MapView: UIViewController, GMSMapViewDelegate {
             tripSchedlue.role = role
             tripSchedlue.startLocation = self.startLocation
             tripSchedlue.destination = self.destination
-        }
+        } 
+        
     }
     
     @IBAction func unwindToMapView(segue: UIStoryboardSegue) { }
