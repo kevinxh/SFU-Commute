@@ -207,12 +207,10 @@ class tripSchedulingViewController: UIViewController {
                             //start
                             "startLocationID": startLocation.id,
                             "startLocationName": startLocation.name,
-                            "startLocationZone": startLocation.zone,
                             "startLocationPrice": startLocation.price,
                             //destination
                             "destinationID": destination.id,
                             "destinationName": destination.name,
-                            "destinationZone": destination.zone,
                             "destinationPrice": destination.price
                         ]
         
