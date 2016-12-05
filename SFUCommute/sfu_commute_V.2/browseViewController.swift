@@ -17,6 +17,7 @@ struct cellInfo{
     var destination : String = ""
     var date : String = ""
     var scheduler : String = ""
+    var seats : String = "" //this should be int
 }
 
 class browseViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -61,6 +62,7 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
+                print(json)
                 if(json["ride"].count > 0) {
                     var cell = cellInfo()
                     let formatter = DateFormatter()
@@ -71,6 +73,7 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
                         let d = subJson["date"].stringValue.isoDateToNSDate()
                         cell.date = formatter.string(from: d)
                         cell.scheduler = subJson["scheduler"]["user"]["firstname"].stringValue
+                        cell.seats = subJson["seats"].stringValue
                         self.cells.append(cell)
                     }
                     self.collectionView?.reloadData()
@@ -80,7 +83,17 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
                 //to do: error handling
             }
         }
-
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "offerToTripInfo" || segue.identifier == "requestToTripInfo") {
+            let infoView = segue.destination as! tripInfoViewController
+            let info = sender as! cellInfo
+            infoView.fromText = info.startLocation
+            infoView.toText = info.destination
+            infoView.timeText = info.date
+            infoView.seatsText = info.seats
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,6 +113,14 @@ class browseViewController: UICollectionViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(content == .offer){
+            self.performSegue(withIdentifier: "offerToTripInfo", sender: cells[indexPath.row])
+        } else if (content == .request){
+            self.performSegue(withIdentifier: "requestToTripInfo", sender: cells[indexPath.row])
+        }
     }
 }
 
