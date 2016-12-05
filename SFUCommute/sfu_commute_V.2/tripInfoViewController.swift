@@ -24,7 +24,6 @@ class tripInfoViewController: UIViewController {
     @IBOutlet var price: UILabel!
     @IBOutlet var time: UILabel!
     @IBOutlet var seats: UILabel!
-    
     var fromText:String = ""
     var toText:String = ""
     var timeText:String = ""
@@ -57,7 +56,6 @@ class tripInfoViewController: UIViewController {
         self.view.addSubview(joinTripButton)
         joinTripButton.wideBottomConstraints(superview: self.view)
     }
-    
 
     /*
     // MARK: - Navigation

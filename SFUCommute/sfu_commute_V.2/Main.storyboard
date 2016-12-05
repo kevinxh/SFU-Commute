@@ -873,7 +873,6 @@
                     <navigationItem key="navigationItem" title="Browse" id="1hJ-Q2-jeh"/>
                     <connections>
                         <outlet property="navItem" destination="1hJ-Q2-jeh" id="v1O-hB-Qo6"/>
-                        <segue destination="tkS-Vx-WRU" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="o8O-3y-uHd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoF-jF-SDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -908,33 +907,6 @@
             </objects>
             <point key="canvasLocation" x="7713" y="-353"/>
         </scene>
-        <!--Trip Info View Controller-->
-        <scene sceneID="lgJ-2P-LXA">
-            <objects>
-                <viewController id="tkS-Vx-WRU" customClass="tripInfoViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KRt-iY-DXi"/>
-                        <viewControllerLayoutGuide type="bottom" id="6dw-r1-IyB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gf3-Vr-blY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Detail Page Jonathan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-r5-J0R">
-                                <frame key="frameInset" minX="98" minY="289" width="178" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.35252978470000002" green="1" blue="0.3464275027" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="viK-gV-Mkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="10343" y="-1019"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="eGj-1d-FVS">
             <objects>
@@ -964,7 +936,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dsc-qL-a8Q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="idx-CL-xHg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="idx-CL-xHg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.43921568630000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1099,7 +1071,7 @@
         <scene sceneID="nKZ-zh-SM7">
             <objects>
                 <collectionViewController title="Request" id="W2v-Ac-Z9L" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="FA1-Th-7Ye">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="FA1-Th-7Ye">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
@@ -1137,7 +1109,7 @@
         <scene sceneID="OER-5d-juv">
             <objects>
                 <collectionViewController title="Offer" id="8JB-5h-nGd" customClass="browseViewController" customModule="sfu_commute_V_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="i5f-Q0-af1">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="i5f-Q0-af1">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
@@ -1326,7 +1298,7 @@
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acd-7V-pZJ" userLabel="Seats View">
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seats Offering" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-CP-Vmz">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-CP-Vmz" userLabel="seats">
                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -1414,6 +1386,7 @@
                         <outlet property="from" destination="OGa-41-QRU" id="e0B-iu-82Y"/>
                         <outlet property="price" destination="mQW-It-qpw" id="rK9-uP-2Up"/>
                         <outlet property="seats" destination="1KR-Xy-Bps" id="nzW-Ho-Qoh"/>
+                        <outlet property="seatsLabel" destination="ipc-CP-Vmz" id="eSw-GL-8d2"/>
                         <outlet property="time" destination="rDs-by-LYd" id="S9n-Qz-QMk"/>
                         <outlet property="to" destination="5WR-J3-6xg" id="Yf0-Wb-w0T"/>
                     </connections>
