@@ -18,6 +18,11 @@ enum API : URLRequestConvertible {
     case sendCodeMessage(parameters: Parameters)
     case verifyCodeMessage(code: String)
     case forgotPassword(parameters: Parameters)
+    case ride(parameters: Parameters)
+    case getRide(parameters: Parameters)
+    case readRide(rideID: Int)
+    case requestRide(rideID: Int)
+    case deleteRide(rideID :Int)
     
     var method : HTTPMethod {
         switch self{
@@ -29,6 +34,16 @@ enum API : URLRequestConvertible {
             return .get
         case .forgotPassword:
             return .post
+        case .ride:
+            return .post
+        case .getRide:
+            return .get
+        case .readRide:
+            return .get
+        case .requestRide:
+            return .put
+        case .deleteRide:
+            return .delete
         }
     }
     
@@ -44,9 +59,20 @@ enum API : URLRequestConvertible {
             return "/verify/text"
         case .forgotPassword:
             return "/forgot"
+        case .ride:
+            return "/ride"
+        case .getRide:
+            return "/ride"
+        case .readRide:
+            return "/ride/"
+        case .requestRide(let rideID):
+            return "/ride/request/\(rideID)"   //I'm not too sure about these one
+        case .deleteRide(let rideID):
+            return "/ride/\(rideID)"
+    
         }
     }
-    
+
     func asURLRequest() throws -> URLRequest {
         let url = try API.baseURL.asURL()
         
@@ -62,6 +88,16 @@ enum API : URLRequestConvertible {
             urlRequest = try URLEncoding.default.encode(urlRequest, with: ["code": code])
         case .forgotPassword(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .ride(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getRide(let parameters):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .readRide(let variable):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["variable": variable]) // not sure about this one
+        case .requestRide(let rideID):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["rideid": rideID])
+        case .deleteRide(let rideID):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: ["rideid": rideID])
         default:
             break
         }
@@ -88,3 +124,5 @@ class AccessTokenAdapter: RequestAdapter {
 }
 
 let AuthorizedRequest = SessionManager()
+
+

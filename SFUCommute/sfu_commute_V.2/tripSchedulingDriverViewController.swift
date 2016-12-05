@@ -6,9 +6,12 @@
 //  Copyright © 2016 Lightspeed-Tech. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import EasyTipView
+import Alamofire
 import SwiftyButton
+import SwiftyJSON
 
 class tripSchedulingViewController: UIViewController {
     
@@ -92,7 +95,7 @@ class tripSchedulingViewController: UIViewController {
     
     func initButton() {
         confirmButton.SFURedDefault("Confirm")
-        //confirmButton.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(self.verifyTapped(_:)), for: .touchUpInside)
         self.view.addSubview(confirmButton)
         confirmButton.wideBottomConstraints(superview: self.view)
     }
@@ -104,10 +107,10 @@ class tripSchedulingViewController: UIViewController {
     }
     
     func timeLabelTapped(_ sender: AnyObject) {
-        let min = Date()
-        let max = Date().addingTimeInterval(60 * 60 * 24 * 7)
-        let current = Date()
-        let picker = DateTimePicker.show(selected: current, minimumDate: min, maximumDate: max)
+        let min = Date().addingTimeInterval(60 * 15) //shows 15 minutes from now so you can't schedule right away
+        let max = Date().addingTimeInterval(60 * 60 * 24 * 7) //max 7 days from now
+        //let current = Date()
+        let picker = DateTimePicker.show(selected: min, minimumDate: min, maximumDate: max)
         picker.highlightColor = Colors.SFUBlueHighlight
         picker.doneButtonTitle = "Set"
         picker.todayButtonTitle = "Now"
@@ -126,8 +129,119 @@ class tripSchedulingViewController: UIViewController {
                 })
                 picker.removeFromSuperview()
             }
+            self.time = date
             self.setTimeText(date)
+            
         }
+    }
+    
+    func verifyTapped(_ sender: FlatButton){
+        //do some checks
+        sendRequest()
+        
+        printDateAndTime()
+       
+    }
+    
+    func printDateAndTime(){
+        let dateFormatter = DateFormatter()
+        //let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss.SSSZZZZZ" //following ISO 8601
+        //timeFormatter.dateFormat = "HH:mm"
+        
+        let rideDate = dateFormatter.string(from: time)
+        //let rideTime = timeFormatter.string(from: time)
+        
+        /*
+        var scheduler:String = ""
+        if role == .request{
+            scheduler = "Rider"
+        }
+        else if role == .offer{
+            scheduler = "Driver"
+        }
+ 
+        print(scheduler)
+         */
+        print(startLocation.lat)
+        print(startLocation.lon)
+        print(destination.lat)
+        print(destination.lon)
+        print(seatsAvailable.text!)
+        print(rideDate)
+    }
+    
+    func sendRequest(){
+        
+        //let startLocation = startLocationLabel.text!
+        //let destinationLocation = destinationLabel.text!
+        //let seatsOfferedOrRequested = seatsAvailable.text!
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss.SSSZZZZZ" //following ISO 8601
+        let rideDate = dateFormatter.string(from: time)
+ 
+        var scheduler = String()
+        if role == .request{
+            scheduler = "Rider"
+        }
+        else if role == .offer{
+            scheduler = "Driver"
+        }
+     
+        
+        let parameters : Parameters = [
+                            "schedulerType": scheduler,
+                            //start
+                            "startLocationLat": startLocation.lat,
+                            "startLocationLon": startLocation.lon,
+                            //destination
+                            "destinationLat": destination.lat,
+                            "destinationLon": destination.lon,
+                            //seats and date
+                            "seats": seatsAvailable.text!,
+                            "date": rideDate,
+                            
+                            //optional fields
+                            //start
+                            "startLocationID": startLocation.id,
+                            "startLocationName": startLocation.name,
+                            "startLocationZone": startLocation.zone,
+                            "startLocationPrice": startLocation.price,
+                            //destination
+                            "destinationID": destination.id,
+                            "destinationName": destination.name,
+                            "destinationZone": destination.zone,
+                            "destinationPrice": destination.price
+                        ]
+        
+        AuthorizedRequest.request(API.ride(parameters: parameters)).responseJSON{ response in
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                if (json["success"] == true) {
+                    print("success")
+                    self.performSegue(withIdentifier: "unwindToMapViewFromSchedule", sender: self)
+                } else {
+                    
+                    // to do: error handling!
+                    self.confirmButton.isEnabled = true
+                    self.tips = EasyTipView(text:"Error occurs, please try again later")
+                    self.tips.show(forView: self.confirmButton)
+                    
+                }
+                
+            case .failure(let error):
+                print(error)
+                self.confirmButton.isEnabled = true
+                self.tips = EasyTipView(text:error.localizedDescription)
+                self.tips.show(forView: self.confirmButton)
+                
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

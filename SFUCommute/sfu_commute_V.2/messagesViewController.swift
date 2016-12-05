@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Messages
 
-class messagesViewController: UIViewController {
+class messagesViewController: MSMessagesAppViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
