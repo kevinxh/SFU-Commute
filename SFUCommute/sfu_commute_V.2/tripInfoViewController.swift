@@ -1,3 +1,4 @@
+
 //
 //  tripInfoViewController.swift
 //  sfu_commute_V.2
@@ -6,6 +7,13 @@
 //  Copyright © 2016 Lightspeed-Tech. All rights reserved.
 //
 
+/*
+ 
+ Jonathan
+ 
+ */
+ 
+ 
 import UIKit
 
 class tripInfoViewController: UIViewController {

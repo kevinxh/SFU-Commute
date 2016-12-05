@@ -17,10 +17,6 @@ class welcomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Global configuration initialization!!!!!!
-        globalConfig.initApplication()
-        
         initBackground()
         initTitle()
         initButton()
